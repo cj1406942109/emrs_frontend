@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>电子病历系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page of Theme #2 for statistics, charts, recent events and reports"
+        name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../assets/global/css/fontfamily=Open+Sans.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="../assets/global/img/favicon.ico" /> </head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+    <div id="app">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html">
+                        <img src="../assets/layouts/layout/img/logo-default.png" alt="logo" class="logo-default" /> </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+
+                <!-- BEGIN PAGE TOP -->
+                <div class="page-top">
+
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <!-- BEGIN USER LOGIN DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-user"></i> 我的资料 </a>
+                                    </li>
+
+                                    <li class="divider"> </li>
+                                    <li>
+                                        <a href="page_user_lock.html">
+                                            <i class="icon-lock"></i> 锁定屏幕 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_login.html">
+                                            <i class="icon-logout"></i> 注销登录 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+                <!-- END PAGE TOP -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- END SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start">
+                            <a href="index.html" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title"> 主&nbsp;&nbsp;页 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-briefcase"></i>
+                                <span class="title"> 电子病历系统 </span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="emrs_medical_record_list.html" class="nav-link nav-toggle">
+                                        <span class="title"> 病历查询 </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="emrs_medical_record_input.html" class="nav-link nav-toggle">
+                                        <span class="title"> 病历录入 </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <h1 class="page-title"> 电子病历系统
+                        <small>病历录入、病历查询</small>
+                    </h1>
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <i class="icon-home"></i>
+                                <a href="emrs_medical_record_list.html">电子病历系统</a>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <a href="emrs_medical_record_list.html">病历查询</a>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <span> 病历详情 </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE HEADER-->
+                    <div class="m-heading-1 border-green m-bordered">
+                        <h3>病历详情</h3>
+                        <p> 相关说明 </p>
+                    </div>
+                    <div class="portlet light">
+                        <div class="portlet-title"></div>
+                        <div class="portlet-body">
+                            <div class="tabbable-custom">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_2_1" data-toggle="tab"> 基本信息 </a></li>
+                                    <li><a href="#tab_2_2" data-toggle="tab"> 现病史 </a></li>
+                                    <li><a href="#tab_2_3" data-toggle="tab"> 既往病史及危险因素 </a></li>
+                                    <li><a href="#tab_2_4" data-toggle="tab"> 家族史 </a></li>
+                                    <li><a href="#tab_2_5" data-toggle="tab"> 体格检查 </a></li>
+                                    <li><a href="#tab_2_6" data-toggle="tab"> 常规检查 </a></li>
+                                    <li><a href="#tab_2_7" data-toggle="tab"> 特殊检查 </a></li>
+                                    <li><a href="#tab_2_8" data-toggle="tab"> 入院诊断 </a></li>
+                                    <li><a href="#tab_2_9" data-toggle="tab"> 出院诊断 </a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <!-- 基本信息部分开始 -->
+                                    <div class="tab-pane active portlet light" id="tab_2_1">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">基本信息</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">姓名：{{mr.basic_info.patient.name}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">就诊卡号：{{mr.basic_info.patient.medical_card_number}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">身份证号：{{mr.basic_info.patient.id_number}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">联系方式：{{mr.basic_info.patient.cellphone_1}} {{mr.basic_info.patient.cellphone_2}} {{mr.basic_info.patient.telephone}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">姓别：{{mr.basic_info.patient.gender|genderTransform}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">患者类型： {{key2value(pageData.basic_info.patient_type_list,mr.basic_info.is_hospitalized)}}
+                                                    <span v-if="mr.basic_info.is_hospitalized=='1'">住院号：{{mr.basic_info.admission_num}}</span>
+                                                    <span v-if="mr.basic_info.is_hospitalized=='1'">床位号：{{mr.basic_info.bed_num}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    主治医生：{{key2value(pageData.basic_info.doctor_list,mr.basic_info.doctor_id)}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    记录者：{{key2value(pageData.basic_info.recorder_list,mr.basic_info.recorder_id)}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    民族：{{mr.basic_info.patient.nationality}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    出生地：{{mr.basic_info.patient.birth_province}}{{mr.basic_info.patient.birth_city}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    出生日期：{{mr.basic_info.patient.birthday}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    职业：{{mr.basic_info.patient.profession}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    家庭住址：{{mr.basic_info.patient.address_province}}{{mr.basic_info.patient.address_city}}{{mr.basic_info.patient.address_area}}{{mr.basic_info.patient.address_town}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    详细住址：{{mr.basic_info.patient.address}}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- 基本信息部分结束 -->
+                                    <!-- 现病史部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_2">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">现病史</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>就诊原因：{{keyString2valueString(pageData.history_of_present_illness.care_cause_list,mr.history_of_present_illness.care_causes)}}</span>
+                                                    <span v-if="mr.history_of_present_illness.care_causes.indexOf('6')>=0">其他就诊原因：{{mr.history_of_present_illness.care_cause_others}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <div v-for="disease in mr.history_of_present_illness.diseases">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                {{key2value(pageData.history_of_present_illness.care_cause_list,disease.disease_name)}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <span>发作频率： {{disease.times_per_day}}次/天&nbsp; {{disease.times_per_week}}次/周&nbsp; {{disease.times_per_month}}次/月&nbsp; {{disease.times_per_year}}次/年&nbsp;</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <span>发病时间：{{keyString2valueString(pageData.history_of_present_illness.onset_time_list,disease.onset_time)}}</span>
+                                                                        <span v-if="disease.onset_time.indexOf('5')>=0">其他发病时间：{{disease.onset_time_others}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div v-if="disease.disease_name=='1'||disease.disease_name=='2'">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span>部位</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div v-for="body_part in disease.disease_body_parts">
+                                                                        <div class="row">
+                                                                            <div class="col-md-11 col-md-offset-1">
+                                                                                <span>部位名：{{key2value(pageData.history_of_present_illness.disease_body_part_name_list,body_part.body_part_name)}}</span>
+                                                                                <span v-if="body_part.body_part_name=='10'">其他部位名：{{body_part.body_part_name_others}}</span>
+                                                                                <span>性质：{{key2value(pageData.history_of_present_illness.disease_quality_of_pain_list,body_part.quality_of_pain)}}</span>
+                                                                                <span v-if="body_part.quality_of_pain=='13'">其他性质：{{body_part.quality_of_pain_others}}</span>
+                                                                                <span>持续时间：{{key2value(pageData.history_of_present_illness.disease_duration_of_pain_list,body_part.duration_of_pain)}}</span>
+                                                                                <span v-if="body_part.duration_of_pain=='6'">其他性质：{{body_part.duration_of_pain_others}}</span>
+                                                                                <span>程度：{{key2value(pageData.history_of_present_illness.disease_pain_degree_list,body_part.pain_degree)}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span>缓解因素：{{key2value(pageData.history_of_present_illness.relieving_factors_list,disease.relieving_factors)}}</span>
+                                                                            <span v-if="disease.relieving_factors=='5'">其他缓解因素：{{disease.relieving_factors_others}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span>诱因：{{keyString2valueString(pageData.history_of_present_illness.precipitating_factors_list,disease.precipitating_factors)}}</span>
+                                                                            <span v-if="disease.precipitating_factors.indexOf('11')>=0">其他诱因：{{disease.precipitating_factors_others}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span>放射部位：{{keyString2valueString(pageData.history_of_present_illness.radiation_sites_list,disease.radiation_sites)}}</span>
+                                                                            <span v-if="disease.radiation_sites.indexOf('7')>=0">其他放射部位：{{disease.radiation_sites_others}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span>伴随症状：{{keyString2valueString(pageData.history_of_present_illness.simultaneous_phenomena_list,disease.simultaneous_phenomena)}}</span>
+                                                                            <span v-if="disease.simultaneous_phenomena.indexOf('21')>=0">其他伴随症状：{{disease.simultaneous_phenomenon_others}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    无心绞痛发作：{{mr.history_of_present_illness.is_angina_pectoris|boolTransform1}}
+                                                    <span>CCS分级：{{mr.history_of_present_illness.angina_pectoris_ccs}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    4周内劳力性心绞痛发作：{{mr.history_of_present_illness.is_exertional_angina_attacks_within_4_weeks|boolTransform1}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 现病史部分结束 -->
+                                    <!-- 既往病史及危险因素部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_3">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">既往病史及危险因素</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <h4 class="bold">危险因素</h4>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    吸烟
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    是否吸烟：{{mr.risk_factors.smoking.is_somking | boolTransform1}}
+                                                    <div class="row" v-if="mr.risk_factors.smoking.is_somking=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    烟龄：{{mr.risk_factors.smoking.duration}}年
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    平均吸烟：{{mr.risk_factors.smoking.pieces_per_day}}支/日
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <span>吸烟类型：{{keyString2valueString(pageData.risk_factors.cigrette_type_list,mr.risk_factors.smoking.cigrette_type)}}</span>
+                                                                    <span v-if="mr.risk_factors.smoking.cigrette_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.smoking.cigrette_type_others}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <span>是否戒烟：{{mr.risk_factors.smoking.is_smoking_cessation | boolTransform1}}</span>
+                                                                    <span v-if="mr.risk_factors.smoking.is_smoking_cessation=='1'">戒烟时长：{{mr.risk_factors.smoking.smoking_cessation_duration}}年</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    饮酒
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    是否饮酒：{{mr.risk_factors.drinking.is_drinking | boolTransform1}}
+                                                    <div class="row" v-if="mr.risk_factors.drinking.is_drinking=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    酒龄：{{mr.risk_factors.drinking.duration}}年
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    平均饮酒：{{mr.risk_factors.drinking.tales_per_day}}两/日
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <span>饮酒类型：{{keyString2valueString(pageData.risk_factors.wine_type_list,mr.risk_factors.drinking.wine_type)}}</span>
+                                                                    <span v-if="mr.risk_factors.drinking.wine_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.drinking.wine_type_others}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <span>是否戒酒：{{mr.risk_factors.drinking.is_temperance | boolTransform1}}</span>
+                                                                    <span v-if="mr.risk_factors.drinking.is_temperance=='1'">戒烟时长：{{mr.risk_factors.drinking.temperance_duration}}年</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    饮食习惯
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>饮水：{{key2value(pageData.risk_factors.drinking_amount_list,mr.risk_factors.diet_habits.drinking_amount)}}</span>
+                                                    <span>谷薯类：{{key2value(pageData.risk_factors.paddy_potato_list,mr.risk_factors.diet_habits.paddy_potato)}}</span>
+                                                    <span>全谷物和杂豆：{{key2value(pageData.risk_factors.grain_mixed_beans_list,mr.risk_factors.diet_habits.grain_mixed_beans)}}</span>
+                                                    <span>薯类：{{key2value(pageData.risk_factors.potato_list,mr.risk_factors.diet_habits.potato)}}</span>
+                                                    <span>蔬菜类：{{key2value(pageData.risk_factors.vegetables_list,mr.risk_factors.diet_habits.vegetables)}}</span>
+                                                    <span>水果类：{{key2value(pageData.risk_factors.fruits_list,mr.risk_factors.diet_habits.fruits)}}</span>
+                                                    <span>畜禽肉：{{key2value(pageData.risk_factors.livestock_meat_list,mr.risk_factors.diet_habits.livestock_meat)}}</span>
+                                                    <span>水产品：{{key2value(pageData.risk_factors.aquatic_products_list,mr.risk_factors.diet_habits.aquatic_products)}}</span>
+                                                    <span>蛋类：{{key2value(pageData.risk_factors.eggs_list,mr.risk_factors.diet_habits.eggs)}}</span>
+                                                    <span>奶及奶制品：{{key2value(pageData.risk_factors.milk_products_list,mr.risk_factors.diet_habits.milk_products)}}</span>
+                                                    <span>大豆及坚果类：{{key2value(pageData.risk_factors.soybeans_nuts_list,mr.risk_factors.diet_habits.soybeans_nuts)}}</span>
+                                                    <span>食盐：{{key2value(pageData.risk_factors.salt_list,mr.risk_factors.diet_habits.salt)}}</span>
+                                                    <span>糖：{{key2value(pageData.risk_factors.sugar_list,mr.risk_factors.diet_habits.sugar)}}</span>
+                                                    <span>油：{{key2value(pageData.risk_factors.oil_list,mr.risk_factors.diet_habits.oil)}}</span>
+                                                    <span>肥肉：{{mr.risk_factors.diet_habits.fat_meat}}g/周</span>
+                                                    <span>肝脏：{{mr.risk_factors.diet_habits.visceral}}g/周</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    社会心理因素
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>血型性格：{{key2value(pageData.risk_factors.blood_type_list,mr.risk_factors.psychosocial_factors.blood_type)}}</span>
+                                                    <span>有无长期心理压力：{{mr.risk_factors.psychosocial_factors.is_longterm_psychological_stress|boolTransform2}}</span>
+                                                    <span>有无抑郁症（悲观、焦虑或反应迟钝、疲劳、缺乏自信、饮食睡眠改变）：{{mr.risk_factors.psychosocial_factors.is_depression|boolTransform2}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    运动
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>类型：{{key2value(pageData.risk_factors.exercise_type_list,mr.risk_factors.exercise.type)}}</span>
+                                                    <span>每次时长：{{key2value(pageData.risk_factors.exercise_duration_list,mr.risk_factors.exercise.duration)}}</span>
+                                                    <span>方式：{{keyString2valueString(pageData.risk_factors.exercise_mode_list,mr.risk_factors.exercise.mode)}}</span>
+                                                    <span v-if="mr.risk_factors.exercise.mode.indexOf('3')>=0">其他方式：{{mr.risk_factors.exercise.mode_others}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    中心型肥胖
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>有无中心型肥胖：{{mr.risk_factors.central_obesity.is_central_obesity|boolTransform2}}</span>
+                                                    <span v-if="mr.risk_factors.central_obesity.is_central_obesity=='1'">病史：{{mr.risk_factors.central_obesity.duration}}年</span>
+                                                    <span>身高：{{mr.risk_factors.central_obesity.height}}cm</span>
+                                                    <span>体重：{{mr.risk_factors.central_obesity.weight}}kg</span>
+                                                    <span>腰围：{{mr.risk_factors.central_obesity.waistline}}cm</span>
+                                                    <span>颈围：{{mr.risk_factors.central_obesity.neck_circumference}}cm</span>
+                                                    <span>臀围：{{mr.risk_factors.central_obesity.hipline}}cm</span>
+                                                </div>
+                                            </div>
+                                            <h4 class="bold">既往病史</h4>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    血脂异常
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无血脂异常：{{mr.anamnesis.lipid_abnormality.is_lipid_abnormality|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.lipid_abnormality.is_lipid_abnormality=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>病史：{{mr.anamnesis.lipid_abnormality.duration}}年</span>
+                                                            <span>类型：{{key2value(pageData.anamnesis.lipid_abnormality_type_list,mr.anamnesis.lipid_abnormality.type)}}</span>
+                                                            <span>有无治疗：{{mr.anamnesis.lipid_abnormality.is_under_treatment|boolTransform4}}</span>
+                                                            <span v-if="mr.anamnesis.lipid_abnormality.is_under_treatment=='2'">药名：{{mr.anamnesis.lipid_abnormality.drug_name}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    原发性高血压
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无原发性高血压：{{mr.anamnesis.essential_hypertension.is_essential_hypertension|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.essential_hypertension.is_essential_hypertension=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>病史：{{mr.anamnesis.essential_hypertension.duration}}年</span>
+                                                            <span>有无治疗：{{mr.anamnesis.essential_hypertension.is_under_treatment|boolTransform4}}</span>
+                                                            <span v-if="mr.anamnesis.essential_hypertension.is_under_treatment=='2'">药名：{{mr.anamnesis.essential_hypertension.drug_name}}</span>
+                                                            <span>血压最高值：{{mr.anamnesis.essential_hypertension.maximum_value}}mmHg</span>
+                                                            <span>血压平时值：{{mr.anamnesis.essential_hypertension.ordinary_value}}mmHg</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    血糖异常
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无血糖异常：{{mr.anamnesis.dysglycemia.is_dysglycemia|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.dysglycemia.is_dysglycemia=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>病史：{{mr.anamnesis.dysglycemia.duration}}年</span>
+                                                            <span>类型：{{key2value(pageData.anamnesis.dysglycemia_type_list,mr.anamnesis.dysglycemia.type)}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无糖尿病：{{mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>有无治疗：{{mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment|boolTransform5}}</span>
+                                                        </div>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment=='1'||mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment=='2'">
+                                                            <span>治疗方法：{{keyString2valueString(pageData.anamnesis.diabetes_mellitus_treatment_method_list,mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method)}}</span>
+                                                            <span v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method.indexOf('3')>=0">口服药药名：{{mr.anamnesis.dysglycemia.diabetes_mellitus.oral_drug_name}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    痛风
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无痛风：{{mr.anamnesis.gout.is_gout|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.gout.is_gout=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>病史：{{mr.anamnesis.gout.duration}}年</span>
+                                                        </div>
+                                                    </div>
+                                                    血清尿酸：{{mr.anamnesis.gout.serum_uric_acid_level}}mmol/L
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无肾功能不全：{{mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>病史：{{mr.anamnesis.gout.renal_insufficiency.duration}}年</span>
+                                                            <span>病因：{{mr.anamnesis.gout.renal_insufficiency.etiology}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <span>最高Cr：{{mr.anamnesis.gout.renal_insufficiency.maximum_Cr}}mmol/L</span>
+                                                    <span>近期Cr：{{mr.anamnesis.gout.renal_insufficiency.recent_Cr}}mmol/L</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    心脏病史
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无陈旧性心硬：{{mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_year}}年</span>
+                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_month}}月前，发生</span>
+                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_frequency}}次</span>
+                                                            <span>部位：{{keyString2valueString(pageData.anamnesis.old_myocardial_infarction_location_list,mr.anamnesis.heart_diseases.old_myocardial_infarction.location)}}</span>
+                                                            <span v-if="mr.anamnesis.heart_diseases.old_myocardial_infarction.location.indexOf('7')>=0">其他部位：{{mr.anamnesis.heart_diseases.old_myocardial_infarction.location_others}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">有无PCI史：{{mr.anamnesis.heart_diseases.is_pci_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无CABG史：{{mr.anamnesis.heart_diseases.is_cabg_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无冠脉造影≥50%狭窄史：{{mr.anamnesis.heart_diseases.is_cas_gt50_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无房颤 ：{{mr.anamnesis.heart_diseases.is_atrial_fibrillation|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无其他心脏病史：{{mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>类型：{{keyString2valueString(pageData.anamnesis.other_heart_disease_type_list,mr.anamnesis.heart_diseases.other_heart_disease.type)}}</span>
+                                                            <span v-if="mr.anamnesis.heart_diseases.other_heart_disease.type.indexOf('8')>=0">其他类型：{{mr.anamnesis.heart_diseases.other_heart_disease.type_others}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    深静脉血栓
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无深静脉血栓：{{mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>{{mr.anamnesis.deep_venou_thrombosis.onset_time_year}}年</span>
+                                                            <span>{{mr.anamnesis.deep_venou_thrombosis.onset_time_month}}月前</span>
+                                                            <span>诱因：{{keyString2valueString(pageData.anamnesis.deep_venou_thrombosis_inducement_list,mr.anamnesis.deep_venou_thrombosis.inducements)}}</span>
+                                                            <span>症状：{{keyString2valueString(pageData.anamnesis.deep_venou_thrombosis_symptom_list,mr.anamnesis.deep_venou_thrombosis.symptoms)}}</span>
+                                                            <span>诊断结果：{{key2value(pageData.anamnesis.deep_venou_thrombosis_diagnosis_result_list,mr.anamnesis.deep_venou_thrombosis.diagnosis_result)}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    既往缺血性卒中
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无既往缺血性卒中：{{mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            类型
+                                                        </div>
+                                                        <div v-for="type in mr.anamnesis.old_ischemic_stroke.types">
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <span>{{key2value(pageData.anamnesis.old_ischemic_stroke_type_name_list,type.type_name)}}</span>
+                                                                <span>{{type.onset_time_year}}年{{type.onset_time_month}}月前，发生{{type.onset_frequency}}次</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    血管性疾病史
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无血管性疾病史：{{mr.anamnesis.vascular_diseases.is_vascular_diseases|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.vascular_diseases.is_vascular_diseases=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            类型：{{keyString2valueString(pageData.anamnesis.vascula_diseases_type_list,mr.anamnesis.vascular_diseases.types)}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    出血病史
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无出血病史：{{mr.anamnesis.hemorrhage.is_hemorrhage|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.hemorrhage.is_hemorrhage=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            类型
+                                                        </div>
+                                                        <div v-for="type in mr.anamnesis.hemorrhage.types">
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <span>{{key2value(pageData.anamnesis.hemorrhage_type_name_list,type.type_name)}}</span>
+                                                                <span>发生时间：{{type.onset_time}}发生次数：{{type.onset_frequency}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    出血史
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    有无出血史：{{mr.anamnesis.bleeding.is_bleeding|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.bleeding.is_bleeding=='1'">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            病因
+                                                        </div>
+                                                        <div v-for="cause in mr.anamnesis.bleeding.causes">
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <span>{{key2value(pageData.anamnesis.bleeding_cause_list,cause.cause)}}</span>
+                                                                <span>发生时间：{{cause.onset_time}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 既往病史及危险因素部分结束 -->
+                                    <!-- 家族史部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_4">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">家族史</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div v-for="disease in mr.family_history">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{key2value(pageData.family_history.disease_name_list,disease.disease_name)}}
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        发病成员
+                                                        <div v-for="onset_member in disease.onset_members">
+                                                            <div class="row">
+                                                                <div class="col-md-11 col-md-offset-1">
+                                                                    <span>成员：{{key2value(pageData.family_history.onset_member_list,onset_member.onset_member)}}</span>
+                                                                    <span>性别：{{onset_member.gender|genderTransform}}</span>
+                                                                    <span>发病年龄：{{onset_member.onset_age}}</span>
+                                                                    <span v-if="disease.disease_name=='1'">类型：{{key2value(pageData.family_history.premature_chd_type_list,onset_member.onset_type)}}</span>
+                                                                    <span v-if="disease.disease_name=='5'">病因：{{key2value(pageData.family_history.sudden_death_etiologie_list,onset_member.etiology)}} 
+                                                                        <span v-if="onset_member.etiology=='4'">其他病因：{{onset_member.etiology_others}}</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 家族史部分结束 -->
+                                    <!-- 体格检查部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_5">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">体格检查</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">体温：{{mr.physical_examination.body_temperature}}℃</div>
+                                                <div class="col-md-12">呼吸
+                                                    <div class="row">
+                                                        <div class="col-md-11 col-md-offset-1">频率：{{mr.physical_examination.respiratory_rate}}次/分</div>
+                                                        <div class="col-md-11 col-md-offset-1">呼吸音是否正常：{{mr.physical_examination.is_breath_sounds_normal|boolTransform1}}</div>
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>肺部湿啰音：{{mr.physical_examination.is_lung_wet_rales|boolTransform2}}</span>
+                                                            <span v-if="mr.physical_examination.is_lung_wet_rales=='1'">范围：{{key2value(pageData.physical_examination.lung_wet_rales_range_list,mr.physical_examination.lung_wet_rales_range)}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">心率：{{mr.physical_examination.heart_rate}}bpm</div>
+                                                <div class="col-md-12">心律：{{key2value(pageData.physical_examination.cardiac_rhythm_list,mr.physical_examination.cardiac_rhythm)}}</div>
+                                                <div class="col-md-12">心音
+                                                    <div class="row">
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            <span>S1：{{key2value(pageData.physical_examination.heart_sound_S1_result_list,mr.physical_examination.heart_sound_S1_result)}}</span>
+                                                            <span>S3/S4奔马律：{{mr.physical_examination.is_S3S4_gallop_rhythm|boolTransform2}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">脉搏：{{mr.physical_examination.pulse}}次/分</div>
+                                                <div class="col-md-12">血压：{{mr.physical_examination.blood_pressure}}mmHg</div>
+                                                <div class="col-md-12">
+                                                    <span>心衰：{{mr.physical_examination.is_heart_failure|boolTransform1}}</span>
+                                                    <span>Killip级：{{key2value(pageData.physical_examination.Killip_class_list,mr.physical_examination.Killip_class)}}</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <span>耳垂有纵向裂纹：{{mr.physical_examination.is_ear_lobe_longitudinal_crack|boolTransform1}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.physical_examination.ear_lobe_longitudinal_crack_part_list,mr.physical_examination.ear_lobe_longitudinal_crack_parts)}}</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <span>皮肤有黄色素瘤：{{mr.physical_examination.is_skin_yellow_pigment_tumor|boolTransform1}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.physical_examination.skin_yellow_pigment_tumor_part_list,mr.physical_examination.skin_yellow_pigment_tumor_parts)}}</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <span>头顶脱发：{{mr.physical_examination.is_alopecia|boolTransform1}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.physical_examination.alopecia_part_list,mr.physical_examination.alopecia_parts)}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 体格检查部分结束 -->
+                                    <!-- 常规检查部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_6">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">常规检查</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    血生化
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    血脂全套
+                                                    <span>TC：{{mr.routine_examination.blood_biochemistry.TC}}mmol/L</span>
+                                                    <span>TG：{{mr.routine_examination.blood_biochemistry.TG}}mmol/L</span>
+                                                    <span>LDL：{{mr.routine_examination.blood_biochemistry.LDL}}mmol/L</span>
+                                                    <span>HDL：{{mr.routine_examination.blood_biochemistry.HDL}}mmol/L</span>
+                                                    <span>非HDL：{{mr.routine_examination.blood_biochemistry.not_HDL}}mmol/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    血糖
+                                                    <span>空腹：{{mr.routine_examination.blood_biochemistry.blood_glucose_fasting}}mmol/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    血清心肌坏死标志物升高：{{mr.routine_examination.blood_biochemistry.is_serum_myocardial_necrosis_markers_up|boolTransform1}}
+                                                    <span>CK：{{mr.routine_examination.blood_biochemistry.myocardial_CK}}U/L</span>
+                                                    <span>CK-MB：{{mr.routine_examination.blood_biochemistry.myocardial_CKMB}}U/L</span>
+                                                    <span>cTnI：{{mr.routine_examination.blood_biochemistry.myocardial_cTnI}}μg/L</span>
+                                                    <span>Mb：{{mr.routine_examination.blood_biochemistry.myocardial_Mb}}μg/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    炎症标志物升高：{{mr.routine_examination.blood_biochemistry.is_inflammatory_markers_up|boolTransform1}}
+                                                    <span>hs-CRP：{{mr.routine_examination.blood_biochemistry.inflammation_hsCRP}}mg/L</span>
+                                                    <span>IL-6：{{mr.routine_examination.blood_biochemistry.inflammation_IL6}}pg/mL</span>
+                                                    <span>IL-1β：{{mr.routine_examination.blood_biochemistry.inflammation_IL1_beta}}pg/mL</span>
+                                                    <span>TNFα：{{mr.routine_examination.blood_biochemistry.inflammation_TNF_alpha}}μg/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    心衰：NT-proBNP：{{mr.routine_examination.blood_biochemistry.heart_failure_NTproBNP}}ng/L
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    电解质：
+                                                    <span>Na：{{mr.routine_examination.blood_biochemistry.electrolyte_Na}}mmol/L</span>
+                                                    <span>K：{{mr.routine_examination.blood_biochemistry.electrolyte_K}}mmol/L</span>
+                                                    <span>Ca：{{mr.routine_examination.blood_biochemistry.electrolyte_Ca}}mmol/L</span>
+                                                    <span>Cl：{{mr.routine_examination.blood_biochemistry.electrolyte_Cl}}mmol/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    肝功能异常：{{mr.routine_examination.blood_biochemistry.is_abnormal_liver_function|boolTransform1}}
+                                                    <span>总蛋白：{{mr.routine_examination.blood_biochemistry.total_protein}}g/L</span>
+                                                    <span>白蛋白：{{mr.routine_examination.blood_biochemistry.albumin}}g/L</span>
+                                                    <span>总胆红素：{{mr.routine_examination.blood_biochemistry.total_bilirubin}}μmol/L</span>
+                                                    <span>直接胆红素：{{mr.routine_examination.blood_biochemistry.direct_bilirubin}}μmol/L</span>
+                                                    <span>间接胆红素：{{mr.routine_examination.blood_biochemistry.indirect_bilirubin}}μmol/L</span>
+                                                    <span>ALT：{{mr.routine_examination.blood_biochemistry.ALT}}U/L</span>
+                                                    <span>AST：{{mr.routine_examination.blood_biochemistry.AST}}U/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    肾功能不全：{{mr.routine_examination.blood_biochemistry.is_renal_insufficiency|boolTransform1}}
+                                                    <span>Cr：{{mr.routine_examination.blood_biochemistry.Cr}}μmol/L</span>
+                                                    <span>UA：{{mr.routine_examination.blood_biochemistry.UA}}μmol/L</span>
+                                                    <span>BUN：{{mr.routine_examination.blood_biochemistry.BUN}}mmol/L</span>
+                                                    <span>GFR：{{mr.routine_examination.blood_biochemistry.GFR}}ml/min</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    肝肾疾病：{{mr.routine_examination.blood_biochemistry.is_hepatorenal_disease|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    凝血功能
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>APTT：{{mr.routine_examination.coagulation_function.APTT}}s</span>
+                                                    <span>PT：{{mr.routine_examination.coagulation_function.PT}}s</span>
+                                                    <span>TT：{{mr.routine_examination.coagulation_function.TT}}s</span>
+                                                    <span>FIB：{{mr.routine_examination.coagulation_function.FIB}}g/L</span>
+                                                    <span>D-二聚体：{{mr.routine_examination.coagulation_function.d_dimer}}s</span>
+                                                    <span>INR：{{mr.routine_examination.coagulation_function.INR}}</span>
+                                                    <span>{{key2value(pageData.routine_examination.is_INR_stable_list,mr.routine_examination.coagulation_function.is_INR_stable)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    血常规
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>红细胞计数：{{mr.routine_examination.blood_routine.red_blood_cell_count}}x10^12/L</span>
+                                                    <span>红细胞比容：{{mr.routine_examination.blood_routine.red_blood_cell_specific_volume}}%</span>
+                                                    <span>HGB：{{mr.routine_examination.blood_routine.HGB}}g/L</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>白细胞计数：{{mr.routine_examination.blood_routine.leukocyte_count}}x10^9/L</span>
+                                                    <div class="col-md-10 col-md-offset-2">
+                                                        <span>中性粒细胞：{{mr.routine_examination.blood_routine.neutrophil}}x10^9/L</span>
+                                                        <span>嗜酸性粒细胞：{{mr.routine_examination.blood_routine.eosinophil}}x10^9/L</span>
+                                                        <span>嗜碱性粒细胞：{{mr.routine_examination.blood_routine.basophil}}x10^9/L</span>
+                                                        <span>淋巴细胞：{{mr.routine_examination.blood_routine.lymphocyte}}x10^9/L</span>
+                                                        <span>单核细胞：{{mr.routine_examination.blood_routine.monocyte}}x10^9/L</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>血小板功能数量异常：{{mr.routine_examination.blood_routine.is_qualitative_plateletdefects|boolTransform1}}</span>
+                                                    <div class="col-md-10 col-md-offset-2">
+                                                        <div><span>中性粒细胞</span></div>
+                                                        <div class="col-md-9 col-md-offset-3">
+                                                            <span>PLT：{{mr.routine_examination.blood_routine.platelet_count_PLT}}x10^9/L</span>
+                                                            <span>MPV：{{mr.routine_examination.blood_routine.MPV}}fL</span>
+                                                            <span>PDW：{{mr.routine_examination.blood_routine.PDW}}%</span>
+                                                        </div>
+                                                        <div><span>血小板聚集率</span></div>
+                                                        <div class="col-md-9 col-md-offset-3">
+                                                            <span>ADP：{{mr.routine_examination.blood_routine.PAR_ADP}}%</span>
+                                                            <span>肾上腺素：{{mr.routine_examination.blood_routine.PAR_epinephrine}}%</span>
+                                                            <span>花生四烯酸：{{mr.routine_examination.blood_routine.PAR_arachidonic_acid}}%</span>
+                                                            <span>胶原：{{mr.routine_examination.blood_routine.PAR_collagen}}%</span>
+                                                            <span>瑞斯托霉素：{{mr.routine_examination.blood_routine.PAR_ristocetin}}%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 特殊检查部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_7">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">特殊检查</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    ECG
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>病理性Q波：{{mr.special_examination.ecg.pathological_q_wave.is_pathological_q_wave|boolTransform2}}</span>
+                                                    <span>导联：{{keyString2valueString(pageData.special_examination.lead_list,mr.special_examination.ecg.pathological_q_wave.q_wave_leads)}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>ST段改变：{{mr.special_examination.ecg.st_segment_change.is_st_segment_change|boolTransform2}}</span>
+                                                    <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.ecg.st_segment_change.is_st_segment_change=='1'">
+                                                        <span>ST段压低：{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression|boolTransform2}}</span>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression=='1'">导联：
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I=='1'">I：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II=='1'">II：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III=='1'">III：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF=='1'">aVF：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL=='1'">aVL：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR=='1'">aVR：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVR_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1=='1'">V1：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2=='1'">V2：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3=='1'">V3：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4=='1'">V4：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5=='1'">V5：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6=='1'">V6：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7=='1'">V7：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8=='1'">V8：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9=='1'">V9：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.ecg.st_segment_change.is_st_segment_change=='1'">
+                                                        <span>ST段抬高：{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation|boolTransform2}}</span>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation=='1'">导联：
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I=='1'">I：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II=='1'">II：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III=='1'">III：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF=='1'">aVF：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL=='1'">aVL：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR=='1'">aVR：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVR_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1=='1'">V1：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2=='1'">V2：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3=='1'">V3：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4=='1'">V4：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5=='1'">V5：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6=='1'">V6：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V7=='1'">V7：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V7_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8=='1'">V8：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9=='1'">V9：
+                                                                <span v-if="mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude">{{mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>T波改变：{{mr.special_examination.ecg.t_wave_change.is_t_wave_change|boolTransform2}}</span>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        导联：
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_I=='1'">I：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_I_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_I_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_I_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_I_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_II=='1'">II：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_II_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_II_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_II_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_II_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_III=='1'">III：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_III_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_III_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_III_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_III_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVF=='1'">aVF：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVL=='1'">aVL：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVR=='1'">aVR：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V1=='1'">V1：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V2=='1'">V2：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V3=='1'">V3：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V4=='1'">V4：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V5=='1'">V5：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V6=='1'">V6：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V7=='1'">V7：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V8=='1'">V8：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_amplitude}}mV</span>
+                                                        </span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V9=='1'">V9：
+                                                            <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_waveforms)}}</span>
+                                                        <span v-if="mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_amplitude">{{mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_amplitude}}mV</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>心律失常：{{mr.special_examination.ecg.arrhythmia.is_arrhythmia|boolTransform2}}</span>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        类型：
+                                                        <span v-for="type in mr.special_examination.ecg.arrhythmia.arrhythmia_types">
+                                                            {{key2value(pageData.special_examination.arrhythmia_type_list,type.arrhythmia_type)}}&nbsp;{{type.arrhythmia_type_others}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>心电图结果是否正常：{{mr.special_examination.ecg.is_result_normal|boolTransform1}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>检查结论：{{mr.special_examination.ecg.findings}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    运动ECG
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    运动{{mr.special_examination.exercise_ecg.exercise_duration}}min后，{{mr.special_examination.exercise_ecg.is_exercise_angina|boolTransform2}}心绞痛，最高血压{{mr.special_examination.exercise_ecg.maximal_blood_pressure}}mmHg，最低血压{{mr.special_examination.exercise_ecg.minimal_blood_pressure}}mmHg
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>ST段改变：{{mr.special_examination.exercise_ecg.st_segment_change.is_st_segment_change|boolTransform2}}</span>
+                                                    <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.exercise_ecg.st_segment_change.is_st_segment_change=='1'">
+                                                        <span>ST段压低：{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression|boolTransform2}}</span>
+                                                        <span>持续：{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].duration}}min</span>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression=='1'">导联：
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I=='1'">I：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II=='1'">II：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III=='1'">III：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF=='1'">aVF：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL=='1'">aVL：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR=='1'">aVR：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVR_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1=='1'">V1：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2=='1'">V2：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3=='1'">V3：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4=='1'">V4：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5=='1'">V5：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6=='1'">V6：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7=='1'">V7：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8=='1'">V8：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9=='1'">V9：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.exercise_ecg.st_segment_change.is_st_segment_change=='1'">
+                                                        <span>ST段抬高：{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation|boolTransform2}}</span>
+                                                        <span>持续：{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].duration}}min</span>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation=='1'">导联：
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I=='1'">I：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II=='1'">II：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III=='1'">III：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF=='1'">aVF：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL=='1'">aVL：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR=='1'">aVR：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVR_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1=='1'">V1：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2=='1'">V2：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3=='1'">V3：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4=='1'">V4：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5=='1'">V5：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6=='1'">V6：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V7=='1'">V7：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V7_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8=='1'">V8：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9=='1'">V9：
+                                                                    <span v-if="mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude">{{mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>T波改变：{{mr.special_examination.exercise_ecg.t_wave_change.is_t_wave_change|boolTransform2}}</span>
+                                                    <div v-if="mr.special_examination.exercise_ecg.t_wave_change.is_t_wave_change=='1'">
+                                                        <span>持续：{{mr.special_examination.exercise_ecg.t_wave_change.duration}}min</span>
+                                                        <div class="col-md-11 col-md-offset-1">
+                                                            导联：
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_I=='1'">I：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_II=='1'">II：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_III=='1'">III：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVF=='1'">aVF：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVL=='1'">aVL：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVR=='1'">aVR：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V1=='1'">V1：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V2=='1'">V2：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V3=='1'">V3：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V4=='1'">V4：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V5=='1'">V5：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V6=='1'">V6：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V7=='1'">V7：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V8=='1'">V8：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V9=='1'">V9：
+                                                                        <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_waveforms)}}</span>
+                                                            <span v-if="mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_amplitude">{{mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    运动ECG结果：{{key2value(pageData.special_examination.exercise_ecg_result_list,mr.special_examination.exercise_ecg.result)}}
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    检查结论：{{mr.special_examination.exercise_ecg.findings}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                长程ECG
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                <span>心博总数：{{mr.special_examination.holter_ecg.total_heartbeats}}次/天 </span>
+                                                <span>最高心率：{{mr.special_examination.holter_ecg.average_heart_rate}}bpm，发生时间{{mr.special_examination.holter_ecg.maximal_heart_rate_occurrence_time}}</span>
+                                                <span>最低心率：{{mr.special_examination.holter_ecg.minimal_heart_rate}}bpm，发生时间{{mr.special_examination.holter_ecg.minimal_heart_rate_occurrence_time}}</span>
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                心律失常：{{mr.special_examination.holter_ecg.arrhythmia.is_arrhythmia|boolTransform2}}
+                                                <div v-if="mr.special_examination.holter_ecg.arrhythmia.is_arrhythmia=='1'">
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <span>频度：{{mr.special_examination.holter_ecg.arrhythmia.frequentness}}次/天</span>
+                                                        <span>异常心博总数：{{mr.special_examination.holter_ecg.arrhythmia.total_abnormal_heartbeats}}次/天</span>
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <span>类型</span>
+                                                        <div v-for="type in mr.special_examination.holter_ecg.arrhythmia.arrhythmia_types" class="col-md-offset-1">
+                                                            <span>类型：{{key2value(pageData.special_examination.arrhythmia_type_list,type.arrhythmia_type)}}</span>
+                                                            <span v-if="type.arrhythmia_type=='11'">其他类型：{{type.arrhythmia_type_others}}</span>
+                                                            <span>持续时间：{{type.duration}}min</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                病理性Q波：{{mr.special_examination.holter_ecg.pathological_q_wave.is_pathological_q_wave|boolTransform2}}
+                                                <div v-if="mr.special_examination.holter_ecg.pathological_q_wave.is_pathological_q_wave=='1'">
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <span>频度：{{mr.special_examination.holter_ecg.pathological_q_wave.frequentness}}次/天</span>
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <div v-for="detail in mr.special_examination.holter_ecg.pathological_q_wave.q_wave_leads_detail">
+                                                            <span>时间：{{detail.duration}}</span>
+                                                            <span>导联：{{keyString2valueString(pageData.special_examination.lead_list,detail.q_wave_leads)}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                ST段改变：{{mr.special_examination.holter_ecg.st_segment_change.is_st_segment_change|boolTransform2}}
+                                                <div v-if="mr.special_examination.holter_ecg.st_segment_change.is_st_segment_change=='1'">
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <span>ST段压低：{{mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression|boolTransform2}}</span>
+                                                        <div class="col-md-offset-1" v-if="mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression=='1'">
+                                                            <span>频度：{{mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].frequentness}}次/天</span>
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <div v-for="detail in mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].changes_detail">
+                                                                    <span>持续时间：{{detail.duration}}min</span>
+                                                                    <span>导联：</span>
+                                                                    <span v-if="detail.is_lead_I=='1'">I：
+                                                                            <span v-if="detail.lead_I_amplitude">{{detail.lead_I_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_II=='1'">II：
+                                                                            <span v-if="detail.lead_II_amplitude">{{detail.lead_II_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_III=='1'">III：
+                                                                            <span v-if="detail.lead_III_amplitude">{{detail.lead_III_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVF=='1'">aVF：
+                                                                            <span v-if="detail.lead_aVF_amplitude">{{detail.lead_aVF_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVL=='1'">aVL：
+                                                                            <span v-if="detail.lead_aVL_amplitude">{{detail.lead_aVL_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVR=='1'">aVR：
+                                                                            <span v-if="detail.lead_aVR_amplitude">{{detail.lead_aVR_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V1=='1'">V1：
+                                                                            <span v-if="detail.lead_V1_amplitude">{{detail.lead_V1_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V2=='1'">V2：
+                                                                            <span v-if="detail.lead_V2_amplitude">{{detail.lead_V2_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V3=='1'">V3：
+                                                                            <span v-if="detail.lead_V3_amplitude">{{detail.lead_V3_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V4=='1'">V4：
+                                                                            <span v-if="detail.lead_V4_amplitude">{{detail.lead_V4_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V5=='1'">V5：
+                                                                            <span v-if="detail.lead_V5_amplitude">{{detail.lead_V5_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V6=='1'">V6：
+                                                                            <span v-if="detail.lead_V6_amplitude">{{detail.lead_V6_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V7=='1'">V7：
+                                                                            <span v-if="detail.lead_V7_amplitude">{{detail.lead_V7_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V8=='1'">V8：
+                                                                            <span v-if="detail.lead_V8_amplitude">{{detail.lead_V8_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V9=='1'">V9：
+                                                                            <span v-if="detail.lead_V9_amplitude">{{detail.lead_V9_amplitude}}mV</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11 col-md-offset-1">
+                                                        <span>ST段抬高：{{mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation|boolTransform2}}</span>
+                                                        <div class="col-md-offset-1" v-if="mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation=='1'">
+                                                            <span>频度：{{mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].frequentness}}次/天</span>
+                                                            <div class="col-md-11 col-md-offset-1">
+                                                                <div v-for="detail in mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].changes_detail">
+                                                                    <span>持续时间：{{detail.duration}}min</span>
+                                                                    <span>导联：</span>
+                                                                    <span v-if="detail.is_lead_I=='1'">I：
+                                                                                <span v-if="detail.lead_I_amplitude">{{detail.lead_I_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_II=='1'">II：
+                                                                                <span v-if="detail.lead_II_amplitude">{{detail.lead_II_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_III=='1'">III：
+                                                                                <span v-if="detail.lead_III_amplitude">{{detail.lead_III_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVF=='1'">aVF：
+                                                                                <span v-if="detail.lead_aVF_amplitude">{{detail.lead_aVF_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVL=='1'">aVL：
+                                                                                <span v-if="detail.lead_aVL_amplitude">{{detail.lead_aVL_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_aVR=='1'">aVR：
+                                                                                <span v-if="detail.lead_aVR_amplitude">{{detail.lead_aVR_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V1=='1'">V1：
+                                                                                <span v-if="detail.lead_V1_amplitude">{{detail.lead_V1_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V2=='1'">V2：
+                                                                                <span v-if="detail.lead_V2_amplitude">{{detail.lead_V2_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V3=='1'">V3：
+                                                                                <span v-if="detail.lead_V3_amplitude">{{detail.lead_V3_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V4=='1'">V4：
+                                                                                <span v-if="detail.lead_V4_amplitude">{{detail.lead_V4_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V5=='1'">V5：
+                                                                                <span v-if="detail.lead_V5_amplitude">{{detail.lead_V5_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V6=='1'">V6：
+                                                                                <span v-if="detail.lead_V6_amplitude">{{detail.lead_V6_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V7=='1'">V7：
+                                                                                <span v-if="detail.lead_V7_amplitude">{{detail.lead_V7_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V8=='1'">V8：
+                                                                                <span v-if="detail.lead_V8_amplitude">{{detail.lead_V8_amplitude}}mV</span>
+                                                                    </span>
+                                                                    <span v-if="detail.is_lead_V9=='1'">V9：
+                                                                                <span v-if="detail.lead_V9_amplitude">{{detail.lead_V9_amplitude}}mV</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                T波改变：{{mr.special_examination.holter_ecg.t_wave_change.is_t_wave_change|boolTransform2}}
+                                                <div v-if="mr.special_examination.holter_ecg.t_wave_change.is_t_wave_change=='1'">
+                                                    <span class="col-md-offset-1">频度：{{mr.special_examination.holter_ecg.t_wave_change.frequentness}}次/天</span>
+                                                    <div class="col-md-11 col-md-offset-2">
+                                                        <div v-for="detail in mr.special_examination.holter_ecg.t_wave_change.changes_detail">
+                                                            <span>持续时间：{{detail.duration}}min</span> 导联：
+                                                            <span v-if="detail.is_lead_I=='1'">I：
+                                                                        <span v-if="detail.lead_I_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_I_waveforms)}}</span>
+                                                            <span v-if="detail.lead_I_amplitude">{{detail.lead_I_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_II=='1'">II：
+                                                                        <span v-if="detail.lead_II_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_II_waveforms)}}</span>
+                                                            <span v-if="detail.lead_II_amplitude">{{detail.lead_II_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_III=='1'">III：
+                                                                        <span v-if="detail.lead_III_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_III_waveforms)}}</span>
+                                                            <span v-if="detail.lead_III_amplitude">{{detail.lead_III_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_aVF=='1'">aVF：
+                                                                        <span v-if="detail.lead_aVF_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_aVF_waveforms)}}</span>
+                                                            <span v-if="detail.lead_aVF_amplitude">{{detail.lead_aVF_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_aVL=='1'">aVL：
+                                                                        <span v-if="detail.lead_aVL_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_aVL_waveforms)}}</span>
+                                                            <span v-if="detail.lead_aVL_amplitude">{{detail.lead_aVL_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_aVR=='1'">aVR：
+                                                                        <span v-if="detail.lead_aVR_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_aVR_waveforms)}}</span>
+                                                            <span v-if="detail.lead_aVR_amplitude">{{detail.lead_aVR_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V1=='1'">V1：
+                                                                        <span v-if="detail.lead_V1_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V1_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V1_amplitude">{{detail.lead_V1_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V2=='1'">V2：
+                                                                        <span v-if="detail.lead_V2_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V2_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V2_amplitude">{{detail.lead_V2_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V3=='1'">V3：
+                                                                        <span v-if="detail.lead_V3_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V3_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V3_amplitude">{{detail.lead_V3_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V4=='1'">V4：
+                                                                        <span v-if="detail.lead_V4_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V4_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V4_amplitude">{{detail.lead_V4_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V5=='1'">V5：
+                                                                        <span v-if="detail.lead_V5_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V5_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V5_amplitude">{{detail.lead_V5_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V6=='1'">V6：
+                                                                        <span v-if="detail.lead_V6_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V6_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V6_amplitude">{{detail.lead_V6_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V7=='1'">V7：
+                                                                        <span v-if="detail.lead_V7_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V7_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V7_amplitude">{{detail.lead_V7_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V8=='1'">V8：
+                                                                        <span v-if="detail.lead_V8_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V8_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V8_amplitude">{{detail.lead_V8_amplitude}}mV</span>
+                                                            </span>
+                                                            <span v-if="detail.is_lead_V9=='1'">V9：
+                                                                        <span v-if="detail.lead_V9_waveforms">{{key2value(pageData.special_examination.ecg_waveform_list,detail.lead_V9_waveforms)}}</span>
+                                                            <span v-if="detail.lead_V9_amplitude">{{detail.lead_V9_amplitude}}mV</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                检查结论：{{mr.special_examination.holter_ecg.findings}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                心脏彩超
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>LVD：{{mr.special_examination.ucg.LVD}}mm</span>
+                                                    <span>EDV：{{mr.special_examination.ucg.EDV}}ml</span>
+                                                    <span>LVS：{{mr.special_examination.ucg.LVS}}mm</span>
+                                                    <span>ESV：{{mr.special_examination.ucg.ESV}}ml</span>
+                                                    <span>LAD：{{mr.special_examination.ucg.LAD}}mm</span>
+                                                    <span>LVPW：{{mr.special_examination.ucg.LVPW}}mm</span>
+                                                    <span>IVST：{{mr.special_examination.ucg.IVST}}mm</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>LVEF < 40%：{{mr.special_examination.ucg.is_LVEF_lt_forty_percent|boolTransform2}}</span>
+                                                    <span v-if="mr.special_examination.ucg.is_LVEF_lt_forty_percent=='1'">E/A：{{mr.special_examination.ucg.ratio_E_to_A}}%</span>
+                                                    <span v-if="mr.special_examination.ucg.is_LVEF_lt_forty_percent=='1'">EF：{{mr.special_examination.ucg.EF}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>局部运动异常：{{mr.special_examination.ucg.is_local_motion_abnormality|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.local_motion_abnormality_parts)}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>室壁瘤：{{mr.special_examination.ucg.is_vntricular_aneurysm|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.vntricular_aneurysm_parts)}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>室壁瘤：{{mr.special_examination.ucg.is_left_ventricular_thrombosis|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.left_ventricular_thrombosis_parts)}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>检查结论：{{mr.special_examination.ucg.findings}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                冠脉介入
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>编号：{{mr.special_examination.pci.num}}</span>
+                                                    <span>日期：{{mr.special_examination.pci.date}}</span>
+                                                    <span>类型：{{key2value(pageData.special_examination.pci_type_list,mr.special_examination.pci.type)}}</span>
+                                                    <span v-if="mr.special_examination.pci.type=='3'||mr.special_examination.pci.type=='4'">PCI距溶栓：{{mr.special_examination.pci.thrombolysis_interval}}h</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>发病后：{{mr.special_examination.pci.onset_interval.day}}d</span>
+                                                    <span>{{mr.special_examination.pci.onset_interval.hour}}h</span>
+                                                    <span>进行PCI，院前：{{mr.special_examination.pci.stay_time.prehospital}}min，急/门诊：{{mr.special_examination.pci.stay_time.emergency_call}}min，
+                                                        CCU：{{mr.special_examination.pci.stay_time.CCU}}min，导管室：{{mr.special_examination.pci.stay_time.conduit_room}}min
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>造影剂：{{keyString2valueString(pageData.special_examination.contrast_medium_list,mr.special_examination.pci.contrast_media)}}</span>
+                                                    <span v-if="mr.special_examination.pci.contrast_media.indexOf('5')>=0">其他造影剂：{{mr.special_examination.pci.contrast_media_others}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>造影结果</span>
+                                                    <div class="col-md-offset-1">
+                                                        <span>冠脉分布：{{key2value(pageData.special_examination.coronary_distribution_type_list,mr.special_examination.pci.coronary_distribution_type)}}</span>
+                                                        <span>冠脉畸形：{{mr.special_examination.pci.is_coronary_malformations|boolTransform2}}</span>
+                                                        <span>3级病变：{{mr.special_examination.pci.is_grade_3_lesions|boolTransform2}}</span>
+                                                        <span>血流TIMI0-2级：{{mr.special_examination.pci.is_blood_flow_TIMI_grade_0to2|boolTransform2}}</span>
+                                                        <span>CTO：{{mr.special_examination.pci.is_CTO|boolTransform2}}</span>
+                                                        <span>侧枝循环：{{mr.special_examination.pci.is_collateral_circulation|boolTransform2}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>介入路径：{{keyString2valueString(pageData.special_examination.pci_path_list,mr.special_examination.pci.pci_paths)}}</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>植入支架部位</span>
+                                                    <span> LAD：{{mr.special_examination.pci.implanted_bracket_count.LAD}}个</span>
+                                                    <span> LCX：{{mr.special_examination.pci.implanted_bracket_count.LCX}}个</span>
+                                                    <span> RCA：{{mr.special_examination.pci.implanted_bracket_count.RCA}}个</span>
+                                                    <span> LM：{{mr.special_examination.pci.implanted_bracket_count.LM}}个</span>
+                                                </div>
+                                                <div class="col-md-11 col-md-offset-1">
+                                                    <span>病变节段信息：</span>
+                                                    <div class="col-md-offset-1" v-for="segmental_lesion in mr.special_examination.pci.segmental_lesions">
+                                                        <span>病变节段：{{segmental_lesion.num}}</span>
+                                                        <span>狭窄：{{segmental_lesion.stenosis}}%</span>
+                                                        <span>长：{{segmental_lesion.num}}mm</span>
+                                                        <span>形态：{{key2value(pageData.special_examination.segmental_lesions_shape_list,segmental_lesion.shape)}}</span>
+                                                        <span>钙化：{{segmental_lesion.is_calcification|boolTransform2}}</span>
+                                                        <span>开口病变：{{segmental_lesion.is_ostial_lesion|boolTransform1}}</span>
+                                                        <span>血栓：{{segmental_lesion.is_thrombus|boolTransform2}}</span>
+                                                        <span>TIMI：{{key2value(pageData.special_examination.TIMI_grade_list,segmental_lesion.TIMI_grade)}}</span>
+                                                        <span>病变类型：{{key2value(pageData.special_examination.kinds_of_lesions_list,segmental_lesion.kinds_of_lesions)}}</span>
+                                                        <span>PCI导丝：{{segmental_lesion.pci_guidewire}}</span>
+                                                        <span>球囊：{{segmental_lesion.balloon}}</span>
+                                                        <span>支架：{{segmental_lesion.stent}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 特殊检查部分结束 -->
+                                    <!-- 入院诊断部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_8">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">入院诊断</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    急性心梗： {{mr.admission_diagnosis.is_acute_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.admission_diagnosis.is_acute_myocardial_infarction=='1'">部位：{{mr.admission_diagnosis.acute_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    亚急性心梗 ：{{mr.admission_diagnosis.is_subacute_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.admission_diagnosis.is_subacute_myocardial_infarction=='1'">部位：{{mr.admission_diagnosis.subacute_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    陈旧性心硬 ：{{mr.admission_diagnosis.is_old_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.admission_diagnosis.is_old_myocardial_infarction=='1'">部位：{{mr.admission_diagnosis.old_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    不稳定型心绞痛 ：{{mr.admission_diagnosis.is_unstable_angina_pectoris|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    劳力性心绞痛 ：{{mr.admission_diagnosis.is_effort_angina|boolTransform1}}
+                                                    <span v-if="mr.admission_diagnosis.is_effort_angina=='1'">CCS分级：{{mr.admission_diagnosis.effort_angina_pectoris_ccs}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    无痛性心肌缺血 ：{{mr.admission_diagnosis.is_silent_myocardial_ischemia|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    缺血性心肌病 ：{{mr.admission_diagnosis.is_ischemic_cardiomyopathy|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    冠心病猝死 ：{{mr.admission_diagnosis.is_sudden_coronary_death|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    胸痛原因待查 ：{{mr.admission_diagnosis.is_chest_pain_of_unknown_origin|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    其他 ：{{mr.admission_diagnosis.is_diagnosis_others|boolTransform1}}
+                                                    <span v-if="mr.admission_diagnosis.is_diagnosis_others=='1'">其他诊断：{{mr.admission_diagnosis.diagnosis_others}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 入院诊断部分开始 -->
+                                    <!-- 出院诊断部分开始 -->
+                                    <div class="tab-pane portlet light" id="tab_2_9">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject bold font-dark uppercase">出院诊断</span>
+                                            </div>
+                                            <div class="actions">
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    急性心梗： {{mr.discharge_diagnosis.is_acute_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.discharge_diagnosis.is_acute_myocardial_infarction=='1'">部位：{{mr.discharge_diagnosis.acute_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    亚急性心梗 ：{{mr.discharge_diagnosis.is_subacute_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.discharge_diagnosis.is_subacute_myocardial_infarction=='1'">部位：{{mr.discharge_diagnosis.subacute_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    陈旧性心硬 ：{{mr.discharge_diagnosis.is_old_myocardial_infarction|boolTransform1}}
+                                                    <span v-if="mr.discharge_diagnosis.is_old_myocardial_infarction=='1'">部位：{{mr.discharge_diagnosis.old_myocardial_infarction_part}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    不稳定型心绞痛 ：{{mr.discharge_diagnosis.is_unstable_angina_pectoris|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    劳力性心绞痛 ：{{mr.discharge_diagnosis.is_effort_angina|boolTransform1}}
+                                                    <span v-if="mr.discharge_diagnosis.is_effort_angina=='1'">CCS分级：{{mr.discharge_diagnosis.effort_angina_pectoris_ccs}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    无痛性心肌缺血 ：{{mr.discharge_diagnosis.is_silent_myocardial_ischemia|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    缺血性心肌病 ：{{mr.discharge_diagnosis.is_ischemic_cardiomyopathy|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    冠心病猝死 ：{{mr.discharge_diagnosis.is_sudden_coronary_death|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    胸痛原因待查 ：{{mr.discharge_diagnosis.is_chest_pain_of_unknown_origin|boolTransform1}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    其他 ：{{mr.discharge_diagnosis.is_diagnosis_others|boolTransform1}}
+                                                    <span v-if="mr.discharge_diagnosis.is_diagnosis_others=='1'">其他诊断：{{mr.discharge_diagnosis.diagnosis_others}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 出院诊断部分结束 -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2017 &copy; Intelligent Medical By
+                <a target="_blank" href="http://www.iss.whu.edu.cn">International School of Software,Wuhan University</a> &nbsp;|&nbsp;
+                <a href="http://libingteam.com" title="" target="_blank">http://libingteam.com</a>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+    </div>
+
+
+    <!--[if lt IE 9]>
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/vue.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="../assets/pages/scripts/emrs_medical_record_detail.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+</body>
+
+</html>

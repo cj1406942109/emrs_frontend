@@ -1,0 +1,1841 @@
+jQuery(document).ready(function() {
+    // FormEditable.init();
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            mr: {
+                basic_info: {
+                    is_hospitalized: "1",
+                    admission_num: "1234567890",
+                    bed_num: "0987654321",
+                    doctor_id: "6c0222ede7f54cada717a9abfb372239",
+                    recorder_id: "6c0222ede7f54cada717a9abfb372231",
+                    patient: {
+                        name: "李鹏",
+                        medical_card_number: "A32620985",
+                        id_number: "42063019880722040",
+                        cellphone_1: "15424765412",
+                        cellphone_2: "17754234489",
+                        telephone: "027-87563354",
+                        gender: "0",
+                        nationality: "汉族",
+                        birth_province: "湖北省",
+                        birth_city: "武汉市",
+                        birthday: "1990-06-01",
+                        profession: "教师",
+                        address_province: "湖北省",
+                        address_city: "武汉市",
+                        address_area: "洪山区",
+                        address_town: "珞南街道",
+                        address: "湖北省武汉市洪山区南湖山庄20栋3单元"
+                    }
+                },
+                history_of_present_illness: {
+                    care_causes: "1,2,3,4,5,6",
+                    care_cause_others: "气促",
+                    diseases: [{
+                        disease_name: "1",
+                        times_per_day: "1",
+                        times_per_week: "7",
+                        times_per_month: "30",
+                        times_per_year: "365",
+                        onset_time: "2,4,5",
+                        onset_time_others: "凌晨",
+                        disease_body_parts: [{
+                            body_part_name: "1",
+                            body_part_name_others: "",
+                            quality_of_pain: "1",
+                            quality_of_pain_others: "",
+                            duration_of_pain: "2",
+                            duration_of_pain_others: "",
+                            pain_degree: "2"
+                        }, {
+                            body_part_name: "10",
+                            body_part_name_others: "其他部位",
+                            quality_of_pain: "13",
+                            quality_of_pain_others: "其他性质",
+                            duration_of_pain: "6",
+                            duration_of_pain_others: "其他持续时间",
+                            pain_degree: "3"
+                        }],
+                        relieving_factors: "2",
+                        relieving_factors_others: "",
+                        precipitating_factors: "2,4,11",
+                        precipitating_factors_others: "其他诱因",
+                        radiation_sites: "3,5,7",
+                        radiation_sites_others: "其他放射部位",
+                        simultaneous_phenomena: "3,5,9,12,18,21",
+                        simultaneous_phenomenon_others: "其他伴随症状"
+                    }, {
+                        disease_name: "2",
+                        times_per_day: "1",
+                        times_per_week: "7",
+                        times_per_month: "30",
+                        times_per_year: "365",
+                        onset_time: "1,2,4,5",
+                        onset_time_others: "凌晨",
+                        disease_body_parts: [{
+                            body_part_name: "5",
+                            body_part_name_others: "",
+                            quality_of_pain: "1",
+                            quality_of_pain_others: "",
+                            duration_of_pain: "4",
+                            duration_of_pain_others: "",
+                            pain_degree: "3"
+                        }, {
+                            body_part_name: "3",
+                            body_part_name_others: "",
+                            quality_of_pain: "3",
+                            quality_of_pain_others: "",
+                            duration_of_pain: "4",
+                            duration_of_pain_others: "",
+                            pain_degree: "2"
+                        }, {
+                            body_part_name: "10",
+                            body_part_name_others: "其他部位",
+                            quality_of_pain: "13",
+                            quality_of_pain_others: "其他性质",
+                            duration_of_pain: "6",
+                            duration_of_pain_others: "其他持续时间",
+                            pain_degree: "2"
+                        }],
+                        relieving_factors: "5",
+                        relieving_factors_others: "其他缓解因素",
+                        precipitating_factors: "4,5",
+                        precipitating_factors_others: "",
+                        radiation_sites: "3,5,7",
+                        radiation_sites_others: "其他放射部位",
+                        simultaneous_phenomena: "4,21",
+                        simultaneous_phenomenon_others: "其他伴随症状"
+                    }, {
+                        disease_name: "3",
+                        times_per_day: "1",
+                        times_per_week: "7",
+                        times_per_month: "30",
+                        times_per_year: "365",
+                        onset_time: "2,4,5",
+                        onset_time_others: "凌晨"
+                    }, {
+                        disease_name: "4",
+                        times_per_day: "1",
+                        times_per_week: "7",
+                        times_per_month: "30",
+                        times_per_year: "365",
+                        onset_time: "2,3,4,5",
+                        onset_time_others: "其他发病时间"
+                    }, {
+                        disease_name: "5",
+                        times_per_day: "1",
+                        times_per_week: "7",
+                        times_per_month: "30",
+                        times_per_year: "365",
+                        onset_time: "1,2,4,5",
+                        onset_time_others: "其他发病时间"
+                    }],
+                    is_angina_pectoris: "0",
+                    angina_pectoris_ccs: "III",
+                    is_exertional_angina_attacks_within_4_weeks: "1"
+                },
+                anamnesis: {
+                    lipid_abnormality: {
+                        is_lipid_abnormality: "1",
+                        type: "2",
+                        duration: "3",
+                        is_under_treatment: "2",
+                        drug_name: "辛伐他丁"
+                    },
+                    essential_hypertension: {
+                        is_essential_hypertension: "1",
+                        duration: "5",
+                        maximum_value: "170/100",
+                        ordinary_value: "150/95",
+                        is_under_treatment: "2",
+                        drug_name: "美托洛尔"
+                    },
+                    dysglycemia: {
+                        is_dysglycemia: "1",
+                        duration: "1",
+                        type: "1",
+                        diabetes_mellitus: {
+                            is_diabetes_mellitus: "1",
+                            is_under_treatment: "2",
+                            treatment_method: "1,2,3",
+                            oral_drug_name: "达美康"
+                        }
+                    },
+                    gout: {
+                        is_gout: "1",
+                        duration: "3",
+                        serum_uric_acid_level: "442",
+                        renal_insufficiency: {
+                            is_renal_insufficiency: "1",
+                            duration: "1",
+                            maximum_Cr: "186",
+                            recent_Cr: "160",
+                            etiology: "高血压"
+                        }
+                    },
+                    heart_diseases: {
+                        old_myocardial_infarction: {
+                            is_old_myocardial_infarction: "1",
+                            onset_time_year: "2017",
+                            onset_time_month: "3",
+                            onset_frequency: "5",
+                            location: "2,4,7",
+                            location_others: "其他部位"
+                        },
+                        is_pci_history: "1",
+                        is_cabg_history: "1",
+                        is_cas_gt50_history: "1",
+                        is_atrial_fibrillation: "1",
+                        other_heart_disease: {
+                            is_other_heart_disease_history: "1",
+                            type: "2,4,8",
+                            type_others: "心脏肿瘤"
+                        }
+                    },
+                    deep_venou_thrombosis: {
+                        is_deep_venou_thrombosis: "1",
+                        onset_time_year: "2016",
+                        onset_time_month: "12",
+                        inducements: "2,4",
+                        symptoms: "1,4",
+                        diagnosis_result: "2"
+                    },
+                    old_ischemic_stroke: {
+                        is_old_ischemic_stroke: "1",
+                        types: [{
+                            type_name: "2",
+                            onset_time_year: "2016",
+                            onset_time_month: "8",
+                            onset_frequency: "3"
+                        }, {
+                            type_name: "3",
+                            onset_time_year: "2015",
+                            onset_time_month: "5",
+                            onset_frequency: "5"
+                        }]
+
+                    },
+                    vascular_diseases: {
+                        is_vascular_diseases: "1",
+                        types: "2,3"
+                    },
+                    hemorrhage: {
+                        is_hemorrhage: "1",
+                        types: [{
+                            type_name: "2",
+                            onset_time: "2015－10",
+                            onset_frequency: "4"
+                        }, {
+                            type_name: "4",
+                            onset_time: "2015－8",
+                            onset_frequency: "3"
+                        }]
+                    },
+                    bleeding: {
+                        is_bleeding: "1",
+                        causes: [{
+                            cause: "2",
+                            onset_time: "2016-08"
+                        }, {
+                            cause: "4",
+                            onset_time: "2016-03"
+                        }]
+                    }
+                },
+                risk_factors: {
+                    smoking: {
+                        is_somking: "1",
+                        duration: "10",
+                        pieces_per_day: "3",
+                        cigrette_type: "2,4,5",
+                        cigrette_type_others: "斗烟",
+                        is_smoking_cessation: "1",
+                        smoking_cessation_duration: "3"
+                    },
+                    drinking: {
+                        is_drinking: "1",
+                        duration: "15",
+                        tales_per_day: "2",
+                        wine_type: "1,2,5",
+                        wine_type_others: "香槟",
+                        is_temperance: "1",
+                        temperance_duration: "2"
+                    },
+                    diet_habits: {
+                        drinking_amount: "2",
+                        paddy_potato: "2",
+                        grain_mixed_beans: "1",
+                        potato: "1",
+                        vegetables: "2",
+                        fruits: "3",
+                        livestock_meat: "1",
+                        aquatic_products: "3",
+                        eggs: "1",
+                        milk_products: "2",
+                        soybeans_nuts: "2",
+                        salt: "4",
+                        sugar: "1",
+                        oil: "3",
+                        fat_meat: "100",
+                        visceral: "20"
+                    },
+                    psychosocial_factors: {
+                        blood_type: "3",
+                        is_longterm_psychological_stress: "1",
+                        is_depression: "1"
+                    },
+                    exercise: {
+                        type: "2",
+                        duration: "2",
+                        mode: "1,3",
+                        mode_others: "游泳"
+                    },
+                    central_obesity: {
+                        is_central_obesity: "1",
+                        duration: "5",
+                        height: "175",
+                        weight: "80",
+                        waistline: "75",
+                        neck_circumference: "43",
+                        hipline: "87"
+                    }
+                },
+                family_history: [{
+                    disease_name: "1",
+                    onset_members: [{
+                        onset_member: "1",
+                        gender: "0",
+                        onset_age: "50",
+                        onset_type: "1"
+                    }, {
+                        onset_member: "2",
+                        gender: "1",
+                        onset_age: "52",
+                        onset_type: "2"
+                    }]
+                }, {
+                    disease_name: "2",
+                    onset_members: [{
+                        onset_member: "3",
+                        gender: "0",
+                        onset_age: "32"
+                    }, {
+                        onset_member: "5",
+                        gender: "1",
+                        onset_age: "43"
+                    }]
+                }, {
+                    disease_name: "3",
+                    onset_members: [{
+                        onset_member: "5",
+                        gender: "1",
+                        onset_age: "45"
+
+                    }, {
+                        onset_member: "9",
+                        gender: "0",
+                        onset_age: "32"
+                    }]
+                }, {
+                    disease_name: "4",
+                    onset_members: [{
+                        onset_member: "9",
+                        gender: "0",
+                        onset_age: "23"
+
+                    }, {
+                        onset_member: "10",
+                        gender: "1",
+                        onset_age: "31"
+                    }]
+                }, {
+                    disease_name: "5",
+                    onset_members: [{
+                        onset_member: "6",
+                        gender: "0",
+                        onset_age: "63",
+                        etiology: "3",
+                        etiology_others: ""
+                    }, {
+                        onset_member: "8",
+                        gender: "0",
+                        onset_age: "68",
+                        etiology: "4",
+                        etiology_others: "其他病因"
+                    }]
+
+                }],
+                physical_examination: {
+                    body_temperature: "37.5",
+                    respiratory_rate: "75",
+                    is_breath_sounds_normal: "0",
+                    is_lung_wet_rales: "1",
+                    lung_wet_rales_range: "2",
+                    heart_rate: "90",
+                    cardiac_rhythm: "3",
+                    heart_sound_S1_result: "3",
+                    is_S3S4_gallop_rhythm: "1",
+                    pulse: "58",
+                    blood_pressure: "134/84",
+                    is_heart_failure: "1",
+                    Killip_class: "3",
+                    is_ear_lobe_longitudinal_crack: "1",
+                    ear_lobe_longitudinal_crack_parts: "1,2",
+                    is_skin_yellow_pigment_tumor: "1",
+                    skin_yellow_pigment_tumor_parts: "1,3,6",
+                    is_alopecia: "1",
+                    alopecia_parts: "1,2",
+                },
+                routine_examination: {
+                    blood_biochemistry: {
+                        TC: "4.23",
+                        TG: "1.7",
+                        LDL: "2.24",
+                        HDL: "2.69",
+                        not_HDL: "1.540",
+                        blood_glucose_fasting: "3.76",
+                        is_serum_myocardial_necrosis_markers_up: "1",
+                        myocardial_CK: "160",
+                        myocardial_CKMB: "32",
+                        myocardial_cTnI: "0.6",
+                        myocardial_Mb: "80",
+                        is_inflammatory_markers_up: "1",
+                        inflammation_hsCRP: "2.3",
+                        inflammation_IL6: "16.20",
+                        inflammation_IL1_beta: "90.51",
+                        inflammation_TNF_alpha: "7.1",
+                        heart_failure_NTproBNP: "172",
+                        electrolyte_Na: "150",
+                        electrolyte_K: "4.7",
+                        electrolyte_Ca: "2.25",
+                        electrolyte_Cl: "100",
+                        is_abnormal_liver_function: "1",
+                        total_protein: "78",
+                        albumin: "50",
+                        total_bilirubin: "15.2",
+                        direct_bilirubin: "5.7",
+                        indirect_bilirubin: "10.2",
+                        ALT: "21",
+                        AST: "33",
+                        is_renal_insufficiency: "1",
+                        Cr: "100",
+                        UA: "213",
+                        BUN: "5.6",
+                        GFR: "150",
+                        is_hepatorenal_disease: "1",
+                    },
+                    coagulation_function: {
+                        APTT: "19.1",
+                        PT: "11.2",
+                        TT: "10.8",
+                        FIB: "2.71",
+                        d_dimer: "398",
+                        INR: "2.3",
+                        is_INR_stable: "1"
+                    },
+                    blood_routine: {
+                        red_blood_cell_count: "4.3",
+                        red_blood_cell_specific_volume: "35",
+                        HGB: "150",
+                        leukocyte_count: "5.66",
+                        neutrophil: "1.6",
+                        eosinophil: "0.45",
+                        basophil: "0.08",
+                        lymphocyte: "3.2",
+                        monocyte: "0.33",
+                        is_qualitative_plateletdefects: "1",
+                        platelet_count_PLT: "157",
+                        MPV: "10.2",
+                        PDW: "12.9",
+                        PAR_ADP: "69",
+                        PAR_epinephrine: "70",
+                        PAR_arachidonic_acid: "72",
+                        PAR_collagen: "73",
+                        PAR_ristocetin: "68"
+                    }
+                },
+                special_examination: {
+                    ecg: {
+                        pathological_q_wave: {
+                            is_pathological_q_wave: "1",
+                            q_wave_leads: "2,3,5,14"
+                        },
+                        st_segment_change: {
+                            is_st_segment_change: "1",
+                            st_segment_changes: [{
+                                is_st_segment_depression: "1",
+                                change_detail: {
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.06",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.06",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.06",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.06",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.06",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.06",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.06",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.06",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.06",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.06",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.06",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.06",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.06",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.06",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.06"
+                                }
+                            }, {
+                                is_st_segment_elevation: "1",
+                                change_detail: {
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.06",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.06",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.06",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.06",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.06",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.06",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.06",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.06",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.06",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.06",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.06",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.06",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.06",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.06",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.06"
+                                }
+                            }]
+                        },
+                        t_wave_change: {
+                            is_t_wave_change: "1",
+                            change_detail: {
+                                is_lead_I: "1",
+                                lead_I_amplitude: "0.06",
+                                lead_I_waveforms: "1",
+                                is_lead_II: "1",
+                                lead_II_amplitude: "0.06",
+                                lead_II_waveforms: "2",
+                                is_lead_III: "1",
+                                lead_III_amplitude: "0.06",
+                                lead_III_waveforms: "3",
+                                is_lead_aVF: "1",
+                                lead_aVF_amplitude: "0.06",
+                                lead_aVF_waveforms: "5",
+                                is_lead_aVL: "1",
+                                lead_aVL_amplitude: "0.06",
+                                lead_aVL_waveforms: "4",
+                                is_lead_aVR: "1",
+                                lead_aVR_amplitude: "0.06",
+                                lead_aVR_waveforms: "3",
+                                is_lead_V1: "1",
+                                lead_V1_amplitude: "0.06",
+                                lead_V1_waveforms: "1",
+                                is_lead_V2: "1",
+                                lead_V2_amplitude: "0.06",
+                                lead_V2_waveforms: "2",
+                                is_lead_V3: "1",
+                                lead_V3_amplitude: "0.06",
+                                lead_V3_waveforms: "2",
+                                is_lead_V4: "1",
+                                lead_V4_amplitude: "0.06",
+                                lead_V4_waveforms: "3",
+                                is_lead_V5: "1",
+                                lead_V5_amplitude: "0.06",
+                                lead_V5_waveforms: "4",
+                                is_lead_V6: "1",
+                                lead_V6_amplitude: "0.06",
+                                lead_V6_waveforms: "4",
+                                is_lead_V7: "1",
+                                lead_V7_amplitude: "0.06",
+                                lead_V7_waveforms: "5",
+                                is_lead_V8: "1",
+                                lead_V8_amplitude: "0.06",
+                                lead_V8_waveforms: "5",
+                                is_lead_V9: "1",
+                                lead_V9_amplitude: "0.06",
+                                lead_V9_waveforms: "4"
+                            }
+                        },
+                        arrhythmia: {
+                            is_arrhythmia: "1",
+                            arrhythmia_types: [{
+                                arrhythmia_type: "2",
+                                arrhythmia_type_others: ""
+                            }, {
+                                arrhythmia_type: "7",
+                                arrhythmia_type_others: ""
+                            }, {
+                                arrhythmia_type: "10",
+                                arrhythmia_type_others: ""
+                            }, {
+                                arrhythmia_type: "11",
+                                arrhythmia_type_others: "窦性心律不齐"
+                            }]
+                        },
+                        findings: "存在ST段异常，疑似冠心病",
+                        is_result_normal: "0"
+                    },
+                    exercise_ecg: {
+                        is_exercise_angina: "1",
+                        exercise_duration: "20",
+                        maximal_blood_pressure: "170/96",
+                        minimal_blood_pressure: "150/92",
+                        st_segment_change: {
+                            is_st_segment_change: "1",
+                            st_segment_changes: [{
+                                is_st_segment_depression: "1",
+                                duration: "2",
+                                change_detail: {
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.06",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.06",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.06",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.06",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.06",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.06",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.06",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.06",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.06",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.06",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.06",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.06",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.06",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.06",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.06"
+                                }
+                            }, {
+                                is_st_segment_elevation: "1",
+                                duration: "2",
+                                change_detail: {
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.06",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.06",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.06",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.06",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.06",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.06",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.06",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.06",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.06",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.06",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.06",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.06",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.06",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.06",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.06"
+                                }
+                            }]
+                        },
+                        t_wave_change: {
+                            is_t_wave_change: "1",
+                            duration: "2",
+                            change_detail: {
+                                is_lead_I: "1",
+                                lead_I_amplitude: "0.06",
+                                lead_I_waveforms: "1",
+                                is_lead_II: "1",
+                                lead_II_amplitude: "0.06",
+                                lead_II_waveforms: "2",
+                                is_lead_III: "1",
+                                lead_III_amplitude: "0.06",
+                                lead_III_waveforms: "3",
+                                is_lead_aVF: "1",
+                                lead_aVF_amplitude: "0.06",
+                                lead_aVF_waveforms: "5",
+                                is_lead_aVL: "1",
+                                lead_aVL_amplitude: "0.06",
+                                lead_aVL_waveforms: "4",
+                                is_lead_aVR: "1",
+                                lead_aVR_amplitude: "0.06",
+                                lead_aVR_waveforms: "3",
+                                is_lead_V1: "1",
+                                lead_V1_amplitude: "0.06",
+                                lead_V1_waveforms: "1",
+                                is_lead_V2: "1",
+                                lead_V2_amplitude: "0.06",
+                                lead_V2_waveforms: "2",
+                                is_lead_V3: "1",
+                                lead_V3_amplitude: "0.06",
+                                lead_V3_waveforms: "2",
+                                is_lead_V4: "1",
+                                lead_V4_amplitude: "0.06",
+                                lead_V4_waveforms: "3",
+                                is_lead_V5: "1",
+                                lead_V5_amplitude: "0.06",
+                                lead_V5_waveforms: "4",
+                                is_lead_V6: "1",
+                                lead_V6_amplitude: "0.06",
+                                lead_V6_waveforms: "4",
+                                is_lead_V7: "1",
+                                lead_V7_amplitude: "0.06",
+                                lead_V7_waveforms: "5",
+                                is_lead_V8: "1",
+                                lead_V8_amplitude: "0.06",
+                                lead_V8_waveforms: "5",
+                                is_lead_V9: "1",
+                                lead_V9_amplitude: "0.06",
+                                lead_V9_waveforms: "4"
+                            }
+                        },
+                        result: "4",
+                        findings: "运动ECG出现st段改变和t波异常，结果呈阳性，疑似冠心病"
+                    },
+                    holter_ecg: {
+                        total_heartbeats: "118529",
+                        average_heart_rate: "120",
+                        maximal_heart_rate: "140",
+                        maximal_heart_rate_occurrence_time: "12:00",
+                        minimal_heart_rate: "100",
+                        minimal_heart_rate_occurrence_time: "2:00",
+                        arrhythmia: {
+                            is_arrhythmia: "1",
+                            frequentness: "5",
+                            total_abnormal_heartbeats: "2001",
+                            arrhythmia_types: [{
+                                arrhythmia_type: "1",
+                                arrhythmia_type_others: "",
+                                duration: "5"
+                            }, {
+                                arrhythmia_type: "2",
+                                arrhythmia_type_others: "",
+                                duration: "4"
+                            }, {
+                                arrhythmia_type: "11",
+                                arrhythmia_type_others: "其他类型",
+                                duration: "6"
+                            }],
+                        },
+                        pathological_q_wave: {
+                            frequentness: "3",
+                            is_pathological_q_wave: "1",
+                            q_wave_leads_detail: [{
+                                duration: "8:00",
+                                q_wave_leads: "2,4,5"
+                            }, {
+                                duration: "9:00",
+                                q_wave_leads: "5,10,14"
+                            }, {
+                                duration: "10:00",
+                                q_wave_leads: "3,11,13"
+                            }]
+                        },
+                        st_segment_change: {
+                            is_st_segment_change: "1",
+                            st_segment_changes: [{
+                                is_st_segment_depression: "1",
+                                frequentness: "4",
+                                changes_detail: [{
+                                    duration: "1",
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.05",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.05",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.05",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.05",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.05",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.05",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.05",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.05",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.05",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.05",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.05",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.05",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.05",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.05",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.05"
+                                }, {
+                                    duration: "2",
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.05",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.05",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.05",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.05",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.05",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.05",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.05",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.05",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.05",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.05",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.05",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.05",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.05",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.05",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.05"
+                                }]
+                            }, {
+                                is_st_segment_elevation: "1",
+                                frequentness: "3",
+                                changes_detail: [{
+                                    duration: "1",
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.05",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.05",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.05",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.05",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.05",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.05",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.05",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.05",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.05",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.05",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.05",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.05",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.05",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.05",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.05"
+                                }, {
+                                    duration: "2",
+                                    is_lead_I: "1",
+                                    lead_I_amplitude: "0.05",
+                                    is_lead_II: "1",
+                                    lead_II_amplitude: "0.05",
+                                    is_lead_III: "1",
+                                    lead_III_amplitude: "0.05",
+                                    is_lead_aVF: "1",
+                                    lead_aVF_amplitude: "0.05",
+                                    is_lead_aVL: "1",
+                                    lead_aVL_amplitude: "0.05",
+                                    is_lead_aVR: "1",
+                                    lead_aVR_amplitude: "0.05",
+                                    is_lead_V1: "1",
+                                    lead_V1_amplitude: "0.05",
+                                    is_lead_V2: "1",
+                                    lead_V2_amplitude: "0.05",
+                                    is_lead_V3: "1",
+                                    lead_V3_amplitude: "0.05",
+                                    is_lead_V4: "1",
+                                    lead_V4_amplitude: "0.05",
+                                    is_lead_V5: "1",
+                                    lead_V5_amplitude: "0.05",
+                                    is_lead_V6: "1",
+                                    lead_V6_amplitude: "0.05",
+                                    is_lead_V7: "1",
+                                    lead_V7_amplitude: "0.05",
+                                    is_lead_V8: "1",
+                                    lead_V8_amplitude: "0.05",
+                                    is_lead_V9: "1",
+                                    lead_V9_amplitude: "0.05"
+                                }]
+                            }]
+                        },
+                        t_wave_change: {
+                            is_t_wave_change: "1",
+                            frequentness: "2",
+                            changes_detail: [{
+                                duration: "2",
+                                is_lead_I: "1",
+                                lead_I_amplitude: "0.06",
+                                lead_I_waveforms: "1",
+                                is_lead_II: "1",
+                                lead_II_amplitude: "0.06",
+                                lead_II_waveforms: "2",
+                                is_lead_III: "1",
+                                lead_III_amplitude: "0.06",
+                                lead_III_waveforms: "3",
+                                is_lead_aVF: "1",
+                                lead_aVF_amplitude: "0.06",
+                                lead_aVF_waveforms: "5",
+                                is_lead_aVL: "1",
+                                lead_aVL_amplitude: "0.06",
+                                lead_aVL_waveforms: "4",
+                                is_lead_aVR: "1",
+                                lead_aVR_amplitude: "0.06",
+                                lead_aVR_waveforms: "3",
+                                is_lead_V1: "1",
+                                lead_V1_amplitude: "0.06",
+                                lead_V1_waveforms: "1",
+                                is_lead_V2: "1",
+                                lead_V2_amplitude: "0.06",
+                                lead_V2_waveforms: "2",
+                                is_lead_V3: "1",
+                                lead_V3_amplitude: "0.06",
+                                lead_V3_waveforms: "2",
+                                is_lead_V4: "1",
+                                lead_V4_amplitude: "0.06",
+                                lead_V4_waveforms: "3",
+                                is_lead_V5: "1",
+                                lead_V5_amplitude: "0.06",
+                                lead_V5_waveforms: "4",
+                                is_lead_V6: "1",
+                                lead_V6_amplitude: "0.06",
+                                lead_V6_waveforms: "4",
+                                is_lead_V7: "1",
+                                lead_V7_amplitude: "0.06",
+                                lead_V7_waveforms: "5",
+                                is_lead_V8: "1",
+                                lead_V8_amplitude: "0.06",
+                                lead_V8_waveforms: "5",
+                                is_lead_V9: "1",
+                                lead_V9_amplitude: "0.06",
+                                lead_V9_waveforms: "4"
+                            }, {
+                                duration: "3",
+                                is_lead_I: "1",
+                                lead_I_amplitude: "0.06",
+                                lead_I_waveforms: "1",
+                                is_lead_II: "1",
+                                lead_II_amplitude: "0.06",
+                                lead_II_waveforms: "2",
+                                is_lead_III: "1",
+                                lead_III_amplitude: "0.06",
+                                lead_III_waveforms: "3",
+                                is_lead_aVF: "1",
+                                lead_aVF_amplitude: "0.06",
+                                lead_aVF_waveforms: "5",
+                                is_lead_aVL: "1",
+                                lead_aVL_amplitude: "0.06",
+                                lead_aVL_waveforms: "4",
+                                is_lead_aVR: "1",
+                                lead_aVR_amplitude: "0.06",
+                                lead_aVR_waveforms: "3",
+                                is_lead_V1: "1",
+                                lead_V1_amplitude: "0.06",
+                                lead_V1_waveforms: "1",
+                                is_lead_V2: "1",
+                                lead_V2_amplitude: "0.06",
+                                lead_V2_waveforms: "2",
+                                is_lead_V3: "1",
+                                lead_V3_amplitude: "0.06",
+                                lead_V3_waveforms: "2",
+                                is_lead_V4: "1",
+                                lead_V4_amplitude: "0.06",
+                                lead_V4_waveforms: "3",
+                                is_lead_V5: "1",
+                                lead_V5_amplitude: "0.06",
+                                lead_V5_waveforms: "4",
+                                is_lead_V6: "1",
+                                lead_V6_amplitude: "0.06",
+                                lead_V6_waveforms: "4",
+                                is_lead_V7: "1",
+                                lead_V7_amplitude: "0.06",
+                                lead_V7_waveforms: "5",
+                                is_lead_V8: "1",
+                                lead_V8_amplitude: "0.06",
+                                lead_V8_waveforms: "5",
+                                is_lead_V9: "1",
+                                lead_V9_amplitude: "0.06",
+                                lead_V9_waveforms: "4"
+                            }]
+                        },
+                        findings: "24小时心电图出现st段和病理性Q波，疑似冠心病"
+                    },
+                    ucg: {
+                        LVD: "46",
+                        EDV: "81",
+                        LVS: "10",
+                        ESV: "35",
+                        LAD: "25",
+                        LVPW: "10",
+                        IVST: "10.5",
+                        is_LVEF_lt_forty_percent: "1",
+                        EF: "0.65",
+                        ratio_E_to_A: "63",
+                        is_local_motion_abnormality: "1",
+                        local_motion_abnormality_parts: "1,2,4",
+                        is_vntricular_aneurysm: "1",
+                        vntricular_aneurysm_parts: "2,4",
+                        is_left_ventricular_thrombosis: "1",
+                        left_ventricular_thrombosis_parts: "2,3",
+                        findings: "心脏大小和功能存在异常"
+                    },
+                    pci: {
+                        num: "103",
+                        date: "2016-10-11",
+                        type: "3",
+                        thrombolysis_interval: "20",
+                        onset_interval: {
+                            day: "1",
+                            hour: "10"
+                        },
+                        stay_time: {
+                            CCU: "60",
+                            conduit_room: "180",
+                            emergency_call: "20",
+                            prehospital: "30"
+                        },
+                        contrast_media: "1,4,5",
+                        contrast_media_others: "碘普罗胺",
+                        coronary_distribution_type: "1",
+                        is_coronary_malformations: "1",
+                        is_grade_3_lesions: "1",
+                        is_blood_flow_TIMI_grade_0to2: "1",
+                        is_CTO: "1",
+                        is_collateral_circulation: "1",
+                        pci_paths: "1,3",
+                        implanted_bracket_count: {
+                            LAD: "1",
+                            LCX: "0",
+                            LM: "1",
+                            RCA: "1"
+                        },
+                        segmental_lesions: [{
+                            num: "4",
+                            stenosis: "30",
+                            length: "0.6",
+                            shape: "1",
+                            is_calcification: "0",
+                            is_ostial_lesion: "1",
+                            is_thrombus: "1",
+                            TIMI_grade: "2",
+                            kinds_of_lesions: "B",
+                            pci_guidewire: "ACS Whisper0.014×190",
+                            balloon: "Medtronic，Stormer1.5×15mm",
+                            stent: "Cordis BX Sonic3.0×33mm"
+                        }, {
+                            num: "14",
+                            stenosis: "35",
+                            length: "0.5",
+                            shape: "2",
+                            is_calcification: "0",
+                            is_ostial_lesion: "1",
+                            is_thrombus: "1",
+                            TIMI_grade: "2",
+                            kinds_of_lesions: "A",
+                            pci_guidewire: "ACS Whisper0.014×190",
+                            balloon: "Medtronic，Stormer1.5×15mm",
+                            stent: "Cordis BX Sonic3.0×33mm"
+                        }],
+                    }
+                },
+                admission_diagnosis: {
+                    is_acute_myocardial_infarction: "1",
+                    acute_myocardial_infarction_part: "前壁",
+                    is_subacute_myocardial_infarction: "1",
+                    subacute_myocardial_infarction_part: "下壁",
+                    is_old_myocardial_infarction: "1",
+                    old_myocardial_infarction_part: "前壁",
+                    is_unstable_angina_pectoris: "1",
+                    is_effort_angina: "1",
+                    effort_angina_pectoris_ccs: "II",
+                    is_silent_myocardial_ischemia: "1",
+                    is_ischemic_cardiomyopathy: "1",
+                    is_sudden_coronary_death: "1",
+                    is_chest_pain_of_unknown_origin: "1",
+                    is_diagnosis_others: "1",
+                    diagnosis_others: "主动脉夹层"
+                },
+                discharge_diagnosis: {
+                    is_acute_myocardial_infarction: "1",
+                    acute_myocardial_infarction_part: "前壁",
+                    is_subacute_myocardial_infarction: "1",
+                    subacute_myocardial_infarction_part: "下壁",
+                    is_old_myocardial_infarction: "1",
+                    old_myocardial_infarction_part: "前壁",
+                    is_unstable_angina_pectoris: "1",
+                    is_effort_angina: "1",
+                    effort_angina_pectoris_ccs: "II",
+                    is_silent_myocardial_ischemia: "1",
+                    is_ischemic_cardiomyopathy: "1",
+                    is_sudden_coronary_death: "1",
+                    is_chest_pain_of_unknown_origin: "1",
+                    is_diagnosis_others: "1",
+                    diagnosis_others: "主动脉夹层"
+                }
+            },
+            pageData: {
+                basic_info: {
+                    patient_type_list: [
+                        { id: '0', text: '门诊病人' },
+                        { id: '1', text: '住院病人' }
+                    ],
+                    doctor_list: [
+                        { id: '6c0222ede7f54cada717a9abfb372239', text: '张三' },
+                        { id: '6c0222ede7f54cada717a9abfb372230', text: '李四' }
+                    ],
+                    recorder_list: [
+                        { id: '6c0222ede7f54cada717a9abfb372231', text: '小明' },
+                        { id: '6c0222ede7f54cada717a9abfb372232', text: '小华' }
+                    ],
+                    nationality_list: [
+                        { id: '汉族', text: '汉族' },
+                        { id: '壮族', text: '壮族' },
+                        { id: '满族', text: '满族' },
+                        { id: '回族', text: '回族' },
+                        { id: '苗族', text: '苗族' },
+                        { id: '维吾尔族', text: '维吾尔族' },
+                        { id: '土家族', text: '土家族' },
+                        { id: '彝族', text: '彝族' },
+                        { id: '蒙古族', text: '蒙古族' },
+                        { id: '藏族', text: '藏族' },
+                        { id: '布依族', text: '布依族' },
+                        { id: '侗族', text: '侗族' },
+                        { id: '瑶族', text: '瑶族' },
+                        { id: '朝鲜族', text: '朝鲜族' },
+                        { id: '白族', text: '白族' },
+                        { id: '哈尼族', text: '哈尼族' },
+                        { id: '哈萨克族', text: '哈萨克族' },
+                        { id: '黎族', text: '黎族' },
+                        { id: '傣族', text: '傣族' },
+                        { id: '畲族', text: '畲族' },
+                        { id: '傈僳族', text: '傈僳族' },
+                        { id: '仡佬族', text: '仡佬族' },
+                        { id: '东乡族', text: '东乡族' },
+                        { id: '高山族', text: '高山族' },
+                        { id: '拉祜族', text: '拉祜族' },
+                        { id: '水族', text: '水族' },
+                        { id: '佤族', text: '佤族' },
+                        { id: '纳西族', text: '纳西族' },
+                        { id: '羌族', text: '羌族' },
+                        { id: '土族', text: '土族' },
+                        { id: '仫佬族', text: '仫佬族' },
+                        { id: '锡伯族', text: '锡伯族' },
+                        { id: '柯尔克孜族', text: '柯尔克孜族' },
+                        { id: '达斡尔族', text: '达斡尔族' },
+                        { id: '景颇族', text: '景颇族' },
+                        { id: '毛南族', text: '毛南族' },
+                        { id: '撒拉族', text: '撒拉族' },
+                        { id: '布朗族', text: '布朗族' },
+                        { id: '塔吉克族', text: '塔吉克族' },
+                        { id: '阿昌族', text: '阿昌族' },
+                        { id: '普米族', text: '普米族' },
+                        { id: '鄂温克族', text: '鄂温克族' },
+                        { id: '怒族', text: '怒族' },
+                        { id: '京族', text: '京族' },
+                        { id: '基诺族', text: '基诺族' },
+                        { id: '德昂族', text: '德昂族' },
+                        { id: '保安族', text: '保安族' },
+                        { id: '俄罗斯族', text: '俄罗斯族' },
+                        { id: '裕固族', text: '裕固族' },
+                        { id: '乌孜别克族', text: '乌孜别克族' },
+                        { id: '门巴族', text: '门巴族' },
+                        { id: '鄂伦春族', text: '鄂伦春族' },
+                        { id: '独龙族', text: '独龙族' },
+                        { id: '塔塔尔族', text: '塔塔尔族' },
+                        { id: '赫哲族', text: '赫哲族' },
+                        { id: '珞巴族', text: '珞巴族' }
+                    ],
+                    profession_list: [
+                        { id: '干部', text: '干部' },
+                        { id: '知识分子', text: '知识分子' },
+                        { id: '工', text: '工' },
+                        { id: '农', text: '农' },
+                        { id: '军', text: '军' },
+                        { id: '教师', text: '教师' },
+                        { id: '医', text: '医' },
+                        { id: '商', text: '商' },
+                        { id: '个体', text: '个体' },
+                        { id: '退休', text: '退休' },
+                        { id: '司机', text: '司机' },
+                        { id: '营业员', text: '营业员' },
+                        { id: '警', text: '警' },
+                        { id: '学生', text: '学生' },
+                        { id: '运动员', text: '运动员' },
+                        { id: '其他', text: '其他' }
+                    ]
+                },
+                history_of_present_illness: {
+                    care_cause_list: [
+                        { id: '1', text: '胸痛' },
+                        { id: '2', text: '胸闷' },
+                        { id: '3', text: '呼吸困难' },
+                        { id: '4', text: '心悸' },
+                        { id: '5', text: '心电图异常' },
+                        { id: '6', text: '其他' },
+                    ],
+                    onset_time_list: [
+                        { id: '1', text: '上午' },
+                        { id: '2', text: '中午' },
+                        { id: '3', text: '下午' },
+                        { id: '4', text: '晚上' },
+                        { id: '5', text: '其他' }
+                    ],
+                    disease_body_part_name_list: [
+                        { id: '1', text: '前胸' },
+                        { id: '2', text: '整个胸部' },
+                        { id: '3', text: '后背' },
+                        { id: '4', text: '胸骨后' },
+                        { id: '5', text: '心前区' },
+                        { id: '6', text: '剑突下' },
+                        { id: '7', text: '咽颈部' },
+                        { id: '8', text: '下颌部' },
+                        { id: '9', text: '腹部' },
+                        { id: '10', text: '其他' }
+                    ],
+                    disease_quality_of_pain_list: [
+                        { id: '1', text: '紧缩感' },
+                        { id: '2', text: '刀割' },
+                        { id: '3', text: '烧灼' },
+                        { id: '4', text: '闷痛' },
+                        { id: '5', text: '针刺样' },
+                        { id: '6', text: '胀痛' },
+                        { id: '7', text: '隐痛' },
+                        { id: '8', text: '梗塞感' },
+                        { id: '9', text: '绞痛' },
+                        { id: '10', text: '不适' },
+                        { id: '11', text: '压迫感' },
+                        { id: '12', text: '压榨样' },
+                        { id: '13', text: '其他' }
+                    ],
+                    disease_duration_of_pain_list: [
+                        { id: '1', text: '<1min' },
+                        { id: '2', text: '<5min' },
+                        { id: '3', text: '<10min' },
+                        { id: '4', text: '<20min' },
+                        { id: '5', text: '>1h' },
+                        { id: '6', text: '其他' }
+                    ],
+                    disease_pain_degree_list: [
+                        { id: '1', text: '轻' },
+                        { id: '2', text: '中' },
+                        { id: '3', text: '重' }
+                    ],
+                    relieving_factors_list: [
+                        { id: '1', text: '休息' },
+                        { id: '2', text: '舌下含化合物' },
+                        { id: '3', text: '硝酸酯类药物' },
+                        { id: '4', text: '不缓解' },
+                        { id: '5', text: '其他' }
+                    ],
+                    precipitating_factors_list: [
+                        { id: '1', text: '无' },
+                        { id: '2', text: '上感' },
+                        { id: '3', text: '体力活动轻' },
+                        { id: '4', text: '体力活动中' },
+                        { id: '5', text: '体力活动重' },
+                        { id: '6', text: '情绪' },
+                        { id: '7', text: '饱餐' },
+                        { id: '8', text: '吸烟' },
+                        { id: '9', text: '排便' },
+                        { id: '10', text: '气候变化' },
+                        { id: '11', text: '其他' }
+                    ],
+                    radiation_sites_list: [
+                        { id: '1', text: '背部' },
+                        { id: '2', text: '左肩' },
+                        { id: '3', text: '左臂内侧' },
+                        { id: '4', text: '颈咽部' },
+                        { id: '5', text: '上腹部' },
+                        { id: '6', text: '下颔部' },
+                        { id: '7', text: '其他' }
+                    ],
+                    simultaneous_phenomena_list: [
+                        { id: '1', text: '无' },
+                        { id: '2', text: '大汗' },
+                        { id: '3', text: '咯血' },
+                        { id: '4', text: '烦躁' },
+                        { id: '5', text: '上腹胀' },
+                        { id: '6', text: '恶心' },
+                        { id: '7', text: '呕吐' },
+                        { id: '8', text: '气促' },
+                        { id: '9', text: '黑朦' },
+                        { id: '10', text: '晕厥' },
+                        { id: '11', text: '心悸' },
+                        { id: '12', text: '乏力' },
+                        { id: '13', text: '头晕' },
+                        { id: '14', text: '头昏' },
+                        { id: '15', text: '肢体麻木' },
+                        { id: '16', text: '意识障碍' },
+                        { id: '17', text: '呼吸困难' },
+                        { id: '18', text: '咳嗽' },
+                        { id: '19', text: '吐痰' },
+                        { id: '20', text: '濒死感' },
+                        { id: '21', text: '其他' }
+                    ],
+                    angina_pectoris_ccs_list: [
+                        { id: 'I', text: 'I' },
+                        { id: 'II', text: 'II' },
+                        { id: 'III', text: 'III' },
+                        { id: 'IV', text: 'IV' }
+                    ]
+
+                },
+                risk_factors: {
+                    cigrette_type_list: [
+                        { id: '1', text: '纸烟' },
+                        { id: '2', text: '雪茄' },
+                        { id: '3', text: '水烟' },
+                        { id: '4', text: '鼻烟' },
+                        { id: '5', text: '其他' }
+                    ],
+                    wine_type_list: [
+                        { id: '1', text: '白酒' },
+                        { id: '2', text: '红酒' },
+                        { id: '3', text: '啤酒' },
+                        { id: '4', text: '威士忌' },
+                        { id: '5', text: '其他' }
+                    ],
+                    drinking_amount_list: [
+                        { id: '1', text: '<1500ml' },
+                        { id: '2', text: '1500~1700ml' },
+                        { id: '3', text: '>1700ml' }
+                    ],
+                    paddy_potato_list: [
+                        { id: '1', text: '<250g' },
+                        { id: '2', text: '250~400g' },
+                        { id: '3', text: '>400g' }
+                    ],
+                    grain_mixed_beans_list: [
+                        { id: '1', text: '<50g' },
+                        { id: '2', text: '50~150g' },
+                        { id: '3', text: '>150g' }
+                    ],
+                    potato_list: [
+                        { id: '1', text: '<50g' },
+                        { id: '2', text: '50~100g' },
+                        { id: '3', text: '>100g' }
+                    ],
+                    vegetables_list: [
+                        { id: '1', text: '<300g' },
+                        { id: '2', text: '300~500g' },
+                        { id: '3', text: '>500g' }
+                    ],
+                    fruits_list: [
+                        { id: '1', text: '<200g' },
+                        { id: '2', text: '200~350g' },
+                        { id: '3', text: '>350g' }
+                    ],
+                    livestock_meat_list: [
+                        { id: '1', text: '<40g' },
+                        { id: '2', text: '40~75g' },
+                        { id: '3', text: '>75g' }
+                    ],
+                    aquatic_products_list: [
+                        { id: '1', text: '<40g' },
+                        { id: '2', text: '40~75g' },
+                        { id: '3', text: '>75g' }
+                    ],
+                    eggs_list: [
+                        { id: '1', text: '<40g' },
+                        { id: '2', text: '40~50g' },
+                        { id: '3', text: '>50g' }
+                    ],
+                    milk_products_list: [
+                        { id: '1', text: '<300g' },
+                        { id: '2', text: '300~400g' },
+                        { id: '3', text: '>400g' }
+                    ],
+                    soybeans_nuts_list: [
+                        { id: '1', text: '<25g' },
+                        { id: '2', text: '25~35g' },
+                        { id: '3', text: '>35g' }
+                    ],
+                    salt_list: [
+                        { id: '1', text: '<6g' },
+                        { id: '2', text: '6~10g' },
+                        { id: '3', text: '10~15g' },
+                        { id: '4', text: '>15g' }
+                    ],
+                    sugar_list: [
+                        { id: '1', text: '<25g' },
+                        { id: '2', text: '25~50g' },
+                        { id: '3', text: '>50g' }
+                    ],
+                    oil_list: [
+                        { id: '1', text: '<25g' },
+                        { id: '2', text: '25~30g' },
+                        { id: '3', text: '>30g' }
+                    ],
+                    blood_type_list: [
+                        { id: '1', text: 'A' },
+                        { id: '2', text: 'B' },
+                        { id: '3', text: 'O' },
+                        { id: '4', text: 'AB' }
+                    ],
+                    exercise_type_list: [
+                        { id: '1', text: '缺乏' },
+                        { id: '2', text: '2~4次每周' },
+                        { id: '3', text: '每周>=5次' }
+                    ],
+                    exercise_duration_list: [
+                        { id: '1', text: '<10min' },
+                        { id: '2', text: '10~30min' },
+                        { id: '3', text: '>30min' }
+                    ],
+                    exercise_mode_list: [
+                        { id: '1', text: '快走' },
+                        { id: '2', text: '慢跑' },
+                        { id: '3', text: '其他' }
+                    ],
+                },
+                anamnesis: {
+                    lipid_abnormality_type_list: [
+                        { id: '1', text: '高TC' },
+                        { id: '2', text: '高TG' },
+                        { id: '3', text: '高TC且高TG' }
+                    ],
+                    dysglycemia_type_list: [
+                        { id: '1', text: '空腹血糖受损' },
+                        { id: '2', text: '糖耐量异常' },
+                        { id: '3', text: '2型糖尿病' }
+                    ],
+                    diabetes_mellitus_treatment_method_list: [
+                        { id: '1', text: '饮食' },
+                        { id: '2', text: '运动' },
+                        { id: '3', text: '口服药' },
+                        { id: '4', text: '胰岛素' }
+                    ],
+                    old_myocardial_infarction_location_list: [
+                        { id: '1', text: '广泛前壁' },
+                        { id: '2', text: '前壁' },
+                        { id: '3', text: '前间壁' },
+                        { id: '4', text: '侧壁' },
+                        { id: '5', text: '高侧壁' },
+                        { id: '6', text: '下壁' },
+                        { id: '7', text: '其他' }
+                    ],
+                    other_heart_disease_type_list: [
+                        { id: '1', text: '高血压' },
+                        { id: '2', text: '肥厚型心肌病' },
+                        { id: '3', text: '扩张型心肌病' },
+                        { id: '4', text: '限制型心肌病' },
+                        { id: '5', text: '心脏瓣膜病' },
+                        { id: '6', text: '风湿性心脏病' },
+                        { id: '7', text: '肺源性心脏病' },
+                        { id: '8', text: '其他' }
+                    ],
+                    deep_venou_thrombosis_inducement_list: [
+                        { id: '1', text: '瘫痪、不完全瘫痪' },
+                        { id: '2', text: '近期石膏固定' },
+                        { id: '3', text: '近期卧床大于3天' },
+                        { id: '4', text: '12周内已行全麻或局麻的大手术' }
+                    ],
+                    deep_venou_thrombosis_symptom_list: [
+                        { id: '1', text: '沿深静脉走形的局部疼痛' },
+                        { id: '2', text: '全下肢水肿' },
+                        { id: '3', text: '与无症状侧小腿相比，出现症状一侧小腿水肿大于3cm（胫骨粗隆下10cm测量）' },
+                        { id: '4', text: '有症状腿部的凹陷型水肿' },
+                        { id: '5', text: '浅静脉侧枝循环（无静脉曲张情况下）' }
+                    ],
+                    deep_venou_thrombosis_diagnosis_result_list: [
+                        { id: '1', text: '确诊为DVT' },
+                        { id: '2', text: 'DVT可能性较大' },
+                        { id: '3', text: 'DVT可能性与PE相同' },
+                        { id: '4', text: 'DVT可能性较小' }
+                    ],
+                    old_ischemic_stroke_type_name_list: [
+                        { id: '1', text: 'TIA' },
+                        { id: '2', text: '脑梗塞' },
+                        { id: '3', text: '脑血栓' },
+                        { id: '4', text: '腔梗' }
+                    ],
+                    vascula_diseases_type_list: [
+                        { id: '1', text: 'PAD' },
+                        { id: '2', text: '主动脉瓣性疾病' },
+                        { id: '3', text: '肺动脉栓塞' }
+                    ],
+                    hemorrhage_type_name_list: [
+                        { id: '1', text: '颅内肿瘤' },
+                        { id: '2', text: '主动脉夹层' },
+                        { id: '3', text: '近期内脏出血' },
+                        { id: '4', text: '创伤史和外科大手术' }
+                    ],
+                    bleeding_cause_list: [
+                        { id: '1', text: '出血性中风' },
+                        { id: '2', text: '消化道出血' },
+                        { id: '3', text: '胃溃疡史' },
+                        { id: '4', text: '严重胃炎' },
+                        { id: '5', text: '痔疮' },
+                        { id: '6', text: '牙龈出血' },
+                        { id: '7', text: '皮肤出血' },
+                        { id: '8', text: '泌尿系统' },
+                        { id: '9', text: '生殖系统' }
+                    ],
+                },
+                family_history: {
+                    disease_name_list: [
+                        { id: '1', text: '早发冠心病' },
+                        { id: '2', text: '心肌梗塞' },
+                        { id: '3', text: '缺血性脑卒中' },
+                        { id: '4', text: '出血性脑卒中' },
+                        { id: '5', text: '猝死' }
+                    ],
+                    onset_member_list: [
+                        { id: '1', text: '祖父' },
+                        { id: '2', text: '祖母' },
+                        { id: '3', text: '外祖父' },
+                        { id: '4', text: '外祖母' },
+                        { id: '5', text: '母亲' },
+                        { id: '6', text: '父亲' },
+                        { id: '7', text: '姐妹' },
+                        { id: '8', text: '兄弟' },
+                        { id: '9', text: '儿子' },
+                        { id: '10', text: '女儿' }
+                    ],
+                    gender_list: [
+                        { id: '0', text: '男' },
+                        { id: '1', text: '女' },
+                    ],
+                    premature_chd_type_list: [
+                        { id: '1', text: '隐匿型冠心病' },
+                        { id: '2', text: '劳力性心绞痛' },
+                        { id: '3', text: '不稳定型心绞痛' },
+                        { id: '4', text: '心肌梗死' },
+                        { id: '5', text: '缺血性心肌病' },
+                        { id: '6', text: '冠心病猝死' }
+                    ],
+                    sudden_death_etiologie_list: [
+                        { id: '1', text: '冠心病' },
+                        { id: '2', text: '心肌病' },
+                        { id: '3', text: '遗传性心脏分子通道病' },
+                        { id: '4', text: '其他' }
+                    ],
+                    disease_name_list: [
+                        { id: '1', text: '早发冠心病' },
+                        { id: '2', text: '心肌梗塞' },
+                        { id: '3', text: '缺血性脑卒中' },
+                        { id: '4', text: '出血性脑卒中' },
+                        { id: '5', text: '猝死' }
+                    ],
+                },
+                physical_examination: {
+                    lung_wet_rales_range_list: [
+                        { id: '1', text: '1/2肺野以上' },
+                        { id: '2', text: '1/2肺野以下' }
+                    ],
+                    cardiac_rhythm_list: [
+                        { id: '1', text: '齐' },
+                        { id: '2', text: '早搏' },
+                        { id: '3', text: '绝对不齐' },
+                        { id: '4', text: '不齐' }
+                    ],
+                    heart_sound_S1_result_list: [
+                        { id: '1', text: '正常' },
+                        { id: '2', text: '减弱' },
+                        { id: '3', text: '明显弱' },
+                        { id: '4', text: '强弱不等' }
+                    ],
+                    Killip_class_list: [
+                        { id: '1', text: 'I' },
+                        { id: '2', text: 'II' },
+                        { id: '3', text: 'III' },
+                        { id: '4', text: 'IV' }
+                    ],
+                    ear_lobe_longitudinal_crack_part_list: [
+                        { id: '1', text: '左耳垂' },
+                        { id: '2', text: '右耳垂' }
+                    ],
+                    skin_yellow_pigment_tumor_part_list: [
+                        { id: '1', text: '左眼角' },
+                        { id: '2', text: '右眼角' },
+                        { id: '3', text: '左肘部' },
+                        { id: '4', text: '右肘部' },
+                        { id: '5', text: '左踝部' },
+                        { id: '6', text: '右踝部' }
+                    ],
+                    alopecia_part_list: [
+                        { id: '1', text: '前额' },
+                        { id: '2', text: '头顶' }
+                    ]
+                },
+                routine_examination: {
+                    is_INR_stable_list: [
+                        { id: '1', text: '稳定' },
+                        { id: '0', text: '不稳定' }
+                    ]
+                },
+                special_examination: {
+                    lead_list: [
+                        { id: '1', text: 'I' },
+                        { id: '2', text: 'II' },
+                        { id: '3', text: 'III' },
+                        { id: '4', text: 'aVR' },
+                        { id: '5', text: 'aVL' },
+                        { id: '6', text: 'aVF' },
+                        { id: '7', text: 'V1' },
+                        { id: '8', text: 'V2' },
+                        { id: '9', text: 'V3' },
+                        { id: '10', text: 'V4' },
+                        { id: '11', text: 'V5' },
+                        { id: '12', text: 'V6' },
+                        { id: '13', text: 'V7' },
+                        { id: '14', text: 'V8' },
+                        { id: '15', text: 'V9' }
+                    ],
+                    arrhythmia_type_list: [
+                        { id: '1', text: '室性期前收缩' },
+                        { id: '2', text: '室速' },
+                        { id: '3', text: '室颤' },
+                        { id: '4', text: '房性期前收缩' },
+                        { id: '5', text: '房扑' },
+                        { id: '6', text: '房颤' },
+                        { id: '7', text: '交界性期前收缩' },
+                        { id: '8', text: '室上速' },
+                        { id: '9', text: '房室传导阻滞' },
+                        { id: '10', text: '束支传导阻滞' },
+                        { id: '11', text: '其他' }
+                    ],
+                    ecg_waveform_list: [
+                        { id: '1', text: '高尖' },
+                        { id: '2', text: '低平' },
+                        { id: '3', text: '双向改变' },
+                        { id: '4', text: '深倒置' },
+                        { id: '5', text: '浅倒置' },
+                    ],
+                    exercise_ecg_result_list: [
+                        { id: '1', text: '阴性' },
+                        { id: '2', text: '不能评价' },
+                        { id: '3', text: '可疑阳性' },
+                        { id: '4', text: '阳性' },
+                    ],
+                    ucg_part_list: [
+                        { id: '1', text: '前壁' },
+                        { id: '2', text: '后壁' },
+                        { id: '3', text: '下壁' },
+                        { id: '4', text: '心尖部' }
+                    ],
+                    pci_type_list: [
+                        { id: '1', text: '直接PCI' },
+                        { id: '2', text: '择期PCI' },
+                        { id: '3', text: '溶栓失败后PCI' },
+                        { id: '4', text: '溶栓成功后PCI' },
+                        { id: '5', text: '易化PCI' },
+                    ],
+                    contrast_medium_list: [
+                        { id: '1', text: '优维显' },
+                        { id: '2', text: '碘必乐' },
+                        { id: '3', text: '威视派克' },
+                        { id: '4', text: '欧乃派克' },
+                        { id: '5', text: '其他' },
+                    ],
+                    coronary_distribution_type_list: [
+                        { id: '1', text: '左优势型' },
+                        { id: '2', text: '右优势型' },
+                        { id: '3', text: '均衡型' }
+                    ],
+                    pci_path_list: [
+                        { id: '1', text: '股动脉' },
+                        { id: '2', text: '桡动脉' },
+                        { id: '3', text: '肱动脉' }
+                    ],
+                    segmental_lesions_num_list: [
+                        { id: '1', text: '1' },
+                        { id: '2', text: '2' },
+                        { id: '3', text: '3' },
+                        { id: '4', text: '4' },
+                        { id: '5', text: '5' },
+                        { id: '6', text: '6' },
+                        { id: '7', text: '7' },
+                        { id: '8', text: '8' },
+                        { id: '9', text: '9' },
+                        { id: '10', text: '10' },
+                        { id: '11', text: '11' },
+                        { id: '12', text: '12' },
+                        { id: '13', text: '13' },
+                        { id: '14', text: '14' },
+                        { id: '15', text: '15' },
+                        { id: '16', text: '16' },
+                        { id: '17', text: '17' },
+                        { id: '18', text: '18' },
+                        { id: '19', text: '19' },
+                        { id: '20', text: '20' },
+                        { id: '21', text: '21' },
+                        { id: '22', text: '22' },
+                        { id: '23', text: '23' }
+                    ],
+                    segmental_lesions_shape_list: [
+                        { id: '1', text: '偏心型' },
+                        { id: '2', text: '向心型' }
+                    ],
+                    is_calcification_list: [
+                        { id: '0', text: '无' },
+                        { id: '1', text: '有' }
+                    ],
+                    is_ostial_lesion_list: [
+                        { id: '0', text: '否' },
+                        { id: '1', text: '是' }
+                    ],
+                    is_thrombus_list: [
+                        { id: '0', text: '无' },
+                        { id: '1', text: '有' }
+                    ],
+                    TIMI_grade_list: [
+                        { id: '0', text: '0' },
+                        { id: '1', text: 'I' },
+                        { id: '2', text: 'II' },
+                        { id: '3', text: 'III' }
+                    ],
+                    kinds_of_lesions_list: [
+                        { id: 'A', text: 'A型' },
+                        { id: 'B', text: 'B型' },
+                        { id: 'C', text: 'C型' },
+                    ]
+                }
+            }
+        },
+        methods: {
+            key2value: function(array, key) {
+                var text = false;
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i].id == key) {
+                        text = array[i].text;
+                        break;
+                    }
+                }
+                return text;
+            },
+            keyString2valueString: function(array, keyString) {
+                var key2value = this.key2value;
+                var keyArray = keyString.split(',');
+                var valueArray = [];
+                keyArray.forEach(function(key) {
+                    var value = key2value(array, key);
+                    if (value) {
+                        valueArray.push(value);
+                    }
+                })
+                return valueArray.toString();
+            }
+        },
+        filters: {
+            boolTransform1(value) {
+                if (value == '1') {
+                    return '是';
+                } else if (value == '0') {
+                    return '否';
+                } else {
+                    return '未填写';
+                }
+            },
+            boolTransform2(value) {
+                if (value == '1') {
+                    return '有';
+                } else if (value == '0') {
+                    return '无';
+                } else {
+                    return '未填写';
+                }
+            },
+            boolTransform3(value) {
+                if (value == '1') {
+                    return '有';
+                } else if (value == '0') {
+                    return '无';
+                } else if (value == '-1') {
+                    return '不知道';
+                } else {
+                    return '未填写';
+                }
+            },
+            boolTransform4(value) {
+                if (value == '0') {
+                    return '无';
+                } else if (value == '1') {
+                    return '间断';
+                } else if (value == '2') {
+                    return '长期用药';
+                } else {
+                    return '未填写';
+                }
+            },
+            boolTransform5(value) {
+                if (value == '0') {
+                    return '无';
+                } else if (value == '1') {
+                    return '不规律';
+                } else if (value == '2') {
+                    return '规律治疗';
+                } else {
+                    return '未填写';
+                }
+            },
+            genderTransform(value) {
+                if (value == '1') {
+                    return '女';
+                } else if (value == '0') {
+                    return '男';
+                } else {
+                    return '未填写';
+                }
+            }
+        }
+    });
+
+});
