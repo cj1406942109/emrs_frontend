@@ -2185,9 +2185,23 @@ jQuery(document).ready(function() {
                             }
                         },
                         callback: function(result) {
-                            console.log(result);
+                            // console.log(result);
                             if (result) {
-                                location.href = "./emrs_medical_record_detail.html"
+                                $.ajax({
+                                    url: "http://192.168.10.248:8080/Emrs/insertRecord",
+                                    data: {
+                                        "record": app.mr
+                                    },
+                                    type: "POST",
+                                    success: function() {
+                                        // location.href = "./emrs_medical_record_detail.html"
+                                        alert('success');
+                                    },
+                                    error: function(err) {
+                                        console.log(err)
+                                    }
+                                })
+
                             }
                         }
                     });
