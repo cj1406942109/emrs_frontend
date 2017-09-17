@@ -1,6 +1,17 @@
 jQuery(document).ready(function() {
     // FormEditable.init();
 
+    var record_id = sessionStorage.getItem('record_id');
+    $.ajax({
+        url: "http://192.168.10.248:8080/Emrs/getBasicInfo",
+        type: "POST",
+        data: {
+            "record_id": record_id
+        },
+        success: function(data) {
+            console.log(data);
+        }
+    })
     var app = new Vue({
         el: '#app',
         data: {
