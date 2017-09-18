@@ -196,7 +196,7 @@
                                 </ul>
                                 <div class="tab-content">
                                     <!-- 基本信息部分开始 -->
-                                    <div class="tab-pane active portlet light" id="tab_2_1">
+                                    <div class="tab-pane active portlet light" id="tab_2_1" v-if="tab_status.tab_1">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">基本信息</span>
@@ -207,64 +207,68 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div class="row">
-                                                <div class="col-md-12">姓名：{{mr.basic_info.patient.name}}</div>
+                                                <div class="col-md-12">姓名：{{mr.basic_info.name}}</div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">就诊卡号：{{mr.basic_info.patient.medical_card_number}}</div>
+                                                <div class="col-md-12">就诊卡号：{{mr.basic_info.medical_card_number}}</div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">身份证号：{{mr.basic_info.patient.id_number}}</div>
+                                                <div class="col-md-12">身份证号：{{mr.basic_info.id_number}}</div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">联系方式：{{mr.basic_info.patient.cellphone_1}} {{mr.basic_info.patient.cellphone_2}} {{mr.basic_info.patient.telephone}}</div>
+                                                <div class="col-md-12">联系方式：{{mr.basic_info.cellphone_1}} {{mr.basic_info.cellphone_2}} {{mr.basic_info.telephone}}</div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">姓别：{{mr.basic_info.patient.gender|genderTransform}}</div>
+                                                <div class="col-md-12">姓别：{{mr.basic_info.gender|genderTransform}}</div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">患者类型： {{key2value(pageData.basic_info.patient_type_list,mr.basic_info.is_hospitalized)}}
-                                                    <span v-if="mr.basic_info.is_hospitalized=='1'">住院号：{{mr.basic_info.admission_num}}</span>
-                                                    <span v-if="mr.basic_info.is_hospitalized=='1'">床位号：{{mr.basic_info.bed_num}}</span>
+                                                <div class="col-md-12">
+                                                    住院号：{{mr.basic_info.admission_num}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    主治医生：{{key2value(pageData.basic_info.doctor_list,mr.basic_info.doctor_id)}}
+                                                    床位号：{{mr.basic_info.bed_num}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    记录者：{{key2value(pageData.basic_info.recorder_list,mr.basic_info.recorder_id)}}
+                                                    主治医生：{{mr.basic_info.doctor}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    民族：{{mr.basic_info.patient.nationality}}
+                                                    记录者：{{mr.basic_info.recorder}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    出生地：{{mr.basic_info.patient.birth_province}}{{mr.basic_info.patient.birth_city}}
+                                                    民族：{{mr.basic_info.nationality}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    出生日期：{{mr.basic_info.patient.birthday}}
+                                                    出生地：{{mr.basic_info.birth_province}}{{mr.basic_info.birth_city}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    职业：{{mr.basic_info.patient.profession}}
+                                                    出生日期：{{mr.basic_info.birthday}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    家庭住址：{{mr.basic_info.patient.address_province}}{{mr.basic_info.patient.address_city}}{{mr.basic_info.patient.address_area}}{{mr.basic_info.patient.address_town}}
+                                                    职业：{{mr.basic_info.profession}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    详细住址：{{mr.basic_info.patient.address}}
+                                                    家庭住址：{{mr.basic_info.address_province}}{{mr.basic_info.address_city}}{{mr.basic_info.address_area}}{{mr.basic_info.address_town}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    详细住址：{{mr.basic_info.address}}
                                                 </div>
                                             </div>
 
@@ -272,7 +276,7 @@
                                     </div>
                                     <!-- 基本信息部分结束 -->
                                     <!-- 现病史部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_2">
+                                    <div class="tab-pane portlet light" id="tab_2_2" v-if="tab_status.tab_2">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">现病史</span>
@@ -373,7 +377,7 @@
                                     </div>
                                     <!-- 现病史部分结束 -->
                                     <!-- 既往病史及危险因素部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_3">
+                                    <div class="tab-pane portlet light" id="tab_2_3" v-if="tab_status.tab_3">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">既往病史及危险因素</span>
@@ -389,29 +393,29 @@
                                                     吸烟
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    是否吸烟：{{mr.risk_factors.smoking.is_somking | boolTransform1}}
-                                                    <div class="row" v-if="mr.risk_factors.smoking.is_somking=='1'">
+                                                    是否吸烟：{{mr.risk_factors.is_somking | boolTransform1}}
+                                                    <div class="row" v-if="mr.risk_factors.is_somking=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    烟龄：{{mr.risk_factors.smoking.duration}}年
+                                                                    烟龄：{{mr.risk_factors.smoking_duration}}年
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    平均吸烟：{{mr.risk_factors.smoking.pieces_per_day}}支/日
+                                                                    平均吸烟：{{mr.risk_factors.pieces_per_day}}支/日
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <span>吸烟类型：{{keyString2valueString(pageData.risk_factors.cigrette_type_list,mr.risk_factors.smoking.cigrette_type)}}</span>
-                                                                    <span v-if="mr.risk_factors.smoking.cigrette_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.smoking.cigrette_type_others}}</span>
+                                                                    <span>吸烟类型：{{keyString2valueString(pageData.risk_factors.cigrette_type_list,mr.risk_factors.cigrette_type)}}</span>
+                                                                    <span v-if="mr.risk_factors.cigrette_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.cigrette_type_others}}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <span>是否戒烟：{{mr.risk_factors.smoking.is_smoking_cessation | boolTransform1}}</span>
-                                                                    <span v-if="mr.risk_factors.smoking.is_smoking_cessation=='1'">戒烟时长：{{mr.risk_factors.smoking.smoking_cessation_duration}}年</span>
+                                                                    <span>是否戒烟：{{mr.risk_factors.is_smoking_cessation | boolTransform1}}</span>
+                                                                    <span v-if="mr.risk_factors.is_smoking_cessation=='1'">戒烟时长：{{mr.risk_factors.smoking_cessation_duration}}年</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -423,29 +427,29 @@
                                                     饮酒
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    是否饮酒：{{mr.risk_factors.drinking.is_drinking | boolTransform1}}
-                                                    <div class="row" v-if="mr.risk_factors.drinking.is_drinking=='1'">
+                                                    是否饮酒：{{mr.risk_factors.is_drinking | boolTransform1}}
+                                                    <div class="row" v-if="mr.risk_factors.is_drinking=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    酒龄：{{mr.risk_factors.drinking.duration}}年
+                                                                    酒龄：{{mr.risk_factors.drinking_duration}}年
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    平均饮酒：{{mr.risk_factors.drinking.tales_per_day}}两/日
+                                                                    平均饮酒：{{mr.risk_factors.tales_per_day}}两/日
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <span>饮酒类型：{{keyString2valueString(pageData.risk_factors.wine_type_list,mr.risk_factors.drinking.wine_type)}}</span>
-                                                                    <span v-if="mr.risk_factors.drinking.wine_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.drinking.wine_type_others}}</span>
+                                                                    <span>饮酒类型：{{keyString2valueString(pageData.risk_factors.wine_type_list,mr.risk_factors.wine_type)}}</span>
+                                                                    <span v-if="mr.risk_factors.wine_type.indexOf('5')>=0">其他类型：{{mr.risk_factors.wine_type_others}}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <span>是否戒酒：{{mr.risk_factors.drinking.is_temperance | boolTransform1}}</span>
-                                                                    <span v-if="mr.risk_factors.drinking.is_temperance=='1'">戒烟时长：{{mr.risk_factors.drinking.temperance_duration}}年</span>
+                                                                    <span>是否戒酒：{{mr.risk_factors.is_temperance | boolTransform1}}</span>
+                                                                    <span v-if="mr.risk_factors.is_temperance=='1'">戒烟时长：{{mr.risk_factors.temperance_duration}}年</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -457,22 +461,22 @@
                                                     饮食习惯
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>饮水：{{key2value(pageData.risk_factors.drinking_amount_list,mr.risk_factors.diet_habits.drinking_amount)}}</span>
-                                                    <span>谷薯类：{{key2value(pageData.risk_factors.paddy_potato_list,mr.risk_factors.diet_habits.paddy_potato)}}</span>
-                                                    <span>全谷物和杂豆：{{key2value(pageData.risk_factors.grain_mixed_beans_list,mr.risk_factors.diet_habits.grain_mixed_beans)}}</span>
-                                                    <span>薯类：{{key2value(pageData.risk_factors.potato_list,mr.risk_factors.diet_habits.potato)}}</span>
-                                                    <span>蔬菜类：{{key2value(pageData.risk_factors.vegetables_list,mr.risk_factors.diet_habits.vegetables)}}</span>
-                                                    <span>水果类：{{key2value(pageData.risk_factors.fruits_list,mr.risk_factors.diet_habits.fruits)}}</span>
-                                                    <span>畜禽肉：{{key2value(pageData.risk_factors.livestock_meat_list,mr.risk_factors.diet_habits.livestock_meat)}}</span>
-                                                    <span>水产品：{{key2value(pageData.risk_factors.aquatic_products_list,mr.risk_factors.diet_habits.aquatic_products)}}</span>
-                                                    <span>蛋类：{{key2value(pageData.risk_factors.eggs_list,mr.risk_factors.diet_habits.eggs)}}</span>
-                                                    <span>奶及奶制品：{{key2value(pageData.risk_factors.milk_products_list,mr.risk_factors.diet_habits.milk_products)}}</span>
-                                                    <span>大豆及坚果类：{{key2value(pageData.risk_factors.soybeans_nuts_list,mr.risk_factors.diet_habits.soybeans_nuts)}}</span>
-                                                    <span>食盐：{{key2value(pageData.risk_factors.salt_list,mr.risk_factors.diet_habits.salt)}}</span>
-                                                    <span>糖：{{key2value(pageData.risk_factors.sugar_list,mr.risk_factors.diet_habits.sugar)}}</span>
-                                                    <span>油：{{key2value(pageData.risk_factors.oil_list,mr.risk_factors.diet_habits.oil)}}</span>
-                                                    <span>肥肉：{{mr.risk_factors.diet_habits.fat_meat}}g/周</span>
-                                                    <span>肝脏：{{mr.risk_factors.diet_habits.visceral}}g/周</span>
+                                                    <span>饮水：{{key2value(pageData.risk_factors.drinking_amount_list,mr.risk_factors.drinking_amount)}}</span>
+                                                    <span>谷薯类：{{key2value(pageData.risk_factors.paddy_potato_list,mr.risk_factors.paddy_potato)}}</span>
+                                                    <span>全谷物和杂豆：{{key2value(pageData.risk_factors.grain_mixed_beans_list,mr.risk_factors.grain_mixed_beans)}}</span>
+                                                    <span>薯类：{{key2value(pageData.risk_factors.potato_list,mr.risk_factors.potato)}}</span>
+                                                    <span>蔬菜类：{{key2value(pageData.risk_factors.vegetables_list,mr.risk_factors.vegetables)}}</span>
+                                                    <span>水果类：{{key2value(pageData.risk_factors.fruits_list,mr.risk_factors.fruits)}}</span>
+                                                    <span>畜禽肉：{{key2value(pageData.risk_factors.livestock_meat_list,mr.risk_factors.livestock_meat)}}</span>
+                                                    <span>水产品：{{key2value(pageData.risk_factors.aquatic_products_list,mr.risk_factors.aquatic_products)}}</span>
+                                                    <span>蛋类：{{key2value(pageData.risk_factors.eggs_list,mr.risk_factors.eggs)}}</span>
+                                                    <span>奶及奶制品：{{key2value(pageData.risk_factors.milk_products_list,mr.risk_factors.milk_products)}}</span>
+                                                    <span>大豆及坚果类：{{key2value(pageData.risk_factors.soybeans_nuts_list,mr.risk_factors.soybeans_nuts)}}</span>
+                                                    <span>食盐：{{key2value(pageData.risk_factors.salt_list,mr.risk_factors.salt)}}</span>
+                                                    <span>糖：{{key2value(pageData.risk_factors.sugar_list,mr.risk_factors.sugar)}}</span>
+                                                    <span>油：{{key2value(pageData.risk_factors.oil_list,mr.risk_factors.oil)}}</span>
+                                                    <span>肥肉：{{mr.risk_factors.fat_meat}}g/周</span>
+                                                    <span>肝脏：{{mr.risk_factors.visceral}}g/周</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -480,9 +484,9 @@
                                                     社会心理因素
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>血型性格：{{key2value(pageData.risk_factors.blood_type_list,mr.risk_factors.psychosocial_factors.blood_type)}}</span>
-                                                    <span>有无长期心理压力：{{mr.risk_factors.psychosocial_factors.is_longterm_psychological_stress|boolTransform2}}</span>
-                                                    <span>有无抑郁症（悲观、焦虑或反应迟钝、疲劳、缺乏自信、饮食睡眠改变）：{{mr.risk_factors.psychosocial_factors.is_depression|boolTransform2}}</span>
+                                                    <span>血型性格：{{key2value(pageData.risk_factors.blood_type_list,mr.risk_factors.blood_type)}}</span>
+                                                    <span>有无长期心理压力：{{mr.risk_factors.is_longterm_psychological_stress|boolTransform2}}</span>
+                                                    <span>有无抑郁症（悲观、焦虑或反应迟钝、疲劳、缺乏自信、饮食睡眠改变）：{{mr.risk_factors.is_depression|boolTransform2}}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -490,10 +494,10 @@
                                                     运动
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>类型：{{key2value(pageData.risk_factors.exercise_type_list,mr.risk_factors.exercise.type)}}</span>
-                                                    <span>每次时长：{{key2value(pageData.risk_factors.exercise_duration_list,mr.risk_factors.exercise.duration)}}</span>
-                                                    <span>方式：{{keyString2valueString(pageData.risk_factors.exercise_mode_list,mr.risk_factors.exercise.mode)}}</span>
-                                                    <span v-if="mr.risk_factors.exercise.mode.indexOf('3')>=0">其他方式：{{mr.risk_factors.exercise.mode_others}}</span>
+                                                    <span>类型：{{key2value(pageData.risk_factors.exercise_type_list,mr.risk_factors.exercise_type)}}</span>
+                                                    <span>每次时长：{{key2value(pageData.risk_factors.exercise_duration_list,mr.risk_factors.exercise_duration)}}</span>
+                                                    <span>方式：{{keyString2valueString(pageData.risk_factors.exercise_mode_list,mr.risk_factors.exercise_mode)}}</span>
+                                                    <span v-if="mr.risk_factors.exercise_mode.indexOf('3')>=0">其他方式：{{mr.risk_factors.exercise_mode_others}}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -501,13 +505,13 @@
                                                     中心型肥胖
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>有无中心型肥胖：{{mr.risk_factors.central_obesity.is_central_obesity|boolTransform2}}</span>
-                                                    <span v-if="mr.risk_factors.central_obesity.is_central_obesity=='1'">病史：{{mr.risk_factors.central_obesity.duration}}年</span>
-                                                    <span>身高：{{mr.risk_factors.central_obesity.height}}cm</span>
-                                                    <span>体重：{{mr.risk_factors.central_obesity.weight}}kg</span>
-                                                    <span>腰围：{{mr.risk_factors.central_obesity.waistline}}cm</span>
-                                                    <span>颈围：{{mr.risk_factors.central_obesity.neck_circumference}}cm</span>
-                                                    <span>臀围：{{mr.risk_factors.central_obesity.hipline}}cm</span>
+                                                    <span>有无中心型肥胖：{{mr.risk_factors.is_central_obesity|boolTransform2}}</span>
+                                                    <span v-if="mr.risk_factors.is_central_obesity=='1'">病史：{{mr.risk_factors.central_obesity_duration}}年</span>
+                                                    <span>身高：{{mr.risk_factors.height}}cm</span>
+                                                    <span>体重：{{mr.risk_factors.weight}}kg</span>
+                                                    <span>腰围：{{mr.risk_factors.waistline}}cm</span>
+                                                    <span>颈围：{{mr.risk_factors.neck_circumference}}cm</span>
+                                                    <span>臀围：{{mr.risk_factors.hipline}}cm</span>
                                                 </div>
                                             </div>
                                             <h4 class="bold">既往病史</h4>
@@ -516,13 +520,13 @@
                                                     血脂异常
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无血脂异常：{{mr.anamnesis.lipid_abnormality.is_lipid_abnormality|boolTransform3}}
-                                                    <div class="row" v-if="mr.anamnesis.lipid_abnormality.is_lipid_abnormality=='1'">
+                                                    有无血脂异常：{{mr.anamnesis.is_lipid_abnormality|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.is_lipid_abnormality=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>病史：{{mr.anamnesis.lipid_abnormality.duration}}年</span>
-                                                            <span>类型：{{key2value(pageData.anamnesis.lipid_abnormality_type_list,mr.anamnesis.lipid_abnormality.type)}}</span>
-                                                            <span>有无治疗：{{mr.anamnesis.lipid_abnormality.is_under_treatment|boolTransform4}}</span>
-                                                            <span v-if="mr.anamnesis.lipid_abnormality.is_under_treatment=='2'">药名：{{mr.anamnesis.lipid_abnormality.drug_name}}</span>
+                                                            <span>病史：{{mr.anamnesis.lipid_abnormality_duration}}年</span>
+                                                            <span>类型：{{key2value(pageData.anamnesis.lipid_abnormality_type_list,mr.anamnesis.lipid_abnormality_type)}}</span>
+                                                            <span>有无治疗：{{mr.anamnesis.is_lipid_abnormality_under_treatment|boolTransform4}}</span>
+                                                            <span v-if="mr.anamnesis.is_lipid_abnormality_under_treatment=='2'">药名：{{mr.anamnesis.lipid_abnormality_drug_name}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -532,14 +536,14 @@
                                                     原发性高血压
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无原发性高血压：{{mr.anamnesis.essential_hypertension.is_essential_hypertension|boolTransform3}}
-                                                    <div class="row" v-if="mr.anamnesis.essential_hypertension.is_essential_hypertension=='1'">
+                                                    有无原发性高血压：{{mr.anamnesis.is_essential_hypertension|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.is_essential_hypertension=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>病史：{{mr.anamnesis.essential_hypertension.duration}}年</span>
-                                                            <span>有无治疗：{{mr.anamnesis.essential_hypertension.is_under_treatment|boolTransform4}}</span>
-                                                            <span v-if="mr.anamnesis.essential_hypertension.is_under_treatment=='2'">药名：{{mr.anamnesis.essential_hypertension.drug_name}}</span>
-                                                            <span>血压最高值：{{mr.anamnesis.essential_hypertension.maximum_value}}mmHg</span>
-                                                            <span>血压平时值：{{mr.anamnesis.essential_hypertension.ordinary_value}}mmHg</span>
+                                                            <span>病史：{{mr.anamnesis.essential_hypertension_duration}}年</span>
+                                                            <span>有无治疗：{{mr.anamnesis.is_essential_hypertension_under_treatment|boolTransform4}}</span>
+                                                            <span v-if="mr.anamnesis.is_essential_hypertension_under_treatment=='2'">药名：{{mr.anamnesis.essential_hypertension_drug_name}}</span>
+                                                            <span>血压最高值：{{mr.anamnesis.maximum_value}}mmHg</span>
+                                                            <span>血压平时值：{{mr.anamnesis.ordinary_value}}mmHg</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -549,23 +553,23 @@
                                                     血糖异常
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无血糖异常：{{mr.anamnesis.dysglycemia.is_dysglycemia|boolTransform3}}
-                                                    <div class="row" v-if="mr.anamnesis.dysglycemia.is_dysglycemia=='1'">
+                                                    有无血糖异常：{{mr.anamnesis.is_dysglycemia|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.is_dysglycemia=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>病史：{{mr.anamnesis.dysglycemia.duration}}年</span>
-                                                            <span>类型：{{key2value(pageData.anamnesis.dysglycemia_type_list,mr.anamnesis.dysglycemia.type)}}</span>
+                                                            <span>病史：{{mr.anamnesis.dysglycemia_duration}}年</span>
+                                                            <span>类型：{{key2value(pageData.anamnesis.dysglycemia_type_list,mr.anamnesis.dysglycemia_type)}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无糖尿病：{{mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus=='1'">
+                                                    有无糖尿病：{{mr.anamnesis.is_diabetes_mellitus|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_diabetes_mellitus=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>有无治疗：{{mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment|boolTransform5}}</span>
+                                                            <span>有无治疗：{{mr.anamnesis.is_diabetes_mellitus_under_treatment|boolTransform5}}</span>
                                                         </div>
-                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment=='1'||mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment=='2'">
-                                                            <span>治疗方法：{{keyString2valueString(pageData.anamnesis.diabetes_mellitus_treatment_method_list,mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method)}}</span>
-                                                            <span v-if="mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method.indexOf('3')>=0">口服药药名：{{mr.anamnesis.dysglycemia.diabetes_mellitus.oral_drug_name}}</span>
+                                                        <div class="col-md-11 col-md-offset-1" v-if="mr.anamnesis.is_diabetes_mellitus_under_treatment=='1'||mr.anamnesis.is_diabetes_mellitus_under_treatment=='2'">
+                                                            <span>治疗方法：{{keyString2valueString(pageData.anamnesis.diabetes_mellitus_treatment_method_list,mr.anamnesis.diabetes_mellitus_treatment_method)}}</span>
+                                                            <span v-if="mr.anamnesis.diabetes_mellitus_treatment_method.indexOf('3')>=0">口服药药名：{{mr.anamnesis.diabetes_mellitus_oral_drug_name}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -575,24 +579,24 @@
                                                     痛风
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无痛风：{{mr.anamnesis.gout.is_gout|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.gout.is_gout=='1'">
+                                                    有无痛风：{{mr.anamnesis.is_gout|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_gout=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>病史：{{mr.anamnesis.gout.duration}}年</span>
+                                                            <span>病史：{{mr.anamnesis.gout_duration}}年</span>
                                                         </div>
                                                     </div>
-                                                    血清尿酸：{{mr.anamnesis.gout.serum_uric_acid_level}}mmol/L
+                                                    血清尿酸：{{mr.anamnesis.serum_uric_acid_level}}mmol/L
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无肾功能不全：{{mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency|boolTransform3}}
-                                                    <div class="row" v-if="mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency=='1'">
+                                                    有无肾功能不全：{{mr.anamnesis.is_renal_insufficiency|boolTransform3}}
+                                                    <div class="row" v-if="mr.anamnesis.is_renal_insufficiency=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>病史：{{mr.anamnesis.gout.renal_insufficiency.duration}}年</span>
-                                                            <span>病因：{{mr.anamnesis.gout.renal_insufficiency.etiology}}</span>
+                                                            <span>病史：{{mr.anamnesis.renal_insufficiency_duration}}年</span>
+                                                            <span>病因：{{mr.anamnesis.renal_insufficiency_etiology}}</span>
                                                         </div>
                                                     </div>
-                                                    <span>最高Cr：{{mr.anamnesis.gout.renal_insufficiency.maximum_Cr}}mmol/L</span>
-                                                    <span>近期Cr：{{mr.anamnesis.gout.renal_insufficiency.recent_Cr}}mmol/L</span>
+                                                    <span>最高Cr：{{mr.anamnesis.maximum_Cr}}mmol/L</span>
+                                                    <span>近期Cr：{{mr.anamnesis.recent_Cr}}mmol/L</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -600,27 +604,27 @@
                                                     心脏病史
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无陈旧性心硬：{{mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction=='1'">
+                                                    有无陈旧性心硬：{{mr.anamnesis.is_old_myocardial_infarction|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_old_myocardial_infarction=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_year}}年</span>
-                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_month}}月前，发生</span>
-                                                            <span>{{mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_frequency}}次</span>
-                                                            <span>部位：{{keyString2valueString(pageData.anamnesis.old_myocardial_infarction_location_list,mr.anamnesis.heart_diseases.old_myocardial_infarction.location)}}</span>
-                                                            <span v-if="mr.anamnesis.heart_diseases.old_myocardial_infarction.location.indexOf('7')>=0">其他部位：{{mr.anamnesis.heart_diseases.old_myocardial_infarction.location_others}}</span>
+                                                            <span>{{mr.anamnesis.old_myocardial_infarction_onset_time_year}}年</span>
+                                                            <span>{{mr.anamnesis.old_myocardial_infarction_onset_time_month}}月前，发生</span>
+                                                            <span>{{mr.anamnesis.old_myocardial_infarction_onset_frequency}}次</span>
+                                                            <span>部位：{{keyString2valueString(pageData.anamnesis.old_myocardial_infarction_location_list,mr.anamnesis.old_myocardial_infarction_location)}}</span>
+                                                            <span v-if="mr.anamnesis.old_myocardial_infarction_location.indexOf('7')>=0">其他部位：{{mr.anamnesis.old_myocardial_infarction_location_others}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-11 col-md-offset-1">有无PCI史：{{mr.anamnesis.heart_diseases.is_pci_history|boolTransform2}}</div>
-                                                <div class="col-md-11 col-md-offset-1">有无CABG史：{{mr.anamnesis.heart_diseases.is_cabg_history|boolTransform2}}</div>
-                                                <div class="col-md-11 col-md-offset-1">有无冠脉造影≥50%狭窄史：{{mr.anamnesis.heart_diseases.is_cas_gt50_history|boolTransform2}}</div>
-                                                <div class="col-md-11 col-md-offset-1">有无房颤 ：{{mr.anamnesis.heart_diseases.is_atrial_fibrillation|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无PCI史：{{mr.anamnesis.is_pci_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无CABG史：{{mr.anamnesis.is_cabg_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无冠脉造影≥50%狭窄史：{{mr.anamnesis.is_cas_gt50_history|boolTransform2}}</div>
+                                                <div class="col-md-11 col-md-offset-1">有无房颤 ：{{mr.anamnesis.is_atrial_fibrillation|boolTransform2}}</div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无其他心脏病史：{{mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history=='1'">
+                                                    有无其他心脏病史：{{mr.anamnesis.is_other_heart_disease_history|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_other_heart_disease_history=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>类型：{{keyString2valueString(pageData.anamnesis.other_heart_disease_type_list,mr.anamnesis.heart_diseases.other_heart_disease.type)}}</span>
-                                                            <span v-if="mr.anamnesis.heart_diseases.other_heart_disease.type.indexOf('8')>=0">其他类型：{{mr.anamnesis.heart_diseases.other_heart_disease.type_others}}</span>
+                                                            <span>类型：{{keyString2valueString(pageData.anamnesis.other_heart_disease_type_list,mr.anamnesis.other_heart_disease_type)}}</span>
+                                                            <span v-if="mr.anamnesis.other_heart_disease_type.indexOf('8')>=0">其他类型：{{mr.anamnesis.other_heart_disease_type_others}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -630,14 +634,14 @@
                                                     深静脉血栓
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无深静脉血栓：{{mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis=='1'">
+                                                    有无深静脉血栓：{{mr.anamnesis.is_deep_venous_thrombosis|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_deep_venous_thrombosis=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            <span>{{mr.anamnesis.deep_venou_thrombosis.onset_time_year}}年</span>
-                                                            <span>{{mr.anamnesis.deep_venou_thrombosis.onset_time_month}}月前</span>
-                                                            <span>诱因：{{keyString2valueString(pageData.anamnesis.deep_venou_thrombosis_inducement_list,mr.anamnesis.deep_venou_thrombosis.inducements)}}</span>
-                                                            <span>症状：{{keyString2valueString(pageData.anamnesis.deep_venou_thrombosis_symptom_list,mr.anamnesis.deep_venou_thrombosis.symptoms)}}</span>
-                                                            <span>诊断结果：{{key2value(pageData.anamnesis.deep_venou_thrombosis_diagnosis_result_list,mr.anamnesis.deep_venou_thrombosis.diagnosis_result)}}</span>
+                                                            <span>{{mr.anamnesis.deep_venous_thrombosis_onset_time_year}}年</span>
+                                                            <span>{{mr.anamnesis.deep_venous_thrombosis_onset_time_month}}月前</span>
+                                                            <span>诱因：{{keyString2valueString(pageData.anamnesis.deep_venous_thrombosis_inducement_list,mr.anamnesis.deep_venous_thrombosis_inducements)}}</span>
+                                                            <span>症状：{{keyString2valueString(pageData.anamnesis.deep_venous_thrombosis_symptom_list,mr.anamnesis.deep_venous_thrombosis_symptoms)}}</span>
+                                                            <span>诊断结果：{{key2value(pageData.anamnesis.deep_venous_thrombosis_diagnosis_result_list,mr.anamnesis.deep_venous_thrombosis_diagnosis_result)}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -647,12 +651,12 @@
                                                     既往缺血性卒中
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无既往缺血性卒中：{{mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke=='1'">
+                                                    有无既往缺血性卒中：{{mr.anamnesis.is_old_ischemic_stroke|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_old_ischemic_stroke=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
                                                             类型
                                                         </div>
-                                                        <div v-for="type in mr.anamnesis.old_ischemic_stroke.types">
+                                                        <div v-for="type in mr.anamnesis.old_ischemic_stroke_types">
                                                             <div class="col-md-11 col-md-offset-1">
                                                                 <span>{{key2value(pageData.anamnesis.old_ischemic_stroke_type_name_list,type.type_name)}}</span>
                                                                 <span>{{type.onset_time_year}}年{{type.onset_time_month}}月前，发生{{type.onset_frequency}}次</span>
@@ -666,10 +670,10 @@
                                                     血管性疾病史
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无血管性疾病史：{{mr.anamnesis.vascular_diseases.is_vascular_diseases|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.vascular_diseases.is_vascular_diseases=='1'">
+                                                    有无血管性疾病史：{{mr.anamnesis.is_vascular_diseases|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_vascular_diseases=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
-                                                            类型：{{keyString2valueString(pageData.anamnesis.vascula_diseases_type_list,mr.anamnesis.vascular_diseases.types)}}
+                                                            类型：{{keyString2valueString(pageData.anamnesis.vascula_diseases_type_list,mr.anamnesis.vascular_diseases_types)}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -679,12 +683,12 @@
                                                     出血病史
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无出血病史：{{mr.anamnesis.hemorrhage.is_hemorrhage|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.hemorrhage.is_hemorrhage=='1'">
+                                                    有无出血病史：{{mr.anamnesis.is_hemorrhage|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_hemorrhage=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
                                                             类型
                                                         </div>
-                                                        <div v-for="type in mr.anamnesis.hemorrhage.types">
+                                                        <div v-for="type in mr.anamnesis.hemorrhage_types">
                                                             <div class="col-md-11 col-md-offset-1">
                                                                 <span>{{key2value(pageData.anamnesis.hemorrhage_type_name_list,type.type_name)}}</span>
                                                                 <span>发生时间：{{type.onset_time}}发生次数：{{type.onset_frequency}}</span>
@@ -698,12 +702,12 @@
                                                     出血史
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    有无出血史：{{mr.anamnesis.bleeding.is_bleeding|boolTransform2}}
-                                                    <div class="row" v-if="mr.anamnesis.bleeding.is_bleeding=='1'">
+                                                    有无出血史：{{mr.anamnesis.is_bleeding|boolTransform2}}
+                                                    <div class="row" v-if="mr.anamnesis.is_bleeding=='1'">
                                                         <div class="col-md-11 col-md-offset-1">
                                                             病因
                                                         </div>
-                                                        <div v-for="cause in mr.anamnesis.bleeding.causes">
+                                                        <div v-for="cause in mr.anamnesis.bleeding_causes">
                                                             <div class="col-md-11 col-md-offset-1">
                                                                 <span>{{key2value(pageData.anamnesis.bleeding_cause_list,cause.cause)}}</span>
                                                                 <span>发生时间：{{cause.onset_time}}</span>
@@ -716,7 +720,7 @@
                                     </div>
                                     <!-- 既往病史及危险因素部分结束 -->
                                     <!-- 家族史部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_4">
+                                    <div class="tab-pane portlet light" id="tab_2_4" v-if="tab_status.tab_4">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">家族史</span>
@@ -753,7 +757,7 @@
                                     </div>
                                     <!-- 家族史部分结束 -->
                                     <!-- 体格检查部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_5">
+                                    <div class="tab-pane portlet light" id="tab_2_5" v-if="tab_status.tab_5">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">体格检查</span>
@@ -808,7 +812,7 @@
                                     </div>
                                     <!-- 体格检查部分结束 -->
                                     <!-- 常规检查部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_6">
+                                    <div class="tab-pane portlet light" id="tab_2_6" v-if="tab_status.tab_6">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">常规检查</span>
@@ -826,59 +830,59 @@
                                             <div class="row">
                                                 <div class="col-md-11 col-md-offset-1">
                                                     血脂全套
-                                                    <span>TC：{{mr.routine_examination.blood_biochemistry.TC}}mmol/L</span>
-                                                    <span>TG：{{mr.routine_examination.blood_biochemistry.TG}}mmol/L</span>
-                                                    <span>LDL：{{mr.routine_examination.blood_biochemistry.LDL}}mmol/L</span>
-                                                    <span>HDL：{{mr.routine_examination.blood_biochemistry.HDL}}mmol/L</span>
-                                                    <span>非HDL：{{mr.routine_examination.blood_biochemistry.not_HDL}}mmol/L</span>
+                                                    <span>TC：{{mr.routine_examination.TC}}mmol/L</span>
+                                                    <span>TG：{{mr.routine_examination.TG}}mmol/L</span>
+                                                    <span>LDL：{{mr.routine_examination.LDL}}mmol/L</span>
+                                                    <span>HDL：{{mr.routine_examination.HDL}}mmol/L</span>
+                                                    <span>非HDL：{{mr.routine_examination.not_HDL}}mmol/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
                                                     血糖
-                                                    <span>空腹：{{mr.routine_examination.blood_biochemistry.blood_glucose_fasting}}mmol/L</span>
+                                                    <span>空腹：{{mr.routine_examination.blood_glucose_fasting}}mmol/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    血清心肌坏死标志物升高：{{mr.routine_examination.blood_biochemistry.is_serum_myocardial_necrosis_markers_up|boolTransform1}}
-                                                    <span>CK：{{mr.routine_examination.blood_biochemistry.myocardial_CK}}U/L</span>
-                                                    <span>CK-MB：{{mr.routine_examination.blood_biochemistry.myocardial_CKMB}}U/L</span>
-                                                    <span>cTnI：{{mr.routine_examination.blood_biochemistry.myocardial_cTnI}}μg/L</span>
-                                                    <span>Mb：{{mr.routine_examination.blood_biochemistry.myocardial_Mb}}μg/L</span>
+                                                    血清心肌坏死标志物升高：{{mr.routine_examination.is_serum_myocardial_necrosis_markers_up|boolTransform1}}
+                                                    <span>CK：{{mr.routine_examination.myocardial_CK}}U/L</span>
+                                                    <span>CK-MB：{{mr.routine_examination.myocardial_CKMB}}U/L</span>
+                                                    <span>cTnI：{{mr.routine_examination.myocardial_cTnI}}μg/L</span>
+                                                    <span>Mb：{{mr.routine_examination.myocardial_Mb}}μg/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    炎症标志物升高：{{mr.routine_examination.blood_biochemistry.is_inflammatory_markers_up|boolTransform1}}
-                                                    <span>hs-CRP：{{mr.routine_examination.blood_biochemistry.inflammation_hsCRP}}mg/L</span>
-                                                    <span>IL-6：{{mr.routine_examination.blood_biochemistry.inflammation_IL6}}pg/mL</span>
-                                                    <span>IL-1β：{{mr.routine_examination.blood_biochemistry.inflammation_IL1_beta}}pg/mL</span>
-                                                    <span>TNFα：{{mr.routine_examination.blood_biochemistry.inflammation_TNF_alpha}}μg/L</span>
+                                                    炎症标志物升高：{{mr.routine_examination.is_inflammatory_markers_up|boolTransform1}}
+                                                    <span>hs-CRP：{{mr.routine_examination.inflammation_hsCRP}}mg/L</span>
+                                                    <span>IL-6：{{mr.routine_examination.inflammation_IL6}}pg/mL</span>
+                                                    <span>IL-1β：{{mr.routine_examination.inflammation_IL1_beta}}pg/mL</span>
+                                                    <span>TNFα：{{mr.routine_examination.inflammation_TNF_alpha}}μg/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    心衰：NT-proBNP：{{mr.routine_examination.blood_biochemistry.heart_failure_NTproBNP}}ng/L
+                                                    心衰：NT-proBNP：{{mr.routine_examination.heart_failure_NTproBNP}}ng/L
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
                                                     电解质：
-                                                    <span>Na：{{mr.routine_examination.blood_biochemistry.electrolyte_Na}}mmol/L</span>
-                                                    <span>K：{{mr.routine_examination.blood_biochemistry.electrolyte_K}}mmol/L</span>
-                                                    <span>Ca：{{mr.routine_examination.blood_biochemistry.electrolyte_Ca}}mmol/L</span>
-                                                    <span>Cl：{{mr.routine_examination.blood_biochemistry.electrolyte_Cl}}mmol/L</span>
+                                                    <span>Na：{{mr.routine_examination.electrolyte_Na}}mmol/L</span>
+                                                    <span>K：{{mr.routine_examination.electrolyte_K}}mmol/L</span>
+                                                    <span>Ca：{{mr.routine_examination.electrolyte_Ca}}mmol/L</span>
+                                                    <span>Cl：{{mr.routine_examination.electrolyte_Cl}}mmol/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    肝功能异常：{{mr.routine_examination.blood_biochemistry.is_abnormal_liver_function|boolTransform1}}
-                                                    <span>总蛋白：{{mr.routine_examination.blood_biochemistry.total_protein}}g/L</span>
-                                                    <span>白蛋白：{{mr.routine_examination.blood_biochemistry.albumin}}g/L</span>
-                                                    <span>总胆红素：{{mr.routine_examination.blood_biochemistry.total_bilirubin}}μmol/L</span>
-                                                    <span>直接胆红素：{{mr.routine_examination.blood_biochemistry.direct_bilirubin}}μmol/L</span>
-                                                    <span>间接胆红素：{{mr.routine_examination.blood_biochemistry.indirect_bilirubin}}μmol/L</span>
-                                                    <span>ALT：{{mr.routine_examination.blood_biochemistry.ALT}}U/L</span>
-                                                    <span>AST：{{mr.routine_examination.blood_biochemistry.AST}}U/L</span>
+                                                    肝功能异常：{{mr.routine_examination.is_abnormal_liver_function|boolTransform1}}
+                                                    <span>总蛋白：{{mr.routine_examination.total_protein}}g/L</span>
+                                                    <span>白蛋白：{{mr.routine_examination.albumin}}g/L</span>
+                                                    <span>总胆红素：{{mr.routine_examination.total_bilirubin}}μmol/L</span>
+                                                    <span>直接胆红素：{{mr.routine_examination.direct_bilirubin}}μmol/L</span>
+                                                    <span>间接胆红素：{{mr.routine_examination.indirect_bilirubin}}μmol/L</span>
+                                                    <span>ALT：{{mr.routine_examination.ALT}}U/L</span>
+                                                    <span>AST：{{mr.routine_examination.AST}}U/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    肾功能不全：{{mr.routine_examination.blood_biochemistry.is_renal_insufficiency|boolTransform1}}
-                                                    <span>Cr：{{mr.routine_examination.blood_biochemistry.Cr}}μmol/L</span>
-                                                    <span>UA：{{mr.routine_examination.blood_biochemistry.UA}}μmol/L</span>
-                                                    <span>BUN：{{mr.routine_examination.blood_biochemistry.BUN}}mmol/L</span>
-                                                    <span>GFR：{{mr.routine_examination.blood_biochemistry.GFR}}ml/min</span>
+                                                    肾功能不全：{{mr.routine_examination.is_renal_insufficiency|boolTransform1}}
+                                                    <span>Cr：{{mr.routine_examination.Cr}}μmol/L</span>
+                                                    <span>UA：{{mr.routine_examination.UA}}μmol/L</span>
+                                                    <span>BUN：{{mr.routine_examination.BUN}}mmol/L</span>
+                                                    <span>GFR：{{mr.routine_examination.GFR}}ml/min</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    肝肾疾病：{{mr.routine_examination.blood_biochemistry.is_hepatorenal_disease|boolTransform1}}
+                                                    肝肾疾病：{{mr.routine_examination.is_hepatorenal_disease|boolTransform1}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -886,13 +890,13 @@
                                                     凝血功能
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>APTT：{{mr.routine_examination.coagulation_function.APTT}}s</span>
-                                                    <span>PT：{{mr.routine_examination.coagulation_function.PT}}s</span>
-                                                    <span>TT：{{mr.routine_examination.coagulation_function.TT}}s</span>
-                                                    <span>FIB：{{mr.routine_examination.coagulation_function.FIB}}g/L</span>
-                                                    <span>D-二聚体：{{mr.routine_examination.coagulation_function.d_dimer}}s</span>
-                                                    <span>INR：{{mr.routine_examination.coagulation_function.INR}}</span>
-                                                    <span>{{key2value(pageData.routine_examination.is_INR_stable_list,mr.routine_examination.coagulation_function.is_INR_stable)}}</span>
+                                                    <span>APTT：{{mr.routine_examination.APTT}}s</span>
+                                                    <span>PT：{{mr.routine_examination.PT}}s</span>
+                                                    <span>TT：{{mr.routine_examination.TT}}s</span>
+                                                    <span>FIB：{{mr.routine_examination.FIB}}g/L</span>
+                                                    <span>D-二聚体：{{mr.routine_examination.d_dimer}}s</span>
+                                                    <span>INR：{{mr.routine_examination.INR}}</span>
+                                                    <span>{{key2value(pageData.routine_examination.is_INR_stable_list,mr.routine_examination.is_INR_stable)}}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -900,36 +904,36 @@
                                                     血常规
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>红细胞计数：{{mr.routine_examination.blood_routine.red_blood_cell_count}}x10^12/L</span>
-                                                    <span>红细胞比容：{{mr.routine_examination.blood_routine.red_blood_cell_specific_volume}}%</span>
-                                                    <span>HGB：{{mr.routine_examination.blood_routine.HGB}}g/L</span>
+                                                    <span>红细胞计数：{{mr.routine_examination.red_blood_cell_count}}x10^12/L</span>
+                                                    <span>红细胞比容：{{mr.routine_examination.red_blood_cell_specific_volume}}%</span>
+                                                    <span>HGB：{{mr.routine_examination.HGB}}g/L</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>白细胞计数：{{mr.routine_examination.blood_routine.leukocyte_count}}x10^9/L</span>
+                                                    <span>白细胞计数：{{mr.routine_examination.leukocyte_count}}x10^9/L</span>
                                                     <div class="col-md-10 col-md-offset-2">
-                                                        <span>中性粒细胞：{{mr.routine_examination.blood_routine.neutrophil}}x10^9/L</span>
-                                                        <span>嗜酸性粒细胞：{{mr.routine_examination.blood_routine.eosinophil}}x10^9/L</span>
-                                                        <span>嗜碱性粒细胞：{{mr.routine_examination.blood_routine.basophil}}x10^9/L</span>
-                                                        <span>淋巴细胞：{{mr.routine_examination.blood_routine.lymphocyte}}x10^9/L</span>
-                                                        <span>单核细胞：{{mr.routine_examination.blood_routine.monocyte}}x10^9/L</span>
+                                                        <span>中性粒细胞：{{mr.routine_examination.neutrophil}}x10^9/L</span>
+                                                        <span>嗜酸性粒细胞：{{mr.routine_examination.eosinophil}}x10^9/L</span>
+                                                        <span>嗜碱性粒细胞：{{mr.routine_examination.basophil}}x10^9/L</span>
+                                                        <span>淋巴细胞：{{mr.routine_examination.lymphocyte}}x10^9/L</span>
+                                                        <span>单核细胞：{{mr.routine_examination.monocyte}}x10^9/L</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>血小板功能数量异常：{{mr.routine_examination.blood_routine.is_qualitative_plateletdefects|boolTransform1}}</span>
+                                                    <span>血小板功能数量异常：{{mr.routine_examination.is_qualitative_plateletdefects|boolTransform1}}</span>
                                                     <div class="col-md-10 col-md-offset-2">
                                                         <div><span>中性粒细胞</span></div>
                                                         <div class="col-md-9 col-md-offset-3">
-                                                            <span>PLT：{{mr.routine_examination.blood_routine.platelet_count_PLT}}x10^9/L</span>
-                                                            <span>MPV：{{mr.routine_examination.blood_routine.MPV}}fL</span>
-                                                            <span>PDW：{{mr.routine_examination.blood_routine.PDW}}%</span>
+                                                            <span>PLT：{{mr.routine_examination.platelet_count_PLT}}x10^9/L</span>
+                                                            <span>MPV：{{mr.routine_examination.MPV}}fL</span>
+                                                            <span>PDW：{{mr.routine_examination.PDW}}%</span>
                                                         </div>
                                                         <div><span>血小板聚集率</span></div>
                                                         <div class="col-md-9 col-md-offset-3">
-                                                            <span>ADP：{{mr.routine_examination.blood_routine.PAR_ADP}}%</span>
-                                                            <span>肾上腺素：{{mr.routine_examination.blood_routine.PAR_epinephrine}}%</span>
-                                                            <span>花生四烯酸：{{mr.routine_examination.blood_routine.PAR_arachidonic_acid}}%</span>
-                                                            <span>胶原：{{mr.routine_examination.blood_routine.PAR_collagen}}%</span>
-                                                            <span>瑞斯托霉素：{{mr.routine_examination.blood_routine.PAR_ristocetin}}%</span>
+                                                            <span>ADP：{{mr.routine_examination.PAR_ADP}}%</span>
+                                                            <span>肾上腺素：{{mr.routine_examination.PAR_epinephrine}}%</span>
+                                                            <span>花生四烯酸：{{mr.routine_examination.PAR_arachidonic_acid}}%</span>
+                                                            <span>胶原：{{mr.routine_examination.PAR_collagen}}%</span>
+                                                            <span>瑞斯托霉素：{{mr.routine_examination.PAR_ristocetin}}%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -937,7 +941,7 @@
                                         </div>
                                     </div>
                                     <!-- 特殊检查部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_7">
+                                    <div class="tab-pane portlet light" id="tab_2_7" v-if="tab_status.tab_7">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">特殊检查</span>
@@ -1567,33 +1571,33 @@
                                             <div class="col-md-12">
                                                 心脏彩超
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>LVD：{{mr.special_examination.ucg.LVD}}mm</span>
-                                                    <span>EDV：{{mr.special_examination.ucg.EDV}}ml</span>
-                                                    <span>LVS：{{mr.special_examination.ucg.LVS}}mm</span>
-                                                    <span>ESV：{{mr.special_examination.ucg.ESV}}ml</span>
-                                                    <span>LAD：{{mr.special_examination.ucg.LAD}}mm</span>
-                                                    <span>LVPW：{{mr.special_examination.ucg.LVPW}}mm</span>
-                                                    <span>IVST：{{mr.special_examination.ucg.IVST}}mm</span>
+                                                    <span>LVD：{{mr.special_examination.ucg_LVD}}mm</span>
+                                                    <span>EDV：{{mr.special_examination.ucg_EDV}}ml</span>
+                                                    <span>LVS：{{mr.special_examination.ucg_LVS}}mm</span>
+                                                    <span>ESV：{{mr.special_examination.ucg_ESV}}ml</span>
+                                                    <span>LAD：{{mr.special_examination.ucg_LAD}}mm</span>
+                                                    <span>LVPW：{{mr.special_examination.ucg_LVPW}}mm</span>
+                                                    <span>IVST：{{mr.special_examination.ucg_IVST}}mm</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>LVEF < 40%：{{mr.special_examination.ucg.is_LVEF_lt_forty_percent|boolTransform2}}</span>
-                                                    <span v-if="mr.special_examination.ucg.is_LVEF_lt_forty_percent=='1'">E/A：{{mr.special_examination.ucg.ratio_E_to_A}}%</span>
-                                                    <span v-if="mr.special_examination.ucg.is_LVEF_lt_forty_percent=='1'">EF：{{mr.special_examination.ucg.EF}}</span>
+                                                    <span>LVEF < 40%：{{mr.special_examination.is_LVEF_lt_forty_percent|boolTransform2}}</span>
+                                                    <span v-if="mr.special_examination.is_LVEF_lt_forty_percent=='1'">E/A：{{mr.special_examination.ucg_ratio_E_to_A}}%</span>
+                                                    <span v-if="mr.special_examination.is_LVEF_lt_forty_percent=='1'">EF：{{mr.special_examination.ucg_EF}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>局部运动异常：{{mr.special_examination.ucg.is_local_motion_abnormality|boolTransform2}}</span>
-                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.local_motion_abnormality_parts)}}</span>
+                                                    <span>局部运动异常：{{mr.special_examination.is_local_motion_abnormality|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.local_motion_abnormality_parts)}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>室壁瘤：{{mr.special_examination.ucg.is_vntricular_aneurysm|boolTransform2}}</span>
-                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.vntricular_aneurysm_parts)}}</span>
+                                                    <span>室壁瘤：{{mr.special_examination.is_vntricular_aneurysm|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.vntricular_aneurysm_parts)}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>室壁瘤：{{mr.special_examination.ucg.is_left_ventricular_thrombosis|boolTransform2}}</span>
-                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.ucg.left_ventricular_thrombosis_parts)}}</span>
+                                                    <span>室壁瘤：{{mr.special_examination.is_left_ventricular_thrombosis|boolTransform2}}</span>
+                                                    <span>部位：{{keyString2valueString(pageData.special_examination.ucg_part_list,mr.special_examination.left_ventricular_thrombosis_parts)}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>检查结论：{{mr.special_examination.ucg.findings}}</span>
+                                                    <span>检查结论：{{mr.special_examination.ucg_findings}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1601,46 +1605,46 @@
                                             <div class="col-md-12">
                                                 冠脉介入
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>编号：{{mr.special_examination.pci.num}}</span>
-                                                    <span>日期：{{mr.special_examination.pci.date}}</span>
-                                                    <span>类型：{{key2value(pageData.special_examination.pci_type_list,mr.special_examination.pci.type)}}</span>
-                                                    <span v-if="mr.special_examination.pci.type=='3'||mr.special_examination.pci.type=='4'">PCI距溶栓：{{mr.special_examination.pci.thrombolysis_interval}}h</span>
+                                                    <span>编号：{{mr.special_examination.pci_num}}</span>
+                                                    <span>日期：{{mr.special_examination.pci_date}}</span>
+                                                    <span>类型：{{key2value(pageData.special_examination.pci_type_list,mr.special_examination.pci_type)}}</span>
+                                                    <span v-if="mr.special_examination.pci_type=='3'||mr.special_examination.pci_type=='4'">PCI距溶栓：{{mr.special_examination.pci_thrombolysis_interval}}h</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>发病后：{{mr.special_examination.pci.onset_interval.day}}d</span>
-                                                    <span>{{mr.special_examination.pci.onset_interval.hour}}h</span>
-                                                    <span>进行PCI，院前：{{mr.special_examination.pci.stay_time.prehospital}}min，急/门诊：{{mr.special_examination.pci.stay_time.emergency_call}}min，
-                                                        CCU：{{mr.special_examination.pci.stay_time.CCU}}min，导管室：{{mr.special_examination.pci.stay_time.conduit_room}}min
+                                                    <span>发病后：{{mr.special_examination.pci_onset_interval_day}}d</span>
+                                                    <span>{{mr.special_examination.pci_onset_interval_hour}}h</span>
+                                                    <span>进行PCI，院前：{{mr.special_examination.stay_time_prehospital}}min，急/门诊：{{mr.special_examination.stay_time_emergency_call}}min，
+                                                        CCU：{{mr.special_examination.stay_time_CCU}}min，导管室：{{mr.special_examination.stay_time_conduit_room}}min
                                                     </span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>造影剂：{{keyString2valueString(pageData.special_examination.contrast_medium_list,mr.special_examination.pci.contrast_media)}}</span>
-                                                    <span v-if="mr.special_examination.pci.contrast_media.indexOf('5')>=0">其他造影剂：{{mr.special_examination.pci.contrast_media_others}}</span>
+                                                    <span>造影剂：{{keyString2valueString(pageData.special_examination.contrast_medium_list,mr.special_examination.contrast_media)}}</span>
+                                                    <span v-if="mr.special_examination.contrast_media.indexOf('5')>=0">其他造影剂：{{mr.special_examination.contrast_media_others}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
                                                     <span>造影结果</span>
                                                     <div class="col-md-offset-1">
-                                                        <span>冠脉分布：{{key2value(pageData.special_examination.coronary_distribution_type_list,mr.special_examination.pci.coronary_distribution_type)}}</span>
-                                                        <span>冠脉畸形：{{mr.special_examination.pci.is_coronary_malformations|boolTransform2}}</span>
-                                                        <span>3级病变：{{mr.special_examination.pci.is_grade_3_lesions|boolTransform2}}</span>
-                                                        <span>血流TIMI0-2级：{{mr.special_examination.pci.is_blood_flow_TIMI_grade_0to2|boolTransform2}}</span>
-                                                        <span>CTO：{{mr.special_examination.pci.is_CTO|boolTransform2}}</span>
-                                                        <span>侧枝循环：{{mr.special_examination.pci.is_collateral_circulation|boolTransform2}}</span>
+                                                        <span>冠脉分布：{{key2value(pageData.special_examination.coronary_distribution_type_list,mr.special_examination.coronary_distribution_type)}}</span>
+                                                        <span>冠脉畸形：{{mr.special_examination.is_coronary_malformations|boolTransform2}}</span>
+                                                        <span>3级病变：{{mr.special_examination.is_grade_3_lesions|boolTransform2}}</span>
+                                                        <span>血流TIMI0-2级：{{mr.special_examination.is_blood_flow_TIMI_grade_0to2|boolTransform2}}</span>
+                                                        <span>CTO：{{mr.special_examination.is_CTO|boolTransform2}}</span>
+                                                        <span>侧枝循环：{{mr.special_examination.is_collateral_circulation|boolTransform2}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
-                                                    <span>介入路径：{{keyString2valueString(pageData.special_examination.pci_path_list,mr.special_examination.pci.pci_paths)}}</span>
+                                                    <span>介入路径：{{keyString2valueString(pageData.special_examination.pci_path_list,mr.special_examination.pci_paths)}}</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
                                                     <span>植入支架部位</span>
-                                                    <span> LAD：{{mr.special_examination.pci.implanted_bracket_count.LAD}}个</span>
-                                                    <span> LCX：{{mr.special_examination.pci.implanted_bracket_count.LCX}}个</span>
-                                                    <span> RCA：{{mr.special_examination.pci.implanted_bracket_count.RCA}}个</span>
-                                                    <span> LM：{{mr.special_examination.pci.implanted_bracket_count.LM}}个</span>
+                                                    <span> LAD：{{mr.special_examination.implanted_bracket_count_LAD}}个</span>
+                                                    <span> LCX：{{mr.special_examination.implanted_bracket_count_LCX}}个</span>
+                                                    <span> RCA：{{mr.special_examination.implanted_bracket_count_RCA}}个</span>
+                                                    <span> LM：{{mr.special_examination.implanted_bracket_count_LM}}个</span>
                                                 </div>
                                                 <div class="col-md-11 col-md-offset-1">
                                                     <span>病变节段信息：</span>
-                                                    <div class="col-md-offset-1" v-for="segmental_lesion in mr.special_examination.pci.segmental_lesions">
+                                                    <div class="col-md-offset-1" v-for="segmental_lesion in mr.special_examination.segmental_lesions">
                                                         <span>病变节段：{{segmental_lesion.num}}</span>
                                                         <span>狭窄：{{segmental_lesion.stenosis}}%</span>
                                                         <span>长：{{segmental_lesion.num}}mm</span>
@@ -1660,7 +1664,7 @@
                                     </div>
                                     <!-- 特殊检查部分结束 -->
                                     <!-- 入院诊断部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_8">
+                                    <div class="tab-pane portlet light" id="tab_2_8" v-if="tab_status.tab_8">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">入院诊断</span>
@@ -1729,7 +1733,7 @@
                                     </div>
                                     <!-- 入院诊断部分开始 -->
                                     <!-- 出院诊断部分开始 -->
-                                    <div class="tab-pane portlet light" id="tab_2_9">
+                                    <div class="tab-pane portlet light" id="tab_2_9" v-if="tab_status.tab_9">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <span class="caption-subject bold font-dark uppercase">出院诊断</span>
