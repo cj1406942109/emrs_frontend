@@ -2171,7 +2171,7 @@ jQuery(document).ready(function() {
                         app.mr.discharge_diagnosis.diagnosis_others = '';
                     }
                     //出院诊断部分数据处理结束
-                    console.log(app.mr);
+                    console.log(JSON.stringify(app.mr));
                     bootbox.confirm({
                         message: "是否提交当前页面填写的所有数据？",
                         buttons: {
@@ -2190,12 +2190,12 @@ jQuery(document).ready(function() {
                                 $.ajax({
                                     url: "http://192.168.10.248:8080/Emrs/insertRecord",
                                     data: {
-                                        "record": app.mr
+                                        "record": JSON.stringify(app.mr)
                                     },
                                     type: "POST",
-                                    success: function() {
+                                    success: function(data) {
                                         // location.href = "./emrs_medical_record_detail.html"
-                                        alert('success');
+                                        alert(data);
                                     },
                                     error: function(err) {
                                         console.log(err)
