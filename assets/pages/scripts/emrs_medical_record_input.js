@@ -588,7 +588,7 @@ jQuery(document).ready(function() {
         return {
             //main function to initiate the module
             init: function() {
-                if (!jQuery().bootstrapWizard) {
+                if(!jQuery().bootstrapWizard) {
                     return;
                 }
 
@@ -602,12 +602,12 @@ jQuery(document).ready(function() {
                 $.validator.methods.phone = function(value, element) {
                     return this.optional(element) || /^1[34578]\d{9}$/.test(value);
                 };
-                //住院号，床位号，10位数字
+                //住院号，10位数字
                 $.validator.methods.admission_num = function(value, element) {
                     return this.optional(element) || /^\d{10}$/.test(value);
                 };
-                $.validator.methods.bed_num = function(value, element) {
-                    return this.optional(element) || /^\d{10}$/.test(value);
+                $.validator.methods.id_num = function(value, element) {
+                    return this.optional(element) || /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value);
                 };
 
                 form.validate({
@@ -622,6 +622,10 @@ jQuery(document).ready(function() {
                         },
                         medical_card_number: {
                             required: true
+                        },
+                        id_number: {
+                            required: true,
+                            id_num: true
                         },
                         cellphone_1: {
                             phone: true,
@@ -645,7 +649,6 @@ jQuery(document).ready(function() {
                             required: true
                         },
                         bed_num: {
-                            bed_num: true,
                             required: true
                         },
                         doctor: {
@@ -673,6 +676,10 @@ jQuery(document).ready(function() {
                         medical_card_number: {
                             required: "就诊卡号是必填项！",
                         },
+                        id_number: {
+                            required: "身份证号是必填项！",
+                            id_num: "身份证号格式填写错误！"
+                        },
                         cellphone_1: {
                             phone: "手机号格式填写错误！",
                             require_from_group: "请至少填写一个联系方式！",
@@ -695,7 +702,6 @@ jQuery(document).ready(function() {
                             required: "住院号是必填项！",
                         },
                         bed_num: {
-                            bed_num: "床位号为10位数字！",
                             required: "床位号是必填项！",
                         },
                         doctor: {
@@ -716,7 +722,7 @@ jQuery(document).ready(function() {
                     },
 
                     errorPlacement: function(error, element) { // render error placement for each input type
-                        if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
+                        if(element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
                             error.insertAfter("#form_gender_error");
                         } else {
                             error.insertAfter(element); // for other inputs, just perform default behavior
@@ -740,7 +746,7 @@ jQuery(document).ready(function() {
                     },
 
                     success: function(label) {
-                        if (label.attr("for") == "gender") { // for checkboxes and radio buttons, no need to show OK icon
+                        if(label.attr("for") == "gender") { // for checkboxes and radio buttons, no need to show OK icon
                             label
                                 .closest('.form-group').removeClass('has-error').addClass('has-success');
                             label.remove(); // remove error label here
@@ -763,16 +769,16 @@ jQuery(document).ready(function() {
                 var displayConfirm = function() {
                     $('#tab4 .form-control-static', form).each(function() {
                         var input = $('[name="' + $(this).attr("data-display") + '"]', form);
-                        if (input.is(":radio")) {
+                        if(input.is(":radio")) {
                             input = $('[name="' + $(this).attr("data-display") + '"]:checked', form);
                         }
-                        if (input.is(":text") || input.is("textarea")) {
+                        if(input.is(":text") || input.is("textarea")) {
                             $(this).html(input.val());
-                        } else if (input.is("select")) {
+                        } else if(input.is("select")) {
                             $(this).html(input.find('option:selected').text());
-                        } else if (input.is(":radio") && input.is(":checked")) {
+                        } else if(input.is(":radio") && input.is(":checked")) {
                             $(this).html(input.attr("data-title"));
-                        } else if ($(this).attr("data-display") == 'payment[]') {
+                        } else if($(this).attr("data-display") == 'payment[]') {
                             var payment = [];
                             $('[name="payment[]"]:checked', form).each(function() {
                                 payment.push($(this).attr('data-title'));
@@ -790,17 +796,17 @@ jQuery(document).ready(function() {
                     // set done steps
                     jQuery('li', $('#form_wizard_1')).removeClass("done");
                     var li_list = navigation.find('li');
-                    for (var i = 0; i < index; i++) {
+                    for(var i = 0; i < index; i++) {
                         jQuery(li_list[i]).addClass("done");
                     }
 
-                    if (current == 1) {
+                    if(current == 1) {
                         $('#form_wizard_1').find('.button-previous').hide();
                     } else {
                         $('#form_wizard_1').find('.button-previous').show();
                     }
 
-                    if (current >= total) {
+                    if(current >= total) {
                         $('#form_wizard_1').find('.button-next').hide();
                         $('#form_wizard_1').find('.button-submit').show();
                         displayConfirm();
@@ -820,7 +826,7 @@ jQuery(document).ready(function() {
 
                         success.hide();
                         error.hide();
-                        if (form.valid() == false) {
+                        if(form.valid() == false) {
                             return false;
                         }
 
@@ -830,7 +836,7 @@ jQuery(document).ready(function() {
                         success.hide();
                         error.hide();
 
-                        if (form.valid() == false) {
+                        if(form.valid() == false) {
                             return false;
                         }
 
@@ -856,90 +862,90 @@ jQuery(document).ready(function() {
                 $('#form_wizard_1 .button-submit').click(function() {
 
                     //基本信息部分数据处理开始
-                    if (app.mr.basic_info.is_hospitalized != '1') {
+                    if(app.mr.basic_info.is_hospitalized != '1') {
                         app.mr.basic_info.admission_num = '';
                         app.mr.basic_info.bed_num = '';
                     }
                     //基本信息部分数据处理结束
 
                     //现病史部分数据处理开始
-                    if (app.mr.history_of_present_illness.care_causes.indexOf('6') < 0) {
+                    if(app.mr.history_of_present_illness.care_causes.indexOf('6') < 0) {
                         app.mr.history_of_present_illness.care_cause_others = '';
                     }
                     app.mr.history_of_present_illness.diseases = [];
                     var care_causes = app.mr.history_of_present_illness.care_causes.split(',');
                     var care_causes_disease = '';
-                    if (care_causes.length > 0) {
+                    if(care_causes.length > 0) {
                         care_causes.forEach(function(care_cause) {
-                            if (care_cause == '1') {
+                            if(care_cause == '1') {
                                 care_causes_disease = app.care_causes_diseases.chest_pain;
                                 care_causes_disease.disease_name = '1';
 
                                 var disease_body_parts = $('#chest_pain_repeater').repeaterVal().chest_pain;
                                 // console.log(disease_body_parts);
                                 disease_body_parts.forEach(function(obj) {
-                                    if (obj.body_part_name != '10') {
+                                    if(obj.body_part_name != '10') {
                                         obj.body_part_name_others = '';
                                     }
-                                    if (obj.quality_of_pain != '13') {
+                                    if(obj.quality_of_pain != '13') {
                                         obj.quality_of_pain_others = '';
                                     }
-                                    if (obj.duration_of_pain != '6') {
+                                    if(obj.duration_of_pain != '6') {
                                         obj.duration_of_pain_others = '';
                                     }
                                 });
 
                                 care_causes_disease.disease_body_parts = disease_body_parts;
-                            } else if (care_cause == '2') {
+                            } else if(care_cause == '2') {
                                 care_causes_disease = app.care_causes_diseases.chest_distress;
                                 care_causes_disease.disease_name = '2';
                                 var disease_body_parts = $('#chest_distress_repeater').repeaterVal().chest_distress;
                                 disease_body_parts.forEach(function(obj) {
-                                    if (obj.body_part_name != '10') {
+                                    if(obj.body_part_name != '10') {
                                         obj.body_part_name_others = '';
                                     }
-                                    if (obj.quality_of_pain != '13') {
+                                    if(obj.quality_of_pain != '13') {
                                         obj.quality_of_pain_others = '';
                                     }
-                                    if (obj.duration_of_pain != '6') {
+                                    if(obj.duration_of_pain != '6') {
                                         obj.duration_of_pain_others = '';
                                     }
                                 });
                                 care_causes_disease.disease_body_parts = disease_body_parts;
-                            } else if (care_cause == '3') {
+                            } else if(care_cause == '3') {
                                 care_causes_disease = app.care_causes_diseases.dyspnea;
                                 care_causes_disease.disease_name = '3';
-                            } else if (care_cause == '4') {
+                            } else if(care_cause == '4') {
                                 care_causes_disease = app.care_causes_diseases.palpitation;
                                 care_causes_disease.disease_name = '4';
-                            } else if (care_cause == '5') {
+                            } else if(care_cause == '5') {
                                 care_causes_disease = app.care_causes_diseases.abnormal_ecg;
                                 care_causes_disease.disease_name = '5';
                             } else {
                                 care_causes_disease = '';
                             }
 
-                            if (care_causes_disease) {
-                                if (care_causes_disease.onset_time.indexOf('5') < 0) {
+                            if(care_causes_disease) {
+                                if(care_causes_disease.onset_time.indexOf('5') < 0) {
                                     care_causes_disease.onset_time_others = '';
                                 }
-                                if (care_causes_disease.relieving_factors) {
-                                    if (care_causes_disease.relieving_factors.indexOf('5') != 0) {
+                                if(care_causes_disease.relieving_factors) {
+                                    if(care_causes_disease.relieving_factors.indexOf('5') != 0) {
                                         care_causes_disease.relieving_factors_others = '';
                                     }
                                 }
-                                if (care_causes_disease.precipitating_factors) {
-                                    if (care_causes_disease.precipitating_factors.indexOf('11') < 0) {
+                                if(care_causes_disease.precipitating_factors) {
+                                    if(care_causes_disease.precipitating_factors.indexOf('11') < 0) {
                                         care_causes_disease.precipitating_factors_others = '';
                                     }
                                 }
-                                if (care_causes_disease.radiation_sites) {
-                                    if (care_causes_disease.radiation_sites.indexOf('7') < 0) {
+                                if(care_causes_disease.radiation_sites) {
+                                    if(care_causes_disease.radiation_sites.indexOf('7') < 0) {
                                         care_causes_disease.radiation_sites_others = '';
                                     }
                                 }
-                                if (care_causes_disease.simultaneous_phenomena) {
-                                    if (care_causes_disease.simultaneous_phenomena.indexOf('21') < 0) {
+                                if(care_causes_disease.simultaneous_phenomena) {
+                                    if(care_causes_disease.simultaneous_phenomena.indexOf('21') < 0) {
                                         care_causes_disease.simultaneous_phenomena_others = '';
                                     }
                                 }
@@ -951,7 +957,7 @@ jQuery(document).ready(function() {
 
                     //危险因素部分数据处理开始
                     //吸烟
-                    if (app.mr.risk_factors.smoking.is_somking != '1') {
+                    if(app.mr.risk_factors.smoking.is_somking != '1') {
                         app.mr.risk_factors.smoking.duration = '';
                         app.mr.risk_factors.smoking.pieces_per_day = '';
                         app.mr.risk_factors.smoking.cigrette_type = '';
@@ -959,15 +965,15 @@ jQuery(document).ready(function() {
                         app.mr.risk_factors.smoking.is_smoking_cessation = '';
                         app.mr.risk_factors.smoking.smoking_cessation_duration = '';
                     } else {
-                        if (app.mr.risk_factors.smoking.cigrette_type.indexOf('5') < 0) {
+                        if(app.mr.risk_factors.smoking.cigrette_type.indexOf('5') < 0) {
                             app.mr.risk_factors.smoking.cigrette_type_others = '';
                         }
-                        if (app.mr.risk_factors.smoking.is_smoking_cessation == '0') {
+                        if(app.mr.risk_factors.smoking.is_smoking_cessation == '0') {
                             app.mr.risk_factors.smoking.smoking_cessation_duration = '';
                         }
                     }
                     //饮酒
-                    if (app.mr.risk_factors.drinking.is_drinking != '1') {
+                    if(app.mr.risk_factors.drinking.is_drinking != '1') {
                         app.mr.risk_factors.drinking.duration = '';
                         app.mr.risk_factors.drinking.tales_per_day = '';
                         app.mr.risk_factors.drinking.wine_type = '';
@@ -975,93 +981,93 @@ jQuery(document).ready(function() {
                         app.mr.risk_factors.drinking.is_temperance = '';
                         app.mr.risk_factors.drinking.temperance_duration = '';
                     } else {
-                        if (app.mr.risk_factors.drinking.wine_type.indexOf('5') < 0) {
+                        if(app.mr.risk_factors.drinking.wine_type.indexOf('5') < 0) {
                             app.mr.risk_factors.drinking.wine_type_others = '';
                         }
-                        if (app.mr.risk_factors.drinking.is_temperance == '0') {
+                        if(app.mr.risk_factors.drinking.is_temperance == '0') {
                             app.mr.risk_factors.drinking.temperance_duration = '';
                         }
                     }
                     //运动
-                    if (app.mr.risk_factors.exercise.mode.indexOf('3') < 0) {
+                    if(app.mr.risk_factors.exercise.mode.indexOf('3') < 0) {
                         app.mr.risk_factors.exercise.mode_others = '';
                     }
                     //中心型肥胖
-                    if (app.mr.risk_factors.central_obesity.is_central_obesity != '1') {
+                    if(app.mr.risk_factors.central_obesity.is_central_obesity != '1') {
                         app.mr.risk_factors.central_obesity.duration = '';
                     }
                     //危险因素部分数据处理结束
 
                     //既往病史部分数据处理开始
                     //血脂异常
-                    if (app.mr.anamnesis.lipid_abnormality.is_lipid_abnormality != '1') {
+                    if(app.mr.anamnesis.lipid_abnormality.is_lipid_abnormality != '1') {
                         app.mr.anamnesis.lipid_abnormality.type = '';
                         app.mr.anamnesis.lipid_abnormality.duration = '';
                         app.mr.anamnesis.lipid_abnormality.is_under_treatment = '';
                         app.mr.anamnesis.lipid_abnormality.drug_name = '';
                     } else {
-                        if (app.mr.anamnesis.lipid_abnormality.is_under_treatment != '2') {
+                        if(app.mr.anamnesis.lipid_abnormality.is_under_treatment != '2') {
                             app.mr.anamnesis.lipid_abnormality.drug_name = '';
                         }
                     }
                     //原发性高血压
-                    if (app.mr.anamnesis.essential_hypertension.is_essential_hypertension != '1') {
+                    if(app.mr.anamnesis.essential_hypertension.is_essential_hypertension != '1') {
                         app.mr.anamnesis.essential_hypertension.duration = '';
                         app.mr.anamnesis.essential_hypertension.is_under_treatment = '';
                         app.mr.anamnesis.essential_hypertension.drug_name = '';
                     } else {
-                        if (app.mr.anamnesis.essential_hypertension.is_under_treatment != '2') {
+                        if(app.mr.anamnesis.essential_hypertension.is_under_treatment != '2') {
                             app.mr.anamnesis.essential_hypertension.drug_name = '';
                         }
                     }
                     //血糖异常
-                    if (app.mr.anamnesis.dysglycemia.is_dysglycemia != '1') {
+                    if(app.mr.anamnesis.dysglycemia.is_dysglycemia != '1') {
                         app.mr.anamnesis.dysglycemia.type = '';
                         app.mr.anamnesis.dysglycemia.duration = '';
                     }
-                    if (app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus != '1') {
+                    if(app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_diabetes_mellitus != '1') {
                         app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment = '';
                         app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method = '';
                         app.mr.anamnesis.dysglycemia.diabetes_mellitus.oral_drug_name = '';
                     } else {
-                        if (app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment != '1' && app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment != '2') {
+                        if(app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment != '1' && app.mr.anamnesis.dysglycemia.diabetes_mellitus.is_under_treatment != '2') {
                             app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method = '';
                             app.mr.anamnesis.dysglycemia.diabetes_mellitus.oral_drug_name = '';
                         } else {
-                            if (app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method.indexOf('3') < 0) {
+                            if(app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method.indexOf('3') < 0) {
                                 app.mr.anamnesis.dysglycemia.diabetes_mellitus.oral_drug_name = '';
                             }
                         }
                     }
                     //痛风
-                    if (app.mr.anamnesis.gout.is_gout != '1') {
+                    if(app.mr.anamnesis.gout.is_gout != '1') {
                         app.mr.anamnesis.gout.duration = '';
                     }
-                    if (app.mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency != '1') {
+                    if(app.mr.anamnesis.gout.renal_insufficiency.is_renal_insufficiency != '1') {
                         app.mr.anamnesis.gout.renal_insufficiency.duration = '';
                         app.mr.anamnesis.gout.renal_insufficiency.etiology = '';
                     }
                     //心脏病史
-                    if (app.mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction != '1') {
+                    if(app.mr.anamnesis.heart_diseases.old_myocardial_infarction.is_old_myocardial_infarction != '1') {
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_year = '';
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_time_month = '';
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.onset_frequency = '';
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location = '';
                     } else {
-                        if (app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location.indexOf('7') < 0) {
+                        if(app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location.indexOf('7') < 0) {
                             app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location_others = '';
                         }
                     }
-                    if (app.mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history != '1') {
+                    if(app.mr.anamnesis.heart_diseases.other_heart_disease.is_other_heart_disease_history != '1') {
                         app.mr.anamnesis.heart_diseases.other_heart_disease.type = '';
                         app.mr.anamnesis.heart_diseases.other_heart_disease.type_others = '';
                     } else {
-                        if (app.mr.anamnesis.heart_diseases.other_heart_disease.type.indexOf('8') < 0) {
+                        if(app.mr.anamnesis.heart_diseases.other_heart_disease.type.indexOf('8') < 0) {
                             app.mr.anamnesis.heart_diseases.other_heart_disease.type_others = '';
                         }
                     }
                     //深静脉血栓
-                    if (app.mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis != '1') {
+                    if(app.mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis != '1') {
                         app.mr.anamnesis.deep_venou_thrombosis.onset_time_year = '';
                         app.mr.anamnesis.deep_venou_thrombosis.onset_time_month = '';
                         app.mr.anamnesis.deep_venou_thrombosis.inducements = '';
@@ -1069,23 +1075,23 @@ jQuery(document).ready(function() {
                         app.mr.anamnesis.deep_venou_thrombosis.diagnosis_result = '';
                     }
                     //既往缺血性卒中
-                    if (app.mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke != '1') {
+                    if(app.mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke != '1') {
                         app.mr.anamnesis.old_ischemic_stroke.types = [];
                     } else {
                         app.mr.anamnesis.old_ischemic_stroke.types = $('#old_ischemic_stroke_repeater').repeaterVal().old_ischemic_stroke;
                     }
                     //血管性疾病史
-                    if (app.mr.anamnesis.vascular_diseases.is_vascular_diseases != '1') {
+                    if(app.mr.anamnesis.vascular_diseases.is_vascular_diseases != '1') {
                         app.mr.anamnesis.vascular_diseases.types = '';
                     }
                     //出血病史
-                    if (app.mr.anamnesis.hemorrhage.is_hemorrhage != '1') {
+                    if(app.mr.anamnesis.hemorrhage.is_hemorrhage != '1') {
                         app.mr.anamnesis.hemorrhage.types = [];
                     } else {
                         app.mr.anamnesis.hemorrhage.types = $('#hemorrhage_repeater').repeaterVal().hemorrhage;
                     }
                     //出血史
-                    if (app.mr.anamnesis.bleeding.is_bleeding != '1') {
+                    if(app.mr.anamnesis.bleeding.is_bleeding != '1') {
                         app.mr.anamnesis.bleeding.causes = [];
                     } else {
                         app.mr.anamnesis.bleeding.causes = $('#bleeding_repeater').repeaterVal().bleeding;
@@ -1094,31 +1100,31 @@ jQuery(document).ready(function() {
 
                     //家族史部分数据处理开始
                     app.mr.family_history = [];
-                    if (app.family_history.is_premature_chd == '1') {
+                    if(app.family_history.is_premature_chd == '1') {
                         app.mr.family_history.push({
                             disease_name: '1',
                             onset_members: $('#premature_chd_repeater').repeaterVal().premature_chd
                         });
                     }
-                    if (app.family_history.is_myocardial_infarction == '1') {
+                    if(app.family_history.is_myocardial_infarction == '1') {
                         app.mr.family_history.push({
                             disease_name: '2',
                             onset_members: $('#myocardial_infarction_repeater').repeaterVal().myocardial_infarction
                         });
                     }
-                    if (app.family_history.is_ischemic_stroke == '1') {
+                    if(app.family_history.is_ischemic_stroke == '1') {
                         app.mr.family_history.push({
                             disease_name: '3',
                             onset_members: $('#ischemic_stroke_repeater').repeaterVal().ischemic_stroke
                         });
                     }
-                    if (app.family_history.is_hemorrhagic_stroke == '1') {
+                    if(app.family_history.is_hemorrhagic_stroke == '1') {
                         app.mr.family_history.push({
                             disease_name: '4',
                             onset_members: $('#hemorrhagic_stroke_repeater').repeaterVal().hemorrhagic_stroke
                         });
                     }
-                    if (app.family_history.is_sudden_death == '1') {
+                    if(app.family_history.is_sudden_death == '1') {
                         app.mr.family_history.push({
                             disease_name: '5',
                             onset_members: $('#sudden_death_repeater').repeaterVal().sudden_death
@@ -1127,19 +1133,19 @@ jQuery(document).ready(function() {
                     //家族史部分数据处理结束
 
                     //体格检查部分数据处理结束
-                    if (app.mr.physical_examination.is_lung_wet_rales != '1') {
+                    if(app.mr.physical_examination.is_lung_wet_rales != '1') {
                         app.mr.physical_examination.lung_wet_rales_range = '';
                     }
-                    if (app.mr.physical_examination.is_heart_failure != '1') {
+                    if(app.mr.physical_examination.is_heart_failure != '1') {
                         app.mr.physical_examination.Killip_class = '';
                     }
-                    if (app.mr.physical_examination.is_ear_lobe_longitudinal_crack != '1') {
+                    if(app.mr.physical_examination.is_ear_lobe_longitudinal_crack != '1') {
                         app.mr.physical_examination.ear_lobe_longitudinal_crack_parts = '';
                     }
-                    if (app.mr.physical_examination.is_skin_yellow_pigment_tumor != '1') {
+                    if(app.mr.physical_examination.is_skin_yellow_pigment_tumor != '1') {
                         app.mr.physical_examination.skin_yellow_pigment_tumor_parts = '';
                     }
-                    if (app.mr.physical_examination.is_alopecia != '1') {
+                    if(app.mr.physical_examination.is_alopecia != '1') {
                         app.mr.physical_examination.alopecia_parts = '';
                     }
                     //体格检查部分数据处理结束
@@ -1150,10 +1156,10 @@ jQuery(document).ready(function() {
 
                     //特殊检查部分数据处理开始
                     var ecg_arrhythmia_types = app.ecg_arrhythmia_type.arrhythmia_types.split(',');
-                    if (app.mr.special_examination.ecg.pathological_q_wave.is_pathological_q_wave != '1') {
+                    if(app.mr.special_examination.ecg.pathological_q_wave.is_pathological_q_wave != '1') {
                         app.mr.special_examination.ecg.pathological_q_wave.q_wave_leads = '';
                     }
-                    if (app.mr.special_examination.ecg.st_segment_change.is_st_segment_change != '1') {
+                    if(app.mr.special_examination.ecg.st_segment_change.is_st_segment_change != '1') {
                         app.mr.special_examination.ecg.st_segment_change.st_segment_changes = [{
                             is_st_segment_depression: '',
                             change_detail: {
@@ -1224,7 +1230,7 @@ jQuery(document).ready(function() {
                             }
                         }];
                     } else {
-                        if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
+                        if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II = '';
@@ -1256,53 +1262,53 @@ jQuery(document).ready(function() {
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude = '';
                         } else {
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude = '';
                             }
                         }
-                        if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
+                        if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II = '';
@@ -1334,55 +1340,55 @@ jQuery(document).ready(function() {
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 = '';
                             app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude = '';
                         } else {
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude = '';
                             }
-                            if (app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 != '1') {
+                            if(app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 != '1') {
                                 app.mr.special_examination.ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude = '';
                             }
                         }
                     }
 
-                    if (app.mr.special_examination.ecg.t_wave_change.is_t_wave_change != '1') {
+                    if(app.mr.special_examination.ecg.t_wave_change.is_t_wave_change != '1') {
                         app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_I = '';
                         app.mr.special_examination.ecg.t_wave_change.change_detail.lead_I_waveforms = '';
                         app.mr.special_examination.ecg.t_wave_change.change_detail.lead_I_amplitude = '';
@@ -1429,71 +1435,71 @@ jQuery(document).ready(function() {
                         app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_waveforms = '';
                         app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_amplitude = '';
                     } else {
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_I != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_I != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_I_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_I_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_II != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_II != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_II_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_II_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_III != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_III != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_III_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_III_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVR != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVR != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVR_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVL != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVL != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVL_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVF != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_aVF != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_aVF_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V1 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V1 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V1_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V2 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V2 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V2_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V3 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V3 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V3_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V4 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V4 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V4_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V5 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V5 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V5_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V6 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V6 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V6_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V7 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V7 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V7_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V8 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V8 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V8_amplitude = '';
                         }
-                        if (app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V9 != '1') {
+                        if(app.mr.special_examination.ecg.t_wave_change.change_detail.is_lead_V9 != '1') {
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_waveforms = '';
                             app.mr.special_examination.ecg.t_wave_change.change_detail.lead_V9_amplitude = '';
                         }
                     }
-                    if (app.mr.special_examination.ecg.arrhythmia.is_arrhythmia == '1') {
-                        if (ecg_arrhythmia_types.length > 0) {
+                    if(app.mr.special_examination.ecg.arrhythmia.is_arrhythmia == '1') {
+                        if(ecg_arrhythmia_types.length > 0) {
                             ecg_arrhythmia_types.forEach(function(type) {
-                                if (type == '11') {
+                                if(type == '11') {
                                     app.mr.special_examination.ecg.arrhythmia.arrhythmia_types.push({
                                         arrhythmia_type: type,
                                         arrhythmia_type_others: app.ecg_arrhythmia_type.arrhythmia_type_others
@@ -1508,7 +1514,7 @@ jQuery(document).ready(function() {
                         }
                     }
 
-                    if (app.mr.special_examination.exercise_ecg.st_segment_change.is_st_segment_change != '1') {
+                    if(app.mr.special_examination.exercise_ecg.st_segment_change.is_st_segment_change != '1') {
                         app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes = [{
                             is_st_segment_depression: '',
                             duration: '',
@@ -1581,7 +1587,7 @@ jQuery(document).ready(function() {
                             }
                         }];
                     } else {
-                        if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
+                        if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
 
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].duration = '';
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I = '';
@@ -1615,53 +1621,53 @@ jQuery(document).ready(function() {
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 = '';
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude = '';
                         } else {
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_I != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_II != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_II_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_III != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_III_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVR != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVL != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVL_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_aVF != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_aVF_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V1 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V1_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V2 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V2_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V3 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V3_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V4 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V4_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V5 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V5_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V6 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V6_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V8 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V8_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V9 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V9_amplitude = '';
                             }
                         }
-                        if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
+                        if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].duration = '';
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I = '';
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
@@ -1694,54 +1700,54 @@ jQuery(document).ready(function() {
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 = '';
                             app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude = '';
                         } else {
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_I != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_II != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_II_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_III != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_III_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVR != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_I_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVL != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVL_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_aVF != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_aVF_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V1 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V1_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V2 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V2_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V3 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V3_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V4 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V4_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V5 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V5_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V6 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V6_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.is_lead_V7 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[0].change_detail.lead_V7_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V8 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V8_amplitude = '';
                             }
-                            if (app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 != '1') {
+                            if(app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.is_lead_V9 != '1') {
                                 app.mr.special_examination.exercise_ecg.st_segment_change.st_segment_changes[1].change_detail.lead_V9_amplitude = '';
                             }
                         }
                     }
-                    if (app.mr.special_examination.exercise_ecg.t_wave_change.is_t_wave_change != '1') {
+                    if(app.mr.special_examination.exercise_ecg.t_wave_change.is_t_wave_change != '1') {
                         app.mr.special_examination.exercise_ecg.t_wave_change.duration = '';
                         app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_I = '';
                         app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_waveforms = '';
@@ -1789,71 +1795,71 @@ jQuery(document).ready(function() {
                         app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_waveforms = '';
                         app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_amplitude = '';
                     } else {
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_I != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_I != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_I_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_II != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_II != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_II_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_III != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_III != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_III_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVR != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVR != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVR_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVL != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVL != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVL_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVF != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_aVF != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_aVF_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V1 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V1 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V1_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V2 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V2 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V2_amplitude = '';
                         }
 
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V3 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V3 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V3_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V4 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V4 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V4_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V5 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V5 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V5_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V6 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V6 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V6_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V7 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V7 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V7_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V8 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V8 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V8_amplitude = '';
                         }
-                        if (app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V9 != '1') {
+                        if(app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.is_lead_V9 != '1') {
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_waveforms = '';
                             app.mr.special_examination.exercise_ecg.t_wave_change.change_detail.lead_V9_amplitude = '';
                         }
                     }
 
 
-                    if (app.mr.special_examination.holter_ecg.arrhythmia.is_arrhythmia != '1') {
+                    if(app.mr.special_examination.holter_ecg.arrhythmia.is_arrhythmia != '1') {
                         app.mr.special_examination.holter_ecg.arrhythmia.frequentness = '';
                         app.mr.special_examination.holter_ecg.arrhythmia.total_abnormal_heartbeats = '';
                         app.mr.special_examination.holter_ecg.arrhythmia.arrhythmia_types = [];
@@ -1861,13 +1867,13 @@ jQuery(document).ready(function() {
                         var arrhythmia_types = $('#holter_ecg_arrhythmia_repeater').repeaterVal().holter_ecg_arrhythmia;
 
                         arrhythmia_types.forEach(function(type) {
-                            if (type.arrhythmia_type.indexOf('11') < 0) {
+                            if(type.arrhythmia_type.indexOf('11') < 0) {
                                 type.arrhythmia_type_others = '';
                             }
                         })
                         app.mr.special_examination.holter_ecg.arrhythmia.arrhythmia_types = arrhythmia_types;
                     }
-                    if (app.mr.special_examination.holter_ecg.pathological_q_wave.is_pathological_q_wave != '1') {
+                    if(app.mr.special_examination.holter_ecg.pathological_q_wave.is_pathological_q_wave != '1') {
                         app.mr.special_examination.holter_ecg.pathological_q_wave.frequentness = '';
                         app.mr.special_examination.holter_ecg.pathological_q_wave.q_wave_leads_detail = [];
                     } else {
@@ -1878,7 +1884,7 @@ jQuery(document).ready(function() {
                         app.mr.special_examination.holter_ecg.pathological_q_wave.q_wave_leads_detail = q_wave_leads_detail;
                     }
 
-                    if (app.mr.special_examination.holter_ecg.st_segment_change.is_st_segment_change != '1') {
+                    if(app.mr.special_examination.holter_ecg.st_segment_change.is_st_segment_change != '1') {
                         app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes = [{
                             is_st_segment_depression: '',
                             frequentness: '',
@@ -1889,7 +1895,7 @@ jQuery(document).ready(function() {
                             changes_detail: []
                         }]
                     } else {
-                        if (app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
+                        if(app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].is_st_segment_depression != '1') {
                             app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].frequentness = '';
                             app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].changes_detail = [];
                         } else {
@@ -1910,55 +1916,55 @@ jQuery(document).ready(function() {
                                 change.is_lead_V7 = change.is_lead_V7.toString();
                                 change.is_lead_V8 = change.is_lead_V8.toString();
                                 change.is_lead_V9 = change.is_lead_V9.toString();
-                                if (change.is_lead_I != '1') {
+                                if(change.is_lead_I != '1') {
                                     change.lead_I_amplitude = '';
                                 }
-                                if (change.is_lead_II != '1') {
+                                if(change.is_lead_II != '1') {
                                     change.lead_II_amplitude = '';
                                 }
-                                if (change.is_lead_III != '1') {
+                                if(change.is_lead_III != '1') {
                                     change.lead_III_amplitude = '';
                                 }
-                                if (change.is_lead_aVF != '1') {
+                                if(change.is_lead_aVF != '1') {
                                     change.lead_aVF_amplitude = '';
                                 }
-                                if (change.is_lead_aVL != '1') {
+                                if(change.is_lead_aVL != '1') {
                                     change.lead_aVL_amplitude = '';
                                 }
-                                if (change.is_lead_aVR != '1') {
+                                if(change.is_lead_aVR != '1') {
                                     change.lead_aVR_amplitude = '';
                                 }
-                                if (change.is_lead_V1 != '1') {
+                                if(change.is_lead_V1 != '1') {
                                     change.lead_V1_amplitude = '';
                                 }
-                                if (change.is_lead_V2 != '1') {
+                                if(change.is_lead_V2 != '1') {
                                     change.lead_V2_amplitude = '';
                                 }
-                                if (change.is_lead_V3 != '1') {
+                                if(change.is_lead_V3 != '1') {
                                     change.lead_V3_amplitude = '';
                                 }
-                                if (change.is_lead_V4 != '1') {
+                                if(change.is_lead_V4 != '1') {
                                     change.lead_V4_amplitude = '';
                                 }
-                                if (change.is_lead_V5 != '1') {
+                                if(change.is_lead_V5 != '1') {
                                     change.lead_V5_amplitude = '';
                                 }
-                                if (change.is_lead_V6 != '1') {
+                                if(change.is_lead_V6 != '1') {
                                     change.lead_V6_amplitude = '';
                                 }
-                                if (change.is_lead_V7 != '1') {
+                                if(change.is_lead_V7 != '1') {
                                     change.lead_V7_amplitude = '';
                                 }
-                                if (change.is_lead_V8 != '1') {
+                                if(change.is_lead_V8 != '1') {
                                     change.lead_V8_amplitude = '';
                                 }
-                                if (change.is_lead_V9 != '1') {
+                                if(change.is_lead_V9 != '1') {
                                     change.lead_V9_amplitude = '';
                                 }
                             })
                             app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[0].changes_detail = changes_detail;
                         }
-                        if (app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
+                        if(app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].is_st_segment_elevation != '1') {
                             app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].frequentness = '';
                             app.mr.special_examination.holter_ecg.st_segment_change.st_segment_changes[1].changes_detail = [];
                         } else {
@@ -1979,49 +1985,49 @@ jQuery(document).ready(function() {
                                 change.is_lead_V7 = change.is_lead_V7.toString();
                                 change.is_lead_V8 = change.is_lead_V8.toString();
                                 change.is_lead_V9 = change.is_lead_V9.toString();
-                                if (change.is_lead_I != '1') {
+                                if(change.is_lead_I != '1') {
                                     change.lead_I_amplitude = '';
                                 }
-                                if (change.is_lead_II != '1') {
+                                if(change.is_lead_II != '1') {
                                     change.lead_II_amplitude = '';
                                 }
-                                if (change.is_lead_III != '1') {
+                                if(change.is_lead_III != '1') {
                                     change.lead_III_amplitude = '';
                                 }
-                                if (change.is_lead_aVF != '1') {
+                                if(change.is_lead_aVF != '1') {
                                     change.lead_aVF_amplitude = '';
                                 }
-                                if (change.is_lead_aVL != '1') {
+                                if(change.is_lead_aVL != '1') {
                                     change.lead_aVL_amplitude = '';
                                 }
-                                if (change.is_lead_aVR != '1') {
+                                if(change.is_lead_aVR != '1') {
                                     change.lead_aVR_amplitude = '';
                                 }
-                                if (change.is_lead_V1 != '1') {
+                                if(change.is_lead_V1 != '1') {
                                     change.lead_V1_amplitude = '';
                                 }
-                                if (change.is_lead_V2 != '1') {
+                                if(change.is_lead_V2 != '1') {
                                     change.lead_V2_amplitude = '';
                                 }
-                                if (change.is_lead_V3 != '1') {
+                                if(change.is_lead_V3 != '1') {
                                     change.lead_V3_amplitude = '';
                                 }
-                                if (change.is_lead_V4 != '1') {
+                                if(change.is_lead_V4 != '1') {
                                     change.lead_V4_amplitude = '';
                                 }
-                                if (change.is_lead_V5 != '1') {
+                                if(change.is_lead_V5 != '1') {
                                     change.lead_V5_amplitude = '';
                                 }
-                                if (change.is_lead_V6 != '1') {
+                                if(change.is_lead_V6 != '1') {
                                     change.lead_V6_amplitude = '';
                                 }
-                                if (change.is_lead_V7 != '1') {
+                                if(change.is_lead_V7 != '1') {
                                     change.lead_V7_amplitude = '';
                                 }
-                                if (change.is_lead_V8 != '1') {
+                                if(change.is_lead_V8 != '1') {
                                     change.lead_V8_amplitude = '';
                                 }
-                                if (change.is_lead_V9 != '1') {
+                                if(change.is_lead_V9 != '1') {
                                     change.lead_V9_amplitude = '';
                                 }
                             })
@@ -2029,7 +2035,7 @@ jQuery(document).ready(function() {
                         }
                     }
 
-                    if (app.mr.special_examination.holter_ecg.t_wave_change.is_t_wave_change != '1') {
+                    if(app.mr.special_examination.holter_ecg.t_wave_change.is_t_wave_change != '1') {
                         app.mr.special_examination.holter_ecg.t_wave_change.frequentness = '';
                         app.mr.special_examination.holter_ecg.t_wave_change.changes_detail = [];
                     } else {
@@ -2050,63 +2056,63 @@ jQuery(document).ready(function() {
                             change.is_lead_V7 = change.is_lead_V7.toString();
                             change.is_lead_V8 = change.is_lead_V8.toString();
                             change.is_lead_V9 = change.is_lead_V9.toString();
-                            if (change.is_lead_I != '1') {
+                            if(change.is_lead_I != '1') {
                                 change.lead_I_amplitude = '';
                                 change.lead_I_waveforms = '';
                             }
-                            if (change.is_lead_II != '1') {
+                            if(change.is_lead_II != '1') {
                                 change.lead_II_amplitude = '';
                                 change.lead_II_waveforms = '';
                             }
-                            if (change.is_lead_III != '1') {
+                            if(change.is_lead_III != '1') {
                                 change.lead_III_amplitude = '';
                                 change.lead_III_waveforms = '';
                             }
-                            if (change.is_lead_aVF != '1') {
+                            if(change.is_lead_aVF != '1') {
                                 change.lead_aVF_amplitude = '';
                                 change.lead_aVF_waveforms = '';
                             }
-                            if (change.is_lead_aVL != '1') {
+                            if(change.is_lead_aVL != '1') {
                                 change.lead_aVL_amplitude = '';
                                 change.lead_aVL_waveforms = '';
                             }
-                            if (change.is_lead_aVR != '1') {
+                            if(change.is_lead_aVR != '1') {
                                 change.lead_aVR_amplitude = '';
                                 change.lead_aVR_waveforms = '';
                             }
-                            if (change.is_lead_V1 != '1') {
+                            if(change.is_lead_V1 != '1') {
                                 change.lead_V1_amplitude = '';
                                 change.lead_V1_waveforms = '';
                             }
-                            if (change.is_lead_V2 != '1') {
+                            if(change.is_lead_V2 != '1') {
                                 change.lead_V2_amplitude = '';
                                 change.lead_V2_waveforms = '';
                             }
-                            if (change.is_lead_V3 != '1') {
+                            if(change.is_lead_V3 != '1') {
                                 change.lead_V3_amplitude = '';
                                 change.lead_V3_waveforms = '';
                             }
-                            if (change.is_lead_V4 != '1') {
+                            if(change.is_lead_V4 != '1') {
                                 change.lead_V4_amplitude = '';
                                 change.lead_V4_waveforms = '';
                             }
-                            if (change.is_lead_V5 != '1') {
+                            if(change.is_lead_V5 != '1') {
                                 change.lead_V5_amplitude = '';
                                 change.lead_V5_waveforms = '';
                             }
-                            if (change.is_lead_V6 != '1') {
+                            if(change.is_lead_V6 != '1') {
                                 change.lead_V6_amplitude = '';
                                 change.lead_V6_waveforms = '';
                             }
-                            if (change.is_lead_V7 != '1') {
+                            if(change.is_lead_V7 != '1') {
                                 change.lead_V7_amplitude = '';
                                 change.lead_V7_waveforms = '';
                             }
-                            if (change.is_lead_V8 != '1') {
+                            if(change.is_lead_V8 != '1') {
                                 change.lead_V8_amplitude = '';
                                 change.lead_V8_waveforms = '';
                             }
-                            if (change.is_lead_V9 != '1') {
+                            if(change.is_lead_V9 != '1') {
                                 change.lead_V9_amplitude = '';
                                 change.lead_V9_waveforms = '';
                             }
@@ -2114,21 +2120,21 @@ jQuery(document).ready(function() {
                         app.mr.special_examination.holter_ecg.t_wave_change.changes_detail = changes_detail;
                     }
 
-                    if (app.mr.special_examination.ucg.is_LVEF_lt_forty_percent != '1') {
+                    if(app.mr.special_examination.ucg.is_LVEF_lt_forty_percent != '1') {
                         app.mr.special_examination.ucg.EF = '';
                         app.mr.special_examination.ucg.ratio_E_to_A = '';
                     }
-                    if (app.mr.special_examination.ucg.is_local_motion_abnormality != '1') {
+                    if(app.mr.special_examination.ucg.is_local_motion_abnormality != '1') {
                         app.mr.special_examination.ucg.local_motion_abnormality_parts = '';
                     }
-                    if (app.mr.special_examination.ucg.is_vntricular_aneurysm != '1') {
+                    if(app.mr.special_examination.ucg.is_vntricular_aneurysm != '1') {
                         app.mr.special_examination.ucg.vntricular_aneurysm_parts = '';
                     }
-                    if (app.mr.special_examination.ucg.is_left_ventricular_thrombosis != '1') {
+                    if(app.mr.special_examination.ucg.is_left_ventricular_thrombosis != '1') {
                         app.mr.special_examination.ucg.left_ventricular_thrombosis_parts = '';
                     }
 
-                    if (app.mr.special_examination.pci.contrast_media.indexOf('5') < 0) {
+                    if(app.mr.special_examination.pci.contrast_media.indexOf('5') < 0) {
                         app.mr.special_examination.pci.contrast_media_others = '';
                     }
 
@@ -2137,37 +2143,37 @@ jQuery(document).ready(function() {
 
 
                     //入院诊断部分数据处理开始
-                    if (app.mr.admission_diagnosis.is_acute_myocardial_infarction != '1') {
+                    if(app.mr.admission_diagnosis.is_acute_myocardial_infarction != '1') {
                         app.mr.admission_diagnosis.acute_myocardial_infarction_part = '';
                     }
-                    if (app.mr.admission_diagnosis.is_subacute_myocardial_infarction != '1') {
+                    if(app.mr.admission_diagnosis.is_subacute_myocardial_infarction != '1') {
                         app.mr.admission_diagnosis.subacute_myocardial_infarction_part = '';
                     }
-                    if (app.mr.admission_diagnosis.is_old_myocardial_infarction != '1') {
+                    if(app.mr.admission_diagnosis.is_old_myocardial_infarction != '1') {
                         app.mr.admission_diagnosis.old_myocardial_infarction_part = '';
                     }
-                    if (app.mr.admission_diagnosis.is_effort_angina != '1') {
+                    if(app.mr.admission_diagnosis.is_effort_angina != '1') {
                         app.mr.admission_diagnosis.effort_angina_pectoris_ccs = '';
                     }
-                    if (app.mr.admission_diagnosis.is_diagnosis_others != '1') {
+                    if(app.mr.admission_diagnosis.is_diagnosis_others != '1') {
                         app.mr.admission_diagnosis.diagnosis_others = '';
                     }
                     //入院诊断部分数据处理结束
 
                     //出院诊断部分数据处理开始
-                    if (app.mr.discharge_diagnosis.is_acute_myocardial_infarction != '1') {
+                    if(app.mr.discharge_diagnosis.is_acute_myocardial_infarction != '1') {
                         app.mr.discharge_diagnosis.acute_myocardial_infarction_part = '';
                     }
-                    if (app.mr.discharge_diagnosis.is_subacute_myocardial_infarction != '1') {
+                    if(app.mr.discharge_diagnosis.is_subacute_myocardial_infarction != '1') {
                         app.mr.discharge_diagnosis.subacute_myocardial_infarction_part = '';
                     }
-                    if (app.mr.discharge_diagnosis.is_old_myocardial_infarction != '1') {
+                    if(app.mr.discharge_diagnosis.is_old_myocardial_infarction != '1') {
                         app.mr.discharge_diagnosis.old_myocardial_infarction_part = '';
                     }
-                    if (app.mr.discharge_diagnosis.is_effort_angina != '1') {
+                    if(app.mr.discharge_diagnosis.is_effort_angina != '1') {
                         app.mr.discharge_diagnosis.effort_angina_pectoris_ccs = '';
                     }
-                    if (app.mr.discharge_diagnosis.is_diagnosis_others != '1') {
+                    if(app.mr.discharge_diagnosis.is_diagnosis_others != '1') {
                         app.mr.discharge_diagnosis.diagnosis_others = '';
                     }
                     //出院诊断部分数据处理结束
@@ -2186,7 +2192,7 @@ jQuery(document).ready(function() {
                         },
                         callback: function(result) {
                             // console.log(result);
-                            if (result) {
+                            if(result) {
                                 $.ajax({
                                     url: "http://192.168.10.248:8080/Emrs/insertRecord",
                                     data: {
@@ -2194,7 +2200,7 @@ jQuery(document).ready(function() {
                                     },
                                     type: "POST",
                                     success: function(data) {
-                                        // location.href = "./emrs_medical_record_detail.html"
+                                        location.href = "./emrs_medical_record_detail.html"
                                         alert(data);
                                     },
                                     error: function(err) {
@@ -3218,7 +3224,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='body_part_name']").on('change', function(event) {
-                    if ($(this).val() == '10') {
+                    if($(this).val() == '10') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3234,7 +3240,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='quality_of_pain']").on('change', function(event) {
-                    if ($(this).val() == '13') {
+                    if($(this).val() == '13') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3250,7 +3256,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='duration_of_pain']").on('change', function(event) {
-                    if ($(this).val() == '6') {
+                    if($(this).val() == '6') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3325,7 +3331,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='etiology']").on('change', function(event) {
-                    if ($(this).val() == '4') {
+                    if($(this).val() == '4') {
                         $(this).parent().next('.col-md-2').removeClass('hide');
                     } else {
                         $(this).parent().next('.col-md-2').find('input').val("");
@@ -3342,7 +3348,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#holter_ecg_arrhythmia_repeater select[name*='arrhythmia_type']").on('change', function(event) {
-                    if ($(this).val() == '11') {
+                    if($(this).val() == '11') {
                         $(this).parent().next('.col-md-2').removeClass('hide');
                     } else {
                         $(this).parent().next('.col-md-2').find('input').val("");
@@ -3539,7 +3545,7 @@ jQuery(document).ready(function() {
                 $('#birth_province').on('select2:select', function(event) {
                     //如果为直辖市，禁用市选择下拉框
                     var cityNum = $('#birth_city').find('option').length;
-                    if (cityNum <= 0) {
+                    if(cityNum <= 0) {
                         $("#birth_city").prop("disabled", true);
                     } else {
                         $("#birth_city").prop("disabled", false);
@@ -3549,9 +3555,9 @@ jQuery(document).ready(function() {
                     //如果为直辖市，禁用市选择下拉框
                     var cityNum = $('#address_city').find('option').length;
                     var areaNum = $('#address_area').find('option').length;
-                    if (cityNum <= 0) {
+                    if(cityNum <= 0) {
                         $("#address_city").prop("disabled", true);
-                        if (areaNum <= 0) {
+                        if(areaNum <= 0) {
                             $("#address_area").prop("disabled", true);
                         } else {
                             $("#address_area").prop("disabled", false);
@@ -3562,7 +3568,7 @@ jQuery(document).ready(function() {
                 });
                 $('#address_city').on('select2:select', function(event) {
                     var areaNum = $('#address_area').find('option').length;
-                    if (areaNum <= 0) {
+                    if(areaNum <= 0) {
                         $("#address_area").prop("disabled", true);
                     } else {
                         $("#address_area").prop("disabled", false);
@@ -3581,35 +3587,35 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#chest_pain_onset_time').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_pain.onset_time = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_pain.onset_time = "";
                     }
                 });
                 $('#chest_distress_onset_time').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_distress.onset_time = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_distress.onset_time = "";
                     }
                 });
                 $('#dyspnea_onset_time').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.dyspnea.onset_time = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.dyspnea.onset_time = "";
                     }
                 });
                 $('#palpitation_onset_time').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.palpitation.onset_time = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.palpitation.onset_time = "";
                     }
                 });
                 $('#abnormal_ecg_onset_time').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.abnormal_ecg.onset_time = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.abnormal_ecg.onset_time = "";
@@ -3624,7 +3630,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='body_part_name']").on('change', function(event) {
-                    if ($(this).val() == '10') {
+                    if($(this).val() == '10') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3640,7 +3646,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='quality_of_pain']").on('change', function(event) {
-                    if ($(this).val() == '13') {
+                    if($(this).val() == '13') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3656,7 +3662,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='duration_of_pain']").on('change', function(event) {
-                    if ($(this).val() == '6') {
+                    if($(this).val() == '6') {
                         $(this).parent().next('.mt-repeater-input').removeClass('hide');
                     } else {
                         $(this).parent().next('.mt-repeater-input').find('input').val("");
@@ -3695,14 +3701,14 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#chest_pain_precipitating_factors').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_pain.precipitating_factors = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_pain.precipitating_factors = "";
                     }
                 });
                 $('#chest_distress_precipitating_factors').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_distress.precipitating_factors = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_distress.precipitating_factors = "";
@@ -3718,14 +3724,14 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#chest_pain_radiation_sites').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_pain.radiation_sites = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_pain.radiation_sites = "";
                     }
                 });
                 $('#chest_distress_radiation_sites').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_distress.radiation_sites = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_distress.radiation_sites = "";
@@ -3741,14 +3747,14 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#chest_pain_simultaneous_phenomena').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_pain.simultaneous_phenomena = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_pain.simultaneous_phenomena = "";
                     }
                 });
                 $('#chest_distress_simultaneous_phenomena').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.care_causes_diseases.chest_distress.simultaneous_phenomena = $(this).val().toString();
                     } else {
                         app.care_causes_diseases.chest_distress.simultaneous_phenomena = "";
@@ -3778,7 +3784,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#risk_factors_cigrette_type').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.risk_factors.smoking.cigrette_type = $(this).val().toString();
                     } else {
                         app.mr.risk_factors.smoking.cigrette_type = "";
@@ -3794,7 +3800,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $('#risk_factors_wine_type').on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.risk_factors.drinking.wine_type = $(this).val().toString();
                     } else {
                         app.mr.risk_factors.drinking.wine_type = "";
@@ -3997,7 +4003,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#exercise_mode").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.risk_factors.exercise.mode = $(this).val().toString();
                     } else {
                         app.mr.risk_factors.exercise.mode = "";
@@ -4015,7 +4021,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_lipid_abnormality_type").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.lipid_abnormality.type = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.lipid_abnormality.type = "";
@@ -4030,7 +4036,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_dysglycemia_type").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.dysglycemia.type = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.dysglycemia.type = "";
@@ -4046,7 +4052,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_diabetes_mellitus_treatment_method").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.dysglycemia.diabetes_mellitus.treatment_method = "";
@@ -4062,7 +4068,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_old_myocardial_infarction_location").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.heart_diseases.old_myocardial_infarction.location = "";
@@ -4078,7 +4084,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_other_heart_disease_type").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.heart_diseases.other_heart_disease.type = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.heart_diseases.other_heart_disease.type = "";
@@ -4094,7 +4100,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_deep_venou_thrombosis_inducements").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.deep_venou_thrombosis.inducements = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.deep_venou_thrombosis.inducements = "";
@@ -4110,7 +4116,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_deep_venou_thrombosis_symptoms").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.deep_venou_thrombosis.symptoms = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.deep_venou_thrombosis.symptoms = "";
@@ -4134,7 +4140,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#anamnesis_vascula_diseases_types").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.anamnesis.vascular_diseases.types = $(this).val().toString();
                     } else {
                         app.mr.anamnesis.vascular_diseases.types = "";
@@ -4191,7 +4197,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("select[name*='etiology']").on('change', function(event) {
-                    if ($(this).val() == '4') {
+                    if($(this).val() == '4') {
                         $(this).parent().next('.col-md-2').removeClass('hide');
                     } else {
                         $(this).parent().next('.col-md-2').find('input').val("");
@@ -4243,7 +4249,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#physical_examination_ear_lobe_longitudinal_crack_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.physical_examination.ear_lobe_longitudinal_crack_parts = $(this).val().toString();
                     } else {
                         app.mr.physical_examination.ear_lobe_longitudinal_crack_parts = "";
@@ -4259,7 +4265,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#physical_examination_skin_yellow_pigment_tumor_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.physical_examination.skin_yellow_pigment_tumor_parts = $(this).val().toString();
                     } else {
                         app.mr.physical_examination.skin_yellow_pigment_tumor_parts = "";
@@ -4275,7 +4281,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#physical_examination_alopecia_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.physical_examination.alopecia_parts = $(this).val().toString();
                     } else {
                         app.mr.physical_examination.alopecia_parts = "";
@@ -4306,7 +4312,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#ecg_q_wave_leads").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.ecg.pathological_q_wave.q_wave_leads = $(this).val().toString();
                     } else {
                         app.mr.special_examination.ecg.pathological_q_wave.q_wave_leads = "";
@@ -4322,7 +4328,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#ecg_arrhythmia_type").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.ecg_arrhythmia_type.arrhythmia_types = $(this).val().toString();
                     } else {
                         app.ecg_arrhythmia_type.arrhythmia_types = "";
@@ -4337,7 +4343,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#holter_ecg_arrhythmia_repeater select[name*='arrhythmia_type']").on('change', function(event) {
-                    if ($(this).val() == '11') {
+                    if($(this).val() == '11') {
                         $(this).parent().next('.col-md-2').removeClass('hide');
                     } else {
                         $(this).parent().next('.col-md-2').find('input').val("");
@@ -4453,21 +4459,21 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#local_motion_abnormality_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.ucg.local_motion_abnormality_parts = $(this).val().toString();
                     } else {
                         app.mr.special_examination.ucg.local_motion_abnormality_parts = "";
                     }
                 });
                 $("#vntricular_aneurysm_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.ucg.vntricular_aneurysm_parts = $(this).val().toString();
                     } else {
                         app.mr.special_examination.ucg.vntricular_aneurysm_parts = "";
                     }
                 });
                 $("#left_ventricular_thrombosis_parts").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.ucg.left_ventricular_thrombosis_parts = $(this).val().toString();
                     } else {
                         app.mr.special_examination.ucg.left_ventricular_thrombosis_parts = "";
@@ -4495,7 +4501,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#pci_contrast_media").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.pci.contrast_media = $(this).val().toString();
                     } else {
                         app.mr.special_examination.pci.contrast_media = "";
@@ -4511,7 +4517,7 @@ jQuery(document).ready(function() {
                     language: "zh-CN",
                 });
                 $("#pci_paths").on('change', function(event) {
-                    if ($(this).val()) {
+                    if($(this).val()) {
                         app.mr.special_examination.pci.pci_paths = $(this).val().toString();
                     } else {
                         app.mr.special_examination.pci.pci_paths = "";
@@ -4590,7 +4596,7 @@ jQuery(document).ready(function() {
     var DateTimePickers = function() {
         var handleDatePickers = function() {
 
-            if (jQuery().datepicker) {
+            if(jQuery().datepicker) {
                 $('.date-picker').datepicker({
                     autoclose: true,
                     format: 'yyyy-mm-dd',
@@ -4635,7 +4641,7 @@ jQuery(document).ready(function() {
                 var $town = $('#addressPlace select[name="town"]');
                 var townFormat = function(info) {
                     $town.hide().empty();
-                    if (info['code'] % 1e4 && info['code'] < 7e6) { //是否为“区”且不是港澳台地区
+                    if(info['code'] % 1e4 && info['code'] < 7e6) { //是否为“区”且不是港澳台地区
                         $.ajax({
                             // url: '../assets/global/plugins/jquery-citys/town/' + info['code'] + '.json',
                             url: 'http://passer-by.com/data_location/town/' + info['code'] + '.json',
@@ -4643,10 +4649,10 @@ jQuery(document).ready(function() {
                             success: function(town) {
                                 $town.show();
                                 $town.append('<option value=""></option>');
-                                for (i in town) {
+                                for(i in town) {
                                     $town.append('<option value="' + town[i] + '">' + town[i] + '</option>');
                                 }
-                                if (town.length <= 0) {
+                                if(town.length <= 0) {
                                     $("#address_town").prop("disabled", true);
                                 } else {
                                     $("#address_town").prop("disabled", false);
@@ -4698,7 +4704,7 @@ jQuery(document).ready(function() {
                         },
 
                         hide: function(deleteElement) {
-                            if (confirm('是否确定删除该栏？')) {
+                            if(confirm('是否确定删除该栏？')) {
                                 $(this).slideUp(deleteElement);
                             }
                         },

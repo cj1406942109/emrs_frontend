@@ -43,6 +43,7 @@
             display: inline-block;
         }
     </style>
+    <script src="../assets/pages/scripts/login_check.js" type="text/javascript"></script>
 </head>
 <!-- END HEAD -->
 
@@ -80,9 +81,9 @@
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
-                                    <li><a href="page_user_profile.html"><i class="icon-user"></i> 我的资料 </a></li>
+                                    <!-- <li><a href="page_user_profile.html"><i class="icon-user"></i> 我的资料 </a></li>
                                     <li class="divider"> </li>
-                                    <li><a href="page_user_lock.html"><i class="icon-lock"></i> 锁定屏幕 </a></li>
+                                    <li><a href="page_user_lock.html"><i class="icon-lock"></i> 锁定屏幕 </a></li> -->
                                     <li><a href="page_user_login.html"><i class="icon-logout"></i> 注销登录 </a></li>
                                 </ul>
                             </li>
@@ -235,7 +236,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-2">身份证号</label>
+                                                            <label class="control-label col-md-2">身份证号<span class="required"> * </span></label>
                                                             <div class="col-md-4">
                                                                 <input type="text" class="form-control" name="id_number" v-model="mr.basic_info.patient.id_number">
                                                                 <span class="help-block"> 填写患者身份证号 </span>
@@ -266,22 +267,22 @@
                                                                 <div id="form_gender_error"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label class="control-label col-md-2">患者类型<span class="required"> * </span></label>
                                                             <div class="col-md-4">
                                                                 <select name="is_hospitalized" id="patient_type_list" class="form-control">
                                                                     <option value=""></option>                                                                    
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group" v-if="mr.basic_info.is_hospitalized=='1'">
+                                                        </div> -->
+                                                        <div class="form-group">
                                                             <label class="control-label col-md-2">住院号<span class="required"> * </span></label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" name="admission_num" v-model="mr.basic_info.admission_num">
                                                                 <span class="help-block"> 填写患者住院号 </span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" v-if="mr.basic_info.is_hospitalized=='1'">
+                                                        <div class="form-group">
                                                             <label class="control-label col-md-2">床位号<span class="required"> * </span></label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" name="bed_num" v-model="mr.basic_info.bed_num">
@@ -830,7 +831,7 @@
                                                                                 <!-- 心电图异常部分结束 -->
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <!-- <div class="form-group">
                                                                             <label class="control-label bold col-md-2">无心绞痛发作</label>
                                                                             <div class="col-md-4">
                                                                                 <div class="icheck-inline">
@@ -851,7 +852,7 @@
                                                                                     <label><input type="radio" name="is_exertional_angina_attacks_within_4_weeks" value="0"> 否 </label>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
                                                                     </div>
                                                                 </div>
                                                                 <!-- 现病史部分结束 -->
@@ -2302,7 +2303,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
-                                                                                            <label class="control-label bold col-md-2">血清心肌坏死标志物升高</label>
+                                                                                            <label class="control-label bold col-md-2">血清心肌坏死标志物</label>
                                                                                             <div class="col-md-4">
                                                                                                 <div class="icheck-inline">
                                                                                                     <label><input type="radio" name="is_serum_myocardial_necrosis_markers_up" value="0"> 否 </label>
@@ -2310,32 +2311,34 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">CK</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="myocardial_CK" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_CK">
-                                                                                                <span class="help-inline"> U/L </span>
+                                                                                        <div v-show="mr.routine_examination.blood_biochemistry.is_serum_myocardial_necrosis_markers_up=='1'">
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">CK</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="myocardial_CK" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_CK">
+                                                                                                    <span class="help-inline"> U/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">CK-MB</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="myocardial_CKMB" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_CKMB">
+                                                                                                    <span class="help-inline"> U/L </span>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <label class="control-label col-md-2">CK-MB</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="myocardial_CKMB" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_CKMB">
-                                                                                                <span class="help-inline"> U/L </span>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">cTnI</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="myocardial_cTnI" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_cTnI">
+                                                                                                    <span class="help-inline"> μg/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">Mb</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="myocardial_Mb" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_Mb">
+                                                                                                    <span class="help-inline"> μg/L </span>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
-                                                                                            <label class="control-label col-md-2">cTnI</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="myocardial_cTnI" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_cTnI">
-                                                                                                <span class="help-inline"> μg/L </span>
-                                                                                            </div>
-                                                                                            <label class="control-label col-md-2">Mb</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="myocardial_Mb" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.myocardial_Mb">
-                                                                                                <span class="help-inline"> μg/L </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label bold col-md-2 ">炎症标志物升高</label>
+                                                                                            <label class="control-label bold col-md-2 ">炎症标志物</label>
                                                                                             <div class="col-md-2">
                                                                                                 <div class="icheck-inline">
                                                                                                     <label><input type="radio" name="is_inflammatory_markers_up" value="0"> 否 </label>
@@ -2343,28 +2346,30 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">hs-CRP</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="inflammation_hsCRP" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_hsCRP">
-                                                                                                <span class="help-inline"> mg/L </span>
+                                                                                        <div v-show="mr.routine_examination.blood_biochemistry.is_inflammatory_markers_up=='1'">
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">hs-CRP</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="inflammation_hsCRP" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_hsCRP">
+                                                                                                    <span class="help-inline"> mg/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">IL-6</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="myocardial_CKMB" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_IL6">
+                                                                                                    <span class="help-inline"> pg/mL </span>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <label class="control-label col-md-2">IL-6</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="myocardial_CKMB" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_IL6">
-                                                                                                <span class="help-inline"> pg/mL </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">IL-1β</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="inflammation_IL1_beta" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_IL1_beta">
-                                                                                                <span class="help-inline"> pg/mL </span>
-                                                                                            </div>
-                                                                                            <label class="control-label col-md-2">TNFα</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="inflammation_TNF_alpha" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_TNF_alpha">
-                                                                                                <span class="help-inline"> μg/L </span>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">IL-1β</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="inflammation_IL1_beta" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_IL1_beta">
+                                                                                                    <span class="help-inline"> pg/mL </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">TNFα</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="inflammation_TNF_alpha" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.inflammation_TNF_alpha">
+                                                                                                    <span class="help-inline"> μg/L </span>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
@@ -2409,7 +2414,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
-                                                                                            <label class="control-label bold col-md-2">肝功能异常</label>
+                                                                                            <label class="control-label bold col-md-2">肝功能</label>
                                                                                             <div class="col-md-2">
                                                                                                 <div class="icheck-inline">
                                                                                                     <label><input type="radio" name="is_abnormal_liver_function" value="0"> 否 </label>
@@ -2417,51 +2422,53 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">总蛋白</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="total_protein" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.total_protein">
-                                                                                                <span class="help-inline"> g/L </span>
+                                                                                        <div v-show="mr.routine_examination.blood_biochemistry.is_abnormal_liver_function=='1'">
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">总蛋白</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="total_protein" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.total_protein">
+                                                                                                    <span class="help-inline"> g/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">白蛋白</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="albumin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.albumin">
+                                                                                                    <span class="help-inline"> g/L </span>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <label class="control-label col-md-2">白蛋白</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="albumin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.albumin">
-                                                                                                <span class="help-inline"> g/L </span>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">总胆红素</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="total_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.total_bilirubin">
+                                                                                                    <span class="help-inline"> μmol/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">直接胆红素</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="direct_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.direct_bilirubin">
+                                                                                                    <span class="help-inline"> μmol/L </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">间接胆红素</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="indirect_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.indirect_bilirubin">
+                                                                                                    <span class="help-inline"> μmol/L </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">ALT</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="ALT" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.ALT">
+                                                                                                    <span class="help-inline"> U/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">AST</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="AST" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.AST">
+                                                                                                    <span class="help-inline"> U/L </span>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
-                                                                                            <label class="control-label col-md-2">总胆红素</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="total_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.total_bilirubin">
-                                                                                                <span class="help-inline"> μmol/L </span>
-                                                                                            </div>
-                                                                                            <label class="control-label col-md-2">直接胆红素</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="direct_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.direct_bilirubin">
-                                                                                                <span class="help-inline"> μmol/L </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">间接胆红素</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="indirect_bilirubin" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.indirect_bilirubin">
-                                                                                                <span class="help-inline"> μmol/L </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">ALT</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="ALT" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.ALT">
-                                                                                                <span class="help-inline"> U/L </span>
-                                                                                            </div>
-                                                                                            <label class="control-label col-md-2">AST</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="AST" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.AST">
-                                                                                                <span class="help-inline"> U/L </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label bold col-md-2">肾功能不全</label>
+                                                                                            <label class="control-label bold col-md-2">肾功能</label>
                                                                                             <div class="col-md-2">
                                                                                                 <div class="icheck-inline">
                                                                                                     <label><input type="radio" name="is_renal_insufficiency" value="0"> 否 </label>
@@ -2469,28 +2476,30 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">Cr</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="Cr" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.Cr">
-                                                                                                <span class="help-inline"> μmol/L </span>
+                                                                                        <div v-show="mr.routine_examination.blood_biochemistry.is_renal_insufficiency=='1'">
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">Cr</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="Cr" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.Cr">
+                                                                                                    <span class="help-inline"> μmol/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">UA</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="UA" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.UA">
+                                                                                                    <span class="help-inline"> μmol/L </span>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <label class="control-label col-md-2">UA</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="UA" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.UA">
-                                                                                                <span class="help-inline"> μmol/L </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label col-md-2">BUN</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="BUN" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.BUN">
-                                                                                                <span class="help-inline"> mmol/L </span>
-                                                                                            </div>
-                                                                                            <label class="control-label col-md-2">GFR</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <input type="text" name="GFR" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.GFR">
-                                                                                                <span class="help-inline"> ml/min </span>
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label col-md-2">BUN</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="BUN" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.BUN">
+                                                                                                    <span class="help-inline"> mmol/L </span>
+                                                                                                </div>
+                                                                                                <label class="control-label col-md-2">GFR</label>
+                                                                                                <div class="col-md-4">
+                                                                                                    <input type="text" name="GFR" class="form-control input-inline" v-model="mr.routine_examination.blood_biochemistry.GFR">
+                                                                                                    <span class="help-inline"> ml/min </span>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="form-group">
