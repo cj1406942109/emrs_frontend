@@ -649,8 +649,8 @@ jQuery(document).ready(function() {
         methods: {
             key2value: function(array, key) {
                 var text = false;
-                for (var i = 0; i < array.length; i++) {
-                    if (array[i].id == key) {
+                for(var i = 0; i < array.length; i++) {
+                    if(array[i].id == key) {
                         text = array[i].text;
                         break;
                     }
@@ -663,7 +663,7 @@ jQuery(document).ready(function() {
                 var valueArray = [];
                 keyArray.forEach(function(key) {
                     var value = key2value(array, key);
-                    if (value) {
+                    if(value) {
                         valueArray.push(value);
                     }
                 })
@@ -672,60 +672,60 @@ jQuery(document).ready(function() {
         },
         filters: {
             boolTransform1(value) {
-                if (value == '1') {
+                if(value == '1') {
                     return '是';
-                } else if (value == '0') {
+                } else if(value == '0') {
                     return '否';
                 } else {
                     return '未填写';
                 }
             },
             boolTransform2(value) {
-                if (value == '1') {
+                if(value == '1') {
                     return '有';
-                } else if (value == '0') {
+                } else if(value == '0') {
                     return '无';
                 } else {
                     return '未填写';
                 }
             },
             boolTransform3(value) {
-                if (value == '1') {
+                if(value == '1') {
                     return '有';
-                } else if (value == '0') {
+                } else if(value == '0') {
                     return '无';
-                } else if (value == '-1') {
+                } else if(value == '-1') {
                     return '不知道';
                 } else {
                     return '未填写';
                 }
             },
             boolTransform4(value) {
-                if (value == '0') {
+                if(value == '0') {
                     return '无';
-                } else if (value == '1') {
+                } else if(value == '1') {
                     return '间断';
-                } else if (value == '2') {
+                } else if(value == '2') {
                     return '长期用药';
                 } else {
                     return '未填写';
                 }
             },
             boolTransform5(value) {
-                if (value == '0') {
+                if(value == '0') {
                     return '无';
-                } else if (value == '1') {
+                } else if(value == '1') {
                     return '不规律';
-                } else if (value == '2') {
+                } else if(value == '2') {
                     return '规律治疗';
                 } else {
                     return '未填写';
                 }
             },
             genderTransform(value) {
-                if (value == '1') {
+                if(value == '1') {
                     return '女';
-                } else if (value == '0') {
+                } else if(value == '0') {
                     return '男';
                 } else {
                     return '未填写';
@@ -735,15 +735,15 @@ jQuery(document).ready(function() {
     });
 
     //获取病历id
-    if (sessionStorage.getItem('record_id')) {
+    if(sessionStorage.getItem('record_id')) {
         var record_id = sessionStorage.getItem('record_id');
     } else {
         location.href = "emrs_medical_record_list.html";
     }
 
-    if (record_id) {
+    if(record_id) {
 
-        var basic_api_path = "http://192.168.10.248:8080/Emrs/";
+        var basic_api_path = "http://116.62.148.24/Record/";
 
         function getTabData(url, tab_name) {
             $.ajax({

@@ -862,10 +862,10 @@ jQuery(document).ready(function() {
                 $('#form_wizard_1 .button-submit').click(function() {
 
                     //基本信息部分数据处理开始
-                    if(app.mr.basic_info.is_hospitalized != '1') {
-                        app.mr.basic_info.admission_num = '';
-                        app.mr.basic_info.bed_num = '';
-                    }
+                    // if(app.mr.basic_info.is_hospitalized != '1') {
+                    //     app.mr.basic_info.admission_num = '';
+                    //     app.mr.basic_info.bed_num = '';
+                    // }
                     //基本信息部分数据处理结束
 
                     //现病史部分数据处理开始
@@ -2177,7 +2177,7 @@ jQuery(document).ready(function() {
                         app.mr.discharge_diagnosis.diagnosis_others = '';
                     }
                     //出院诊断部分数据处理结束
-                    console.log(JSON.stringify(app.mr));
+                    // console.log(JSON.stringify(app.mr));
                     bootbox.confirm({
                         message: "是否提交当前页面填写的所有数据？",
                         buttons: {
@@ -2194,14 +2194,14 @@ jQuery(document).ready(function() {
                             // console.log(result);
                             if(result) {
                                 $.ajax({
-                                    url: "http://192.168.10.248:8080/Emrs/insertRecord",
+                                    url: "http://116.62.148.24/Record/insertRecord",
                                     data: {
                                         "record": JSON.stringify(app.mr)
                                     },
                                     type: "POST",
                                     success: function(data) {
-                                        location.href = "./emrs_medical_record_detail.html"
-                                        alert(data);
+                                        location.href = "./emrs_medical_record_list.html"
+                                        console.log(data);
                                     },
                                     error: function(err) {
                                         console.log(err)
@@ -4715,27 +4715,6 @@ jQuery(document).ready(function() {
                     });
                 });
 
-                $('#submitBtn').click(function() {
-                    console.log($('#chest_pain_repeater').repeaterVal());
-                    console.log($('#chest_distress_repeater').repeaterVal());
-                })
-                $('#submitBtn1').click(function() {
-                    console.log($('#premature_chd_repeater').repeaterVal());
-                    console.log($('#myocardial_infarction_repeater').repeaterVal());
-                    console.log($('#ischemic_stroke_repeater').repeaterVal());
-                    console.log($('#hemorrhagic_stroke_repeater').repeaterVal());
-                    console.log($('#sudden_death_repeater').repeaterVal());
-                })
-                $('#submitBtn5').click(function() {
-                    console.log($('#segmental_lesions_repeater').repeaterVal());
-                })
-                $('#printBtn').click(function() {
-                    console.log($('#holter_ecg_arrhythmia_repeater').repeaterVal());
-                    console.log($('#holter_ecg_pathological_q_wave_repeater').repeaterVal());
-                    console.log($('#holter_ecg_st_segment_depression_repeater').repeaterVal());
-                    console.log($('#holter_ecg_st_segment_elevation_repeater').repeaterVal());
-                    console.log($('#holter_ecg_t_wave_change_repeater').repeaterVal());
-                })
             }
 
         };
@@ -4749,7 +4728,7 @@ jQuery(document).ready(function() {
             mr: JSON.parse(`
             {
                 "basic_info": {
-                    "is_hospitalized": "",
+                    "is_hospitalized": "1",
                     "admission_num": "",
                     "bed_num": "",
                     "patient": {

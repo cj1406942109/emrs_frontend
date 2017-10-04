@@ -87,7 +87,7 @@ jQuery(document).ready(function() {
                                 "<ul class='dropdown-menu pull-right' role='menu'>" +
                                 "<li data-record-id=" + data + " class='godetail'><a href='javascript:;'><i class='icon-info'></i> 查看详情 </a></li>" +
                                 "<li class='divider'></li>" +
-                                "<li><a href='javascript:;' style='color:#ED6B75' data-toggle='confirmation'><i class='icon-trash' style='color:#ED6B75'></i> 删除记录 </a></li>" +
+                                // "<li><a href='javascript:;' style='color:#ED6B75' data-toggle='confirmation'><i class='icon-trash' style='color:#ED6B75'></i> 删除记录 </a></li>" +
                                 "</ul></div>";
                             return htmlContent;
                         },
@@ -98,7 +98,7 @@ jQuery(document).ready(function() {
                     [1, "asc"]
                 ], // set first column as a default sort by asc
                 "ajax": {
-                    url: "http://192.168.10.248:8080/Emrs/getAllRecords",
+                    url: "http://116.62.148.24/Record/getAllRecords",
                     type: "POST"
                 },
                 "columns": [
@@ -156,7 +156,7 @@ jQuery(document).ready(function() {
 
             //main function to initiate the module
             init: function() {
-                if (!jQuery().dataTable) {
+                if(!jQuery().dataTable) {
                     return;
                 }
 
