@@ -1,19 +1,14 @@
 jQuery(document).ready(function() {
 
+
     var pageData = {
         basic_info: {
             patient_type_list: [
                 { id: '0', text: '门诊病人' },
                 { id: '1', text: '住院病人' }
             ],
-            doctor_list: [
-                { id: '6c0222ede7f54cada717a9abfb372239', text: '张三' },
-                { id: '6c0222ede7f54cada717a9abfb372230', text: '李四' }
-            ],
-            recorder_list: [
-                { id: '6c0222ede7f54cada717a9abfb372231', text: '小明' },
-                { id: '6c0222ede7f54cada717a9abfb372232', text: '小华' }
-            ],
+            doctor_list: [],
+            recorder_list: [],
             nationality_list: [
                 { id: '汉族', text: '汉族' },
                 { id: '壮族', text: '壮族' },
@@ -73,21 +68,24 @@ jQuery(document).ready(function() {
                 { id: '珞巴族', text: '珞巴族' }
             ],
             profession_list: [
-                { id: '干部', text: '干部' },
-                { id: '知识分子', text: '知识分子' },
-                { id: '工', text: '工' },
-                { id: '农', text: '农' },
-                { id: '军', text: '军' },
-                { id: '教师', text: '教师' },
-                { id: '医', text: '医' },
-                { id: '商', text: '商' },
-                { id: '个体', text: '个体' },
-                { id: '退休', text: '退休' },
-                { id: '司机', text: '司机' },
-                { id: '营业员', text: '营业员' },
-                { id: '警', text: '警' },
-                { id: '学生', text: '学生' },
-                { id: '运动员', text: '运动员' },
+                { id: '广告/营销/公关', text: '广告/营销/公关' },
+                { id: '航天', text: '航天' },
+                { id: '农业/化工/林业产品', text: '农业/化工/林业产品' },
+                { id: '汽车', text: '汽车' },
+                { id: '计算机/电子产品', text: '计算机/电子产品' },
+                { id: '建筑', text: '建筑' },
+                { id: '教育（包括在校学生）', text: '教育（包括在校学生）' },
+                { id: '能源/采矿', text: '能源/采矿' },
+                { id: '金融/保险/房地产', text: '金融/保险/房地产' },
+                { id: '政府/军事/公共服务', text: '政府/军事/公共服务' },
+                { id: '招待', text: '招待' },
+                { id: '传媒/出版/娱乐', text: '传媒/出版/娱乐' },
+                { id: '医疗/保健服务', text: '医疗/保健服务' },
+                { id: '制药', text: '制药' },
+                { id: '零售', text: '零售' },
+                { id: '服务', text: '服务' },
+                { id: '电信/网络', text: '电信/网络' },
+                { id: '旅游/交通', text: '旅游/交通' },
                 { id: '其他', text: '其他' }
             ]
         },
@@ -112,7 +110,9 @@ jQuery(document).ready(function() {
                 { id: '10', text: '其他' }
             ],
             disease_quality_of_pain_list: [
+                { id: '11', text: '压迫感' },
                 { id: '1', text: '紧缩感' },
+                { id: '12', text: '压榨样' },
                 { id: '2', text: '刀割' },
                 { id: '3', text: '烧灼' },
                 { id: '4', text: '闷痛' },
@@ -122,8 +122,6 @@ jQuery(document).ready(function() {
                 { id: '8', text: '梗塞感' },
                 { id: '9', text: '绞痛' },
                 { id: '10', text: '不适' },
-                { id: '11', text: '压迫感' },
-                { id: '12', text: '压榨样' },
                 { id: '13', text: '其他' }
             ],
             disease_duration_of_pain_list: [
@@ -583,7 +581,40 @@ jQuery(document).ready(function() {
             ]
         }
     }
-
+    $.ajax({
+        url: "http://116.62.148.24/User/getAllDoctor",
+        type: "POST",
+        success: function(data) {
+            // console.log(data);
+            pageData.basic_info.doctor_list = JSON.parse(data);
+            pageData.basic_info.recorder_list = JSON.parse(data);
+            $("#doctor_list").select2({
+                placeholder: "选择主治医生",
+                data: pageData.basic_info.doctor_list,
+                allowClear: true,
+                minimumResultsForSearch: 20,
+                width: 'auto',
+                language: "zh-CN",
+            });
+            $('#doctor_list').on('change', function(event) {
+                app.mr.basic_info.doctor_id = $(this).val();
+            });
+            $("#recorder_list").select2({
+                placeholder: "选择记录者",
+                data: pageData.basic_info.recorder_list,
+                allowClear: true,
+                minimumResultsForSearch: 20,
+                width: 'auto',
+                language: "zh-CN",
+            });
+            $('#recorder_list').on('change', function(event) {
+                app.mr.basic_info.recorder_id = $(this).val();
+            });
+        },
+        error: function(err) {
+            console.log(err)
+        }
+    })
     var FormWizard = function() {
         return {
             //main function to initiate the module
@@ -3213,224 +3244,6 @@ jQuery(document).ready(function() {
     }();
     var FormSelect2 = function() {
         return {
-
-            repeater_init: function() {
-                $("select[name*='body_part_name']").select2({
-                    placeholder: "选择",
-                    data: pageData.history_of_present_illness.disease_body_part_name_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='body_part_name']").on('change', function(event) {
-                    if($(this).val() == '10') {
-                        $(this).parent().next('.mt-repeater-input').removeClass('hide');
-                    } else {
-                        $(this).parent().next('.mt-repeater-input').find('input').val("");
-                        $(this).parent().next('.mt-repeater-input').addClass('hide');
-                    }
-                });
-                $("select[name*='quality_of_pain']").select2({
-                    placeholder: "选择",
-                    data: pageData.history_of_present_illness.disease_quality_of_pain_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='quality_of_pain']").on('change', function(event) {
-                    if($(this).val() == '13') {
-                        $(this).parent().next('.mt-repeater-input').removeClass('hide');
-                    } else {
-                        $(this).parent().next('.mt-repeater-input').find('input').val("");
-                        $(this).parent().next('.mt-repeater-input').addClass('hide');
-                    }
-                });
-                $("select[name*='duration_of_pain']").select2({
-                    placeholder: "选择",
-                    data: pageData.history_of_present_illness.disease_duration_of_pain_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='duration_of_pain']").on('change', function(event) {
-                    if($(this).val() == '6') {
-                        $(this).parent().next('.mt-repeater-input').removeClass('hide');
-                    } else {
-                        $(this).parent().next('.mt-repeater-input').find('input').val("");
-                        $(this).parent().next('.mt-repeater-input').addClass('hide');
-                    }
-                });
-                $("select[name*='pain_degree']").select2({
-                    placeholder: "选择",
-                    data: pageData.history_of_present_illness.disease_pain_degree_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-
-                $("#old_ischemic_stroke_repeater select[name*='type_name']").select2({
-                    placeholder: "选择",
-                    data: pageData.anamnesis.old_ischemic_stroke_type_name_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-
-                $("#hemorrhage_repeater select[name*='type_name']").select2({
-                    placeholder: "选择",
-                    data: pageData.anamnesis.hemorrhage_type_name_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("#bleeding_repeater select[name*='cause']").select2({
-                    placeholder: "选择",
-                    data: pageData.anamnesis.bleeding_cause_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-
-                $("select[name*='onset_member']").select2({
-                    placeholder: "选择",
-                    data: pageData.family_history.onset_member_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='gender']").select2({
-                    placeholder: "选择",
-                    data: pageData.family_history.gender_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='onset_type']").select2({
-                    placeholder: "选择",
-                    data: pageData.family_history.premature_chd_type_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='etiology']").select2({
-                    placeholder: "选择",
-                    data: pageData.family_history.sudden_death_etiologie_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='etiology']").on('change', function(event) {
-                    if($(this).val() == '4') {
-                        $(this).parent().next('.col-md-2').removeClass('hide');
-                    } else {
-                        $(this).parent().next('.col-md-2').find('input').val("");
-                        $(this).parent().next('.col-md-2').addClass('hide');
-                    }
-                });
-
-                $("#holter_ecg_arrhythmia_repeater select[name*='arrhythmia_type']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.arrhythmia_type_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("#holter_ecg_arrhythmia_repeater select[name*='arrhythmia_type']").on('change', function(event) {
-                    if($(this).val() == '11') {
-                        $(this).parent().next('.col-md-2').removeClass('hide');
-                    } else {
-                        $(this).parent().next('.col-md-2').find('input').val("");
-                        $(this).parent().next('.col-md-2').addClass('hide');
-                    }
-                });
-
-                $("select[name*='q_wave_leads']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.lead_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    multiple: true,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-
-                $("select[name*='waveforms']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.ecg_waveform_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    language: "zh-CN",
-                });
-
-                $("#segmental_lesions_repeater select[name*='num']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.segmental_lesions_num_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("#segmental_lesions_repeater select[name*='shape']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.segmental_lesions_shape_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='is_calcification']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.is_calcification_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='is_ostial_lesion']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.is_ostial_lesion_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='is_thrombus']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.is_thrombus_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='TIMI_grade']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.TIMI_grade_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='kinds_of_lesions']").select2({
-                    placeholder: "选择",
-                    data: pageData.special_examination.kinds_of_lesions_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-            },
             init: function() {
 
                 //病历基本信息部分开始              
@@ -3445,28 +3258,7 @@ jQuery(document).ready(function() {
                 $('#patient_type_list').on('change', function(event) {
                     app.mr.basic_info.is_hospitalized = $(this).val();
                 });
-                $("#doctor_list").select2({
-                    placeholder: "选择主治医生",
-                    data: pageData.basic_info.doctor_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $('#doctor_list').on('change', function(event) {
-                    app.mr.basic_info.doctor_id = $(this).val();
-                });
-                $("#recorder_list").select2({
-                    placeholder: "选择记录者",
-                    data: pageData.basic_info.recorder_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $('#recorder_list').on('change', function(event) {
-                    app.mr.basic_info.recorder_id = $(this).val();
-                });
+
                 $("#nationality_list").select2({
                     placeholder: "选择民族",
                     data: pageData.basic_info.nationality_list,

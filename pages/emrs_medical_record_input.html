@@ -2287,7 +2287,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <label class="control-label col-md-2">非HDL</label>
                                                                                                     <div class="col-md-6">
-                                                                                                        <input type="text" name="not_HDL" class="form-control input-inline" readonly v-bind:value="mr.routine_examination.blood_biochemistry.TC-mr.routine_examination.blood_biochemistry.HDL">
+                                                                                                        <input type="text" name="not_HDL" class="form-control input-inline" readonly v-bind:value="(mr.routine_examination.blood_biochemistry.TC-mr.routine_examination.blood_biochemistry.HDL).toFixed(2)">
                                                                                                         <span class="help-inline"> mmol/L（TC-HDL） </span>
                                                                                                     </div>
                                                                                                 </div>
