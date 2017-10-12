@@ -110,18 +110,18 @@ jQuery(document).ready(function() {
                 { id: '10', text: '其他' }
             ],
             disease_quality_of_pain_list: [
-                { id: '11', text: '压迫感' },
-                { id: '1', text: '紧缩感' },
-                { id: '12', text: '压榨样' },
-                { id: '2', text: '刀割' },
-                { id: '3', text: '烧灼' },
-                { id: '4', text: '闷痛' },
-                { id: '5', text: '针刺样' },
-                { id: '6', text: '胀痛' },
-                { id: '7', text: '隐痛' },
-                { id: '8', text: '梗塞感' },
-                { id: '9', text: '绞痛' },
-                { id: '10', text: '不适' },
+                { id: '1', text: '压迫感' },
+                { id: '2', text: '紧缩感' },
+                { id: '3', text: '压榨样' },
+                { id: '4', text: '刀割' },
+                { id: '5', text: '烧灼' },
+                { id: '6', text: '闷痛' },
+                { id: '7', text: '针刺样' },
+                { id: '8', text: '胀痛' },
+                { id: '9', text: '隐痛' },
+                { id: '10', text: '梗塞感' },
+                { id: '11', text: '绞痛' },
+                { id: '12', text: '不适' },
                 { id: '13', text: '其他' }
             ],
             disease_duration_of_pain_list: [
@@ -188,14 +188,7 @@ jQuery(document).ready(function() {
                 { id: '19', text: '吐痰' },
                 { id: '20', text: '濒死感' },
                 { id: '21', text: '其他' }
-            ],
-            angina_pectoris_ccs_list: [
-                { id: 'I', text: 'I' },
-                { id: 'II', text: 'II' },
-                { id: 'III', text: 'III' },
-                { id: 'IV', text: 'IV' }
             ]
-
         },
         risk_factors: {
             cigrette_type_list: [
@@ -345,7 +338,8 @@ jQuery(document).ready(function() {
                 { id: '1', text: '瘫痪、不完全瘫痪' },
                 { id: '2', text: '近期石膏固定' },
                 { id: '3', text: '近期卧床大于3天' },
-                { id: '4', text: '12周内已行全麻或局麻的大手术' }
+                { id: '4', text: '12周内已行全麻或局麻的大手术' },
+                { id: '5', text: '其他' }
             ],
             deep_venou_thrombosis_symptom_list: [
                 { id: '1', text: '沿深静脉走形的局部疼痛' },
@@ -402,11 +396,12 @@ jQuery(document).ready(function() {
             ],
             premature_chd_type_list: [
                 { id: '1', text: '隐匿型冠心病' },
-                { id: '2', text: '劳力性心绞痛' },
-                { id: '3', text: '不稳定型心绞痛' },
-                { id: '4', text: '心肌梗死' },
-                { id: '5', text: '缺血性心肌病' },
-                { id: '6', text: '冠心病猝死' }
+                { id: '2', text: '冠脉微血管病变' },
+                { id: '3', text: '劳力性心绞痛' },
+                { id: '4', text: '不稳定型心绞痛' },
+                { id: '5', text: '心肌梗死' },
+                { id: '6', text: '缺血性心肌病' },
+                { id: '7', text: '冠心病猝死' }
             ],
             sudden_death_etiologie_list: [
                 { id: '1', text: '冠心病' },
@@ -423,6 +418,16 @@ jQuery(document).ready(function() {
             ],
         },
         physical_examination: {
+            breath_sounds_type_list: [
+                { id: '1', text: '增强' },
+                { id: '2', text: '减弱' },
+                { id: '3', text: '无' }
+            ],
+            breath_sounds_part_list: [
+                { id: '1', text: '左肺' },
+                { id: '2', text: '右肺' },
+                { id: '3', text: '双肺底' }
+            ],
             lung_wet_rales_range_list: [
                 { id: '1', text: '1/2肺野以上' },
                 { id: '2', text: '1/2肺野以下' }
@@ -577,7 +582,24 @@ jQuery(document).ready(function() {
             kinds_of_lesions_list: [
                 { id: 'A', text: 'A型' },
                 { id: 'B', text: 'B型' },
-                { id: 'C', text: 'C型' },
+                { id: 'C', text: 'C型' }
+            ]
+        },
+        diagnosis: {
+            myocardial_infarction_type_list: [
+                { id: '1', text: '急性' },
+                { id: '2', text: '亚急性' },
+                { id: '3', text: '陈旧性' }
+            ],
+            angina_type_list: [
+                { id: '1', text: '劳力性' },
+                { id: '2', text: '不稳定型' }
+            ],
+            angina_ccs_list: [
+                { id: 'I', text: 'I' },
+                { id: 'II', text: 'II' },
+                { id: 'III', text: 'III' },
+                { id: 'IV', text: 'IV' }
             ]
         }
     }
@@ -1102,8 +1124,12 @@ jQuery(document).ready(function() {
                         app.mr.anamnesis.deep_venou_thrombosis.onset_time_year = '';
                         app.mr.anamnesis.deep_venou_thrombosis.onset_time_month = '';
                         app.mr.anamnesis.deep_venou_thrombosis.inducements = '';
+                        app.mr.anamnesis.deep_venou_thrombosis.inducements_others = '';
                         app.mr.anamnesis.deep_venou_thrombosis.symptoms = '';
                         app.mr.anamnesis.deep_venou_thrombosis.diagnosis_result = '';
+                        if(!app.mr.anamnesis.deep_venou_thrombosis.inducements.indexOf('5') >= '0') {
+                            app.mr.anamnesis.deep_venou_thrombosis.inducements_others = '';
+                        }
                     }
                     //既往缺血性卒中
                     if(app.mr.anamnesis.old_ischemic_stroke.is_old_ischemic_stroke != '1') {
@@ -1164,12 +1190,17 @@ jQuery(document).ready(function() {
                     //家族史部分数据处理结束
 
                     //体格检查部分数据处理结束
+                    if(app.mr.physical_examination.is_breath_sounds_normal != '0') {
+                        app.mr.physical_examination.breath_sounds_part = '';
+                        app.mr.physical_examination.breath_sounds_type = '';
+                    }
                     if(app.mr.physical_examination.is_lung_wet_rales != '1') {
                         app.mr.physical_examination.lung_wet_rales_range = '';
+                        app.mr.physical_examination.lung_wet_rales_part = '';
                     }
-                    if(app.mr.physical_examination.is_heart_failure != '1') {
-                        app.mr.physical_examination.Killip_class = '';
-                    }
+                    // if(app.mr.physical_examination.is_heart_failure != '1') {
+                    //     app.mr.physical_examination.Killip_class = '';
+                    // }
                     if(app.mr.physical_examination.is_ear_lobe_longitudinal_crack != '1') {
                         app.mr.physical_examination.ear_lobe_longitudinal_crack_parts = '';
                     }
@@ -2174,17 +2205,13 @@ jQuery(document).ready(function() {
 
 
                     //入院诊断部分数据处理开始
-                    if(app.mr.admission_diagnosis.is_acute_myocardial_infarction != '1') {
-                        app.mr.admission_diagnosis.acute_myocardial_infarction_part = '';
+                    if(app.mr.admission_diagnosis.is_myocardial_infarction != '1') {
+                        app.mr.admission_diagnosis.myocardial_infarction_type = '';
+                        app.mr.admission_diagnosis.myocardial_infarction_part = '';
                     }
-                    if(app.mr.admission_diagnosis.is_subacute_myocardial_infarction != '1') {
-                        app.mr.admission_diagnosis.subacute_myocardial_infarction_part = '';
-                    }
-                    if(app.mr.admission_diagnosis.is_old_myocardial_infarction != '1') {
-                        app.mr.admission_diagnosis.old_myocardial_infarction_part = '';
-                    }
-                    if(app.mr.admission_diagnosis.is_effort_angina != '1') {
-                        app.mr.admission_diagnosis.effort_angina_pectoris_ccs = '';
+                    if(app.mr.admission_diagnosis.is_angina != '1') {
+                        app.mr.admission_diagnosis.angina_type = '';
+                        app.mr.admission_diagnosis.angina_ccs = '';
                     }
                     if(app.mr.admission_diagnosis.is_diagnosis_others != '1') {
                         app.mr.admission_diagnosis.diagnosis_others = '';
@@ -2192,23 +2219,20 @@ jQuery(document).ready(function() {
                     //入院诊断部分数据处理结束
 
                     //出院诊断部分数据处理开始
-                    if(app.mr.discharge_diagnosis.is_acute_myocardial_infarction != '1') {
-                        app.mr.discharge_diagnosis.acute_myocardial_infarction_part = '';
+                    if(app.mr.discharge_diagnosis.is_myocardial_infarction != '1') {
+                        app.mr.discharge_diagnosis.myocardial_infarction_type = '';
+                        app.mr.discharge_diagnosis.myocardial_infarction_part = '';
                     }
-                    if(app.mr.discharge_diagnosis.is_subacute_myocardial_infarction != '1') {
-                        app.mr.discharge_diagnosis.subacute_myocardial_infarction_part = '';
-                    }
-                    if(app.mr.discharge_diagnosis.is_old_myocardial_infarction != '1') {
-                        app.mr.discharge_diagnosis.old_myocardial_infarction_part = '';
-                    }
-                    if(app.mr.discharge_diagnosis.is_effort_angina != '1') {
-                        app.mr.discharge_diagnosis.effort_angina_pectoris_ccs = '';
+                    if(app.mr.discharge_diagnosis.is_angina != '1') {
+                        app.mr.discharge_diagnosis.angina_type = '';
+                        app.mr.discharge_diagnosis.angina_ccs = '';
                     }
                     if(app.mr.discharge_diagnosis.is_diagnosis_others != '1') {
                         app.mr.discharge_diagnosis.diagnosis_others = '';
                     }
                     //出院诊断部分数据处理结束
                     // console.log(JSON.stringify(app.mr));
+                    console.log(app.mr);
                     bootbox.confirm({
                         message: "是否提交当前页面填写的所有数据？",
                         buttons: {
@@ -2413,9 +2437,9 @@ jQuery(document).ready(function() {
                 $("input[name='is_S3S4_gallop_rhythm']").on('ifChanged', function(event) {
                     app.mr.physical_examination.is_S3S4_gallop_rhythm = $("input[name='is_S3S4_gallop_rhythm']:checked").val();
                 });
-                $("input[name='is_heart_failure']").on('ifChanged', function(event) {
-                    app.mr.physical_examination.is_heart_failure = $("input[name='is_heart_failure']:checked").val();
-                });
+                // $("input[name='is_heart_failure']").on('ifChanged', function(event) {
+                //     app.mr.physical_examination.is_heart_failure = $("input[name='is_heart_failure']:checked").val();
+                // });
                 $("input[name='is_ear_lobe_longitudinal_crack']").on('ifChanged', function(event) {
                     app.mr.physical_examination.is_ear_lobe_longitudinal_crack = $("input[name='is_ear_lobe_longitudinal_crack']:checked").val();
                 });
@@ -3176,20 +3200,17 @@ jQuery(document).ready(function() {
 
                 //特殊检查部分结束
                 //入院诊断部分开始
-                $("input[name='admission_diagnosis_is_acute_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.admission_diagnosis.is_acute_myocardial_infarction = $("input[name='admission_diagnosis_is_acute_myocardial_infarction']:checked").val();
+                $("input[name='admission_diagnosis_is_coronary_microvascular_disease']").on('ifChanged', function(event) {
+                    app.mr.admission_diagnosis.is_coronary_microvascular_disease = $("input[name='admission_diagnosis_is_coronary_microvascular_disease']:checked").val();
                 });
-                $("input[name='admission_diagnosis_is_subacute_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.admission_diagnosis.is_subacute_myocardial_infarction = $("input[name='admission_diagnosis_is_subacute_myocardial_infarction']:checked").val();
+                $("input[name='admission_diagnosis_is_myocardial_infarction']").on('ifChanged', function(event) {
+                    app.mr.admission_diagnosis.is_myocardial_infarction = $("input[name='admission_diagnosis_is_myocardial_infarction']:checked").val();
                 });
-                $("input[name='admission_diagnosis_is_old_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.admission_diagnosis.is_old_myocardial_infarction = $("input[name='admission_diagnosis_is_old_myocardial_infarction']:checked").val();
+                $("input[name='admission_diagnosis_is_angina']").on('ifChanged', function(event) {
+                    app.mr.admission_diagnosis.is_angina = $("input[name='admission_diagnosis_is_angina']:checked").val();
                 });
-                $("input[name='admission_diagnosis_is_unstable_angina_pectoris']").on('ifChanged', function(event) {
-                    app.mr.admission_diagnosis.is_unstable_angina_pectoris = $("input[name='admission_diagnosis_is_unstable_angina_pectoris']:checked").val();
-                });
-                $("input[name='admission_diagnosis_is_effort_angina']").on('ifChanged', function(event) {
-                    app.mr.admission_diagnosis.is_effort_angina = $("input[name='admission_diagnosis_is_effort_angina']:checked").val();
+                $("input[name='admission_diagnosis_is_coronary_microvascular_disease']").on('ifChanged', function(event) {
+                    app.mr.admission_diagnosis.is_coronary_microvascular_disease = $("input[name='admission_diagnosis_is_coronary_microvascular_disease']:checked").val();
                 });
                 $("input[name='admission_diagnosis_is_silent_myocardial_ischemia']").on('ifChanged', function(event) {
                     app.mr.admission_diagnosis.is_silent_myocardial_ischemia = $("input[name='admission_diagnosis_is_silent_myocardial_ischemia']:checked").val();
@@ -3207,21 +3228,18 @@ jQuery(document).ready(function() {
                     app.mr.admission_diagnosis.is_diagnosis_others = $("input[name='admission_diagnosis_is_diagnosis_others']:checked").val();
                 });
                 //入院诊断部分结束
-                //入院诊断部分开始
-                $("input[name='discharge_diagnosis_is_acute_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.discharge_diagnosis.is_acute_myocardial_infarction = $("input[name='discharge_diagnosis_is_acute_myocardial_infarction']:checked").val();
+                //出院诊断部分开始
+                $("input[name='discharge_diagnosis_is_coronary_microvascular_disease']").on('ifChanged', function(event) {
+                    app.mr.discharge_diagnosis.is_coronary_microvascular_disease = $("input[name='discharge_diagnosis_is_coronary_microvascular_disease']:checked").val();
                 });
-                $("input[name='discharge_diagnosis_is_subacute_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.discharge_diagnosis.is_subacute_myocardial_infarction = $("input[name='discharge_diagnosis_is_subacute_myocardial_infarction']:checked").val();
+                $("input[name='discharge_diagnosis_is_myocardial_infarction']").on('ifChanged', function(event) {
+                    app.mr.discharge_diagnosis.is_myocardial_infarction = $("input[name='discharge_diagnosis_is_myocardial_infarction']:checked").val();
                 });
-                $("input[name='discharge_diagnosis_is_old_myocardial_infarction']").on('ifChanged', function(event) {
-                    app.mr.discharge_diagnosis.is_old_myocardial_infarction = $("input[name='discharge_diagnosis_is_old_myocardial_infarction']:checked").val();
+                $("input[name='discharge_diagnosis_is_angina']").on('ifChanged', function(event) {
+                    app.mr.discharge_diagnosis.is_angina = $("input[name='discharge_diagnosis_is_angina']:checked").val();
                 });
-                $("input[name='discharge_diagnosis_is_unstable_angina_pectoris']").on('ifChanged', function(event) {
-                    app.mr.discharge_diagnosis.is_unstable_angina_pectoris = $("input[name='discharge_diagnosis_is_unstable_angina_pectoris']:checked").val();
-                });
-                $("input[name='discharge_diagnosis_is_effort_angina']").on('ifChanged', function(event) {
-                    app.mr.discharge_diagnosis.is_effort_angina = $("input[name='discharge_diagnosis_is_effort_angina']:checked").val();
+                $("input[name='discharge_diagnosis_is_coronary_microvascular_disease']").on('ifChanged', function(event) {
+                    app.mr.discharge_diagnosis.is_coronary_microvascular_disease = $("input[name='discharge_diagnosis_is_coronary_microvascular_disease']:checked").val();
                 });
                 $("input[name='discharge_diagnosis_is_silent_myocardial_ischemia']").on('ifChanged', function(event) {
                     app.mr.discharge_diagnosis.is_silent_myocardial_ischemia = $("input[name='discharge_diagnosis_is_silent_myocardial_ischemia']:checked").val();
@@ -3238,7 +3256,7 @@ jQuery(document).ready(function() {
                 $("input[name='discharge_diagnosis_is_diagnosis_others']").on('ifChanged', function(event) {
                     app.mr.discharge_diagnosis.is_diagnosis_others = $("input[name='discharge_diagnosis_is_diagnosis_others']:checked").val();
                 });
-                //入院诊断部分结束
+                //出院诊断部分结束
             }
         };
     }();
@@ -3552,17 +3570,17 @@ jQuery(document).ready(function() {
                         app.care_causes_diseases.chest_distress.simultaneous_phenomena = "";
                     }
                 });
-                $("select[name*='angina_pectoris_ccs']").select2({
-                    placeholder: "选择",
-                    data: pageData.history_of_present_illness.angina_pectoris_ccs_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("select[name*='angina_pectoris_ccs']").on('change', function(event) {
-                    app.mr.history_of_present_illness.angina_pectoris_ccs = $(this).val();
-                });
+                // $("select[name*='angina_pectoris_ccs']").select2({
+                //     placeholder: "选择",
+                //     data: pageData.history_of_present_illness.angina_pectoris_ccs_list,
+                //     allowClear: true,
+                //     minimumResultsForSearch: 20,
+                //     width: 'auto',
+                //     language: "zh-CN",
+                // });
+                // $("select[name*='angina_pectoris_ccs']").on('change', function(event) {
+                //     app.mr.history_of_present_illness.angina_pectoris_ccs = $(this).val();
+                // });
                 //现病史部分结束
 
                 //危险因素部分开始
@@ -3998,6 +4016,48 @@ jQuery(document).ready(function() {
                 });
                 //家族史部分结束
                 //体格检查部分结束
+                $("select[name*='breath_sounds_type']").select2({
+                    placeholder: "选择",
+                    data: pageData.physical_examination.breath_sounds_type_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("#physical_examination_breath_sounds_type").on('change', function(event) {
+                    app.mr.physical_examination.breath_sounds_type = $(this).val();
+                });
+                $("#physical_examination_breath_sounds_part").on('change', function(event) {
+                    app.mr.physical_examination.breath_sounds_part = $(this).val();
+                });
+                $("#physical_examination_lung_wet_rales_part").on('change', function(event) {
+                    app.mr.physical_examination.lung_wet_rales_part = $(this).val();
+                });
+                $("select[name*='breath_sounds_part']").select2({
+                    placeholder: "选择",
+                    data: pageData.physical_examination.breath_sounds_part_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("#physical_examination_breath_sounds_part").on('change', function(event) {
+                    app.mr.physical_examination.breath_sounds_part = $(this).val();
+                });
+                $("#physical_examination_lung_wet_rales_part").on('change', function(event) {
+                    app.mr.physical_examination.lung_wet_rales_part = $(this).val();
+                });
+                $("select[name*='breath_sounds_type']").select2({
+                    placeholder: "选择",
+                    data: pageData.physical_examination.breath_sounds_type_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("#physical_examination_breath_sounds_type").on('change', function(event) {
+                    app.mr.physical_examination.breath_sounds_type = $(this).val();
+                });
                 $("select[name*='lung_wet_rales_range']").select2({
                     placeholder: "选择",
                     data: pageData.physical_examination.lung_wet_rales_range_list,
@@ -4020,17 +4080,17 @@ jQuery(document).ready(function() {
                 $("#physical_examination_heart_sound_S1_result").on('change', function(event) {
                     app.mr.physical_examination.heart_sound_S1_result = $(this).val();
                 });
-                $("select[name*='Killip_class']").select2({
-                    placeholder: "选择",
-                    data: pageData.physical_examination.Killip_class_list,
-                    allowClear: true,
-                    minimumResultsForSearch: 20,
-                    width: 'auto',
-                    language: "zh-CN",
-                });
-                $("#physical_examination_Killip_class").on('change', function(event) {
-                    app.mr.physical_examination.Killip_class = $(this).val();
-                });
+                // $("select[name*='Killip_class']").select2({
+                //     placeholder: "选择",
+                //     data: pageData.physical_examination.Killip_class_list,
+                //     allowClear: true,
+                //     minimumResultsForSearch: 20,
+                //     width: 'auto',
+                //     language: "zh-CN",
+                // });
+                // $("#physical_examination_Killip_class").on('change', function(event) {
+                //     app.mr.physical_examination.Killip_class = $(this).val();
+                // });
                 $("select[name*='ear_lobe_longitudinal_crack_parts']").select2({
                     placeholder: "选择",
                     data: pageData.physical_examination.ear_lobe_longitudinal_crack_part_list,
@@ -4373,13 +4433,49 @@ jQuery(document).ready(function() {
                 });
                 //特殊检查部分结束
                 //入院诊断部分开始
-                $("#admission_diagnosis_effort_angina_pectoris_ccs").on('change', function(event) {
-                    app.mr.admission_diagnosis.effort_angina_pectoris_ccs = $(this).val();
+                $("select[name*='myocardial_infarction_type']").select2({
+                    placeholder: "选择",
+                    data: pageData.diagnosis.myocardial_infarction_type_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("select[name*='angina_type']").select2({
+                    placeholder: "选择",
+                    data: pageData.diagnosis.angina_type_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("select[name*='angina_ccs']").select2({
+                    placeholder: "选择",
+                    data: pageData.diagnosis.angina_ccs_list,
+                    allowClear: true,
+                    minimumResultsForSearch: 20,
+                    width: 'auto',
+                    language: "zh-CN",
+                });
+                $("#admission_diagnosis_myocardial_infarction_type").on('change', function(event) {
+                    app.mr.admission_diagnosis.myocardial_infarction_type = $(this).val();
+                });
+                $("#admission_diagnosis_angina_type").on('change', function(event) {
+                    app.mr.admission_diagnosis.angina_type = $(this).val();
+                });
+                $("#admission_diagnosis_angina_ccs").on('change', function(event) {
+                    app.mr.admission_diagnosis.angina_ccs = $(this).val();
                 });
                 //入院诊断部分结束
                 //出院诊断部分开始
-                $("#discharge_diagnosis_effort_angina_pectoris_ccs").on('change', function(event) {
-                    app.mr.discharge_diagnosis.effort_angina_pectoris_ccs = $(this).val();
+                $("#discharge_diagnosis_myocardial_infarction_type").on('change', function(event) {
+                    app.mr.discharge_diagnosis.myocardial_infarction_type = $(this).val();
+                });
+                $("#discharge_diagnosis_angina_type").on('change', function(event) {
+                    app.mr.discharge_diagnosis.angina_type = $(this).val();
+                });
+                $("#discharge_diagnosis_angina_ccs").on('change', function(event) {
+                    app.mr.discharge_diagnosis.angina_ccs = $(this).val();
                 });
                 //出院诊断部分结束
             }
@@ -4548,10 +4644,7 @@ jQuery(document).ready(function() {
                 "history_of_present_illness": {
                     "care_causes": "",
                     "care_cause_others": "",
-                    "diseases": [],
-                    "is_angina_pectoris": "",
-                    "angina_pectoris_ccs": "",
-                    "is_exertional_angina_attacks_within_4_weeks": ""
+                    "diseases": []                    
                 },
                 "anamnesis": {
                     "lipid_abnormality": {
@@ -4616,6 +4709,7 @@ jQuery(document).ready(function() {
                         "onset_time_year": "",
                         "onset_time_month": "",
                         "inducements": "",
+                        "inducements_others":"",
                         "symptoms": "",
                         "diagnosis_result": ""
                     },
@@ -4699,16 +4793,17 @@ jQuery(document).ready(function() {
                     "body_temperature": "",
                     "respiratory_rate": "",
                     "is_breath_sounds_normal": "",
+                    "breath_sounds_type": "",
+                    "breath_sounds_part": "",
                     "is_lung_wet_rales": "",
                     "lung_wet_rales_range": "",
+                    "lung_wet_rales_part": "",
                     "heart_rate": "",
                     "cardiac_rhythm": "",
                     "heart_sound_S1_result": "",
                     "is_S3S4_gallop_rhythm": "",
                     "pulse": "",
                     "blood_pressure": "",
-                    "is_heart_failure": "",
-                    "Killip_class": "",
                     "is_ear_lobe_longitudinal_crack": "",
                     "ear_lobe_longitudinal_crack_parts": "",
                     "is_skin_yellow_pigment_tumor": "",
@@ -5254,15 +5349,13 @@ jQuery(document).ready(function() {
                     }
                 },
                 "admission_diagnosis": {
-                    "is_acute_myocardial_infarction": "",
-                    "acute_myocardial_infarction_part": "",
-                    "is_subacute_myocardial_infarction": "",
-                    "subacute_myocardial_infarction_part": "",
-                    "is_old_myocardial_infarction": "",
-                    "old_myocardial_infarction_part": "",
-                    "is_unstable_angina_pectoris": "",
-                    "is_effort_angina": "",
-                    "effort_angina_pectoris_ccs": "",
+                    "is_myocardial_infarction": "",
+                    "myocardial_infarction_part": "",
+                    "myocardial_infarction_type": "",
+                    "is_angina": "",
+                    "angina_type": "",
+                    "angina_ccs": "",
+                    "is_coronary_microvascular_disease":"",
                     "is_silent_myocardial_ischemia": "",
                     "is_ischemic_cardiomyopathy": "",
                     "is_sudden_coronary_death": "",
@@ -5271,15 +5364,13 @@ jQuery(document).ready(function() {
                     "diagnosis_others": ""
                 },
                 "discharge_diagnosis": {
-                    "is_acute_myocardial_infarction": "",
-                    "acute_myocardial_infarction_part": "",
-                    "is_subacute_myocardial_infarction": "",
-                    "subacute_myocardial_infarction_part": "",
-                    "is_old_myocardial_infarction": "",
-                    "old_myocardial_infarction_part": "",
-                    "is_unstable_angina_pectoris": "",
-                    "is_effort_angina": "",
-                    "effort_angina_pectoris_ccs": "",
+                    "is_myocardial_infarction": "",
+                    "myocardial_infarction_part": "",
+                    "myocardial_infarction_type": "",
+                    "is_angina": "",
+                    "angina_type": "",
+                    "angina_ccs": "",
+                    "is_coronary_microvascular_disease":"",
                     "is_silent_myocardial_ischemia": "",
                     "is_ischemic_cardiomyopathy": "",
                     "is_sudden_coronary_death": "",

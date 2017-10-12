@@ -1582,8 +1582,12 @@
                                                                                         <div v-show="mr.anamnesis.deep_venou_thrombosis.is_deep_venou_thrombosis=='1'">
                                                                                             <div class="form-group">
                                                                                                 <label class="control-label col-md-2 col-md-offset-1">诱因（多选）</label>
-                                                                                                <div class="col-md-8">
+                                                                                                <div class="col-md-6">
                                                                                                     <select name="deep_venou_thrombosis_inducement" class="form-control" id="anamnesis_deep_venou_thrombosis_inducements"></select>
+                                                                                                </div>
+                                                                                                <div class="col-md-2" v-show="mr.anamnesis.deep_venou_thrombosis.inducements.indexOf('5')>='0'">
+                                                                                                    <input type="text" class="form-control" name="deep_venou_thrombosis_inducements_others" v-model="mr.anamnesis.deep_venou_thrombosis.inducements_others">
+                                                                                                    <span class="help-block"> 填写其他诱因 </span>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
@@ -1901,6 +1905,66 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- 心肌梗塞家族史部分结束 -->
+                                                                                <!-- 猝死家族史部分开始 -->
+                                                                                <div class="portlet box purple">
+                                                                                    <div class="portlet-title">
+                                                                                        <div class="caption">猝死家族史</div>
+                                                                                        <div class="tools">
+                                                                                            <a href="javascript:;" class="collapse"> </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="portlet-body">
+                                                                                        <div class="form-group">
+                                                                                            <label class="control-label bold col-md-2">有无猝死家族史</label>
+                                                                                            <div class="col-md-3">
+                                                                                                <div class="icheck-inline">
+                                                                                                    <label><input type="radio" name="is_sudden_death" value="0"> 无 </label>
+                                                                                                    <label><input type="radio" name="is_sudden_death" value="1"> 有 </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group mt-repeater" v-show="family_history.is_sudden_death=='1'">
+                                                                                            <label class="control-label bold col-md-2">发病成员</label>
+                                                                                            <div class="col-md-4">
+                                                                                                <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add"><i class="fa fa-plus"></i> 添加发病成员</a>
+                                                                                                <span class="help-block">  </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-offset-2 col-md-10">
+                                                                                                <div data-repeater-list="sudden_death" id="sudden_death_repeater">
+                                                                                                    <div data-repeater-item class="mt-repeater-item form-group">
+                                                                                                        <!-- jQuery Repeater Container -->
+                                                                                                        <div class="col-md-2">
+                                                                                                            <span class="help-block"> 成员 </span>
+                                                                                                            <select name="onset_member" class="form-control"><option value=""></option></select>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-2">
+                                                                                                            <span class="help-block"> 性别 </span>
+                                                                                                            <select name="gender" class="form-control"><option value=""></option></select>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-2">
+                                                                                                            <span class="help-block"> 发病年龄 </span>
+                                                                                                            <input type="text" name="onset_age" class="form-control">
+                                                                                                        </div>
+                                                                                                        <div class="col-md-3">
+                                                                                                            <span class="help-block"> 病因 </span>
+                                                                                                            <select name="etiology" class="form-control"><option value=""><option></select>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-2 hide">
+                                                                                                            <span class="help-block"> 其他病因 </span>
+                                                                                                            <input type="text" name="etiology_others" class="form-control">
+                                                                                                        </div>
+                                                                                                        <div class="col-md-1">
+                                                                                                            <span class="help-block"> &nbsp;&nbsp; </span>
+                                                                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger">
+                                                                                                                <i class="fa fa-close"></i> 删除</a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- 猝死家族史部分结束 -->
                                                                                 <!-- 缺血性脑卒中家族史部分开始 -->
                                                                                 <div class="portlet box yellow">
                                                                                     <div class="portlet-title">
@@ -2005,66 +2069,6 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- 出血性脑卒中家族史部分结束 -->
-                                                                                <!-- 猝死家族史部分开始 -->
-                                                                                <div class="portlet box purple">
-                                                                                    <div class="portlet-title">
-                                                                                        <div class="caption">猝死家族史</div>
-                                                                                        <div class="tools">
-                                                                                            <a href="javascript:;" class="collapse"> </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="portlet-body">
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label bold col-md-2">有无猝死家族史</label>
-                                                                                            <div class="col-md-3">
-                                                                                                <div class="icheck-inline">
-                                                                                                    <label><input type="radio" name="is_sudden_death" value="0"> 无 </label>
-                                                                                                    <label><input type="radio" name="is_sudden_death" value="1"> 有 </label>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group mt-repeater" v-show="family_history.is_sudden_death=='1'">
-                                                                                            <label class="control-label bold col-md-2">发病成员</label>
-                                                                                            <div class="col-md-4">
-                                                                                                <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add"><i class="fa fa-plus"></i> 添加发病成员</a>
-                                                                                                <span class="help-block">  </span>
-                                                                                            </div>
-                                                                                            <div class="col-md-offset-2 col-md-10">
-                                                                                                <div data-repeater-list="sudden_death" id="sudden_death_repeater">
-                                                                                                    <div data-repeater-item class="mt-repeater-item form-group">
-                                                                                                        <!-- jQuery Repeater Container -->
-                                                                                                        <div class="col-md-2">
-                                                                                                            <span class="help-block"> 成员 </span>
-                                                                                                            <select name="onset_member" class="form-control"><option value=""></option></select>
-                                                                                                        </div>
-                                                                                                        <div class="col-md-2">
-                                                                                                            <span class="help-block"> 性别 </span>
-                                                                                                            <select name="gender" class="form-control"><option value=""></option></select>
-                                                                                                        </div>
-                                                                                                        <div class="col-md-2">
-                                                                                                            <span class="help-block"> 发病年龄 </span>
-                                                                                                            <input type="text" name="onset_age" class="form-control">
-                                                                                                        </div>
-                                                                                                        <div class="col-md-3">
-                                                                                                            <span class="help-block"> 病因 </span>
-                                                                                                            <select name="etiology" class="form-control"><option value=""><option></select>
-                                                                                                        </div>
-                                                                                                        <div class="col-md-2 hide">
-                                                                                                            <span class="help-block"> 其他病因 </span>
-                                                                                                            <input type="text" name="etiology_others" class="form-control">
-                                                                                                        </div>
-                                                                                                        <div class="col-md-1">
-                                                                                                            <span class="help-block"> &nbsp;&nbsp; </span>
-                                                                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger">
-                                                                                                                <i class="fa fa-close"></i> 删除</a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- 猝死家族史部分结束 -->
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -2103,6 +2107,16 @@
                                                                                             <label><input type="radio" name="is_breath_sounds_normal" value="0"> 异常 </label>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <div v-show="mr.physical_examination.is_breath_sounds_normal=='0'">
+                                                                                        <label class="control-label col-md-1">类型</label>
+                                                                                        <div class="col-md-2">
+                                                                                            <select name="breath_sounds_type" class="form-control input-inline" id="physical_examination_breath_sounds_type"><option value="">I</option></select>
+                                                                                        </div>
+                                                                                        <label class="control-label col-md-1">部位</label>
+                                                                                        <div class="col-md-2">
+                                                                                            <select name="breath_sounds_part" class="form-control input-inline" id="physical_examination_breath_sounds_part"><option value="">I</option></select>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label col-md-2">肺部湿啰音</label>
@@ -2113,9 +2127,13 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div v-show="mr.physical_examination.is_lung_wet_rales=='1'">
-                                                                                        <label class="control-label col-md-2">范围</label>
-                                                                                        <div class="col-md-4">
+                                                                                        <label class="control-label col-md-1">范围</label>
+                                                                                        <div class="col-md-2">
                                                                                             <select name="lung_wet_rales_range" class="form-control input-inline" id="physical_examination_lung_wet_rales_range"><option value=""></option></select>
+                                                                                        </div>
+                                                                                        <label class="control-label col-md-1">部位</label>
+                                                                                        <div class="col-md-2">
+                                                                                            <select name="breath_sounds_part" class="form-control input-inline" id="physical_examination_lung_wet_rales_part"><option value=""></option></select>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2171,7 +2189,7 @@
                                                                                 <span class="help-inline"> mmHg </span>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <!-- <div class="form-group">
                                                                             <label class="control-label bold col-md-2">心衰</label>
                                                                             <div class="col-md-2">
                                                                                 <div class="icheck-inline">
@@ -2185,7 +2203,7 @@
                                                                                     <select name="Killip_class" class="form-control input-inline" id="physical_examination_Killip_class"><option value="">I</option></select>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
                                                                         <div class="form-group">
                                                                             <label class="control-label bold col-md-2">耳垂有纵向裂纹</label>
                                                                             <div class="col-md-2">
@@ -4781,75 +4799,6 @@
                                                                     </div>
                                                                     <div class="portlet-body">
                                                                         <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">急性心梗</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_acute_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_acute_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.admission_diagnosis.is_acute_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="acute_myocardial_infarction_part" class="form-control" v-model="mr.admission_diagnosis.acute_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">亚急性心梗</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_subacute_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_subacute_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.admission_diagnosis.is_subacute_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="subacute_myocardial_infarction_part" class="form-control" v-model="mr.admission_diagnosis.subacute_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">陈旧性心硬</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_old_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_old_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.admission_diagnosis.is_old_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="old_myocardial_infarction_part" class="form-control" v-model="mr.admission_diagnosis.old_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">不稳定型心绞痛</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_unstable_angina_pectoris" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_unstable_angina_pectoris" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">劳力性心绞痛</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_effort_angina" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="admission_diagnosis_is_effort_angina" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.admission_diagnosis.is_effort_angina=='1'">
-                                                                                <label class="control-label col-md-1">CCS分级</label>
-                                                                                <div class="col-md-2">
-                                                                                    <select name="effort_angina_pectoris_ccs" class="form-control input-inline" id="admission_diagnosis_effort_angina_pectoris_ccs"><option value=""></option></select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
                                                                             <label class="control-label bold col-md-2">无痛性心肌缺血</label>
                                                                             <div class="col-md-2">
                                                                                 <div class="icheck-inline">
@@ -4858,6 +4807,58 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">冠脉微血管病变</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_coronary_microvascular_disease" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_coronary_microvascular_disease" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">心肌梗死</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_myocardial_infarction" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_myocardial_infarction" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.admission_diagnosis.is_myocardial_infarction=='1'">
+                                                                                <label class="control-label col-md-1">类型</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="myocardial_infarction_type" class="form-control input-inline" id="admission_diagnosis_myocardial_infarction_type"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.admission_diagnosis.is_myocardial_infarction=='1'">
+                                                                                <label class="control-label col-md-1">部位</label>
+                                                                                <div class="col-md-2">
+                                                                                    <input type="text" name="myocardial_infarction_part" class="form-control" v-model="mr.admission_diagnosis.myocardial_infarction_part">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">心绞痛</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_angina" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="admission_diagnosis_is_angina" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.admission_diagnosis.is_angina=='1'">
+                                                                                <label class="control-label col-md-1">类型</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="angina_type" class="form-control input-inline" id="admission_diagnosis_angina_type"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.admission_diagnosis.is_angina=='1'">
+                                                                                <label class="control-label col-md-1">CCS分级</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="angina_ccs" class="form-control input-inline" id="admission_diagnosis_angina_ccs"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="form-group">
                                                                             <label class="control-label bold col-md-2">缺血性心肌病</label>
                                                                             <div class="col-md-2">
@@ -4905,79 +4906,10 @@
                                                                 <div class="tab-pane portlet" id="tab_1_8">
                                                                     <div class="portlet-title">
                                                                         <div class="caption col-md-offset-1">
-                                                                            <span class="caption-subject bold font-dark uppercase">出院诊断</span>
+                                                                            <span class="caption-subject bold font-dark uppercase">入院诊断</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="portlet-body">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">急性心梗</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_acute_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_acute_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.discharge_diagnosis.is_acute_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="acute_myocardial_infarction_part" class="form-control" v-model="mr.discharge_diagnosis.acute_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">亚急性心梗</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_subacute_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_subacute_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.discharge_diagnosis.is_subacute_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="subacute_myocardial_infarction_part" class="form-control" v-model="mr.discharge_diagnosis.subacute_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">陈旧性心硬</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_old_myocardial_infarction" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_old_myocardial_infarction" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.discharge_diagnosis.is_old_myocardial_infarction=='1'">
-                                                                                <label class="control-label col-md-1">部位</label>
-                                                                                <div class="col-md-2">
-                                                                                    <input type="text" name="old_myocardial_infarction_part" class="form-control" v-model="mr.discharge_diagnosis.old_myocardial_infarction_part">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">不稳定型心绞痛</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_unstable_angina_pectoris" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_unstable_angina_pectoris" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label bold col-md-2">劳力性心绞痛</label>
-                                                                            <div class="col-md-2">
-                                                                                <div class="icheck-inline">
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_effort_angina" value="0"> 否 </label>
-                                                                                    <label><input type="radio" name="discharge_diagnosis_is_effort_angina" value="1"> 是 </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div v-show="mr.discharge_diagnosis.is_effort_angina=='1'">
-                                                                                <label class="control-label col-md-1">CCS分级</label>
-                                                                                <div class="col-md-2">
-                                                                                    <select name="effort_angina_pectoris_ccs" class="form-control input-inline" id="discharge_diagnosis_effort_angina_pectoris_ccs"><option value=""></option></select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                         <div class="form-group">
                                                                             <label class="control-label bold col-md-2">无痛性心肌缺血</label>
                                                                             <div class="col-md-2">
@@ -4987,6 +4919,58 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">冠脉微血管病变</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_coronary_microvascular_disease" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_coronary_microvascular_disease" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">心肌梗死</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_myocardial_infarction" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_myocardial_infarction" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.discharge_diagnosis.is_myocardial_infarction=='1'">
+                                                                                <label class="control-label col-md-1">类型</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="myocardial_infarction_type" class="form-control input-inline" id="discharge_diagnosis_myocardial_infarction_type"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.discharge_diagnosis.is_myocardial_infarction=='1'">
+                                                                                <label class="control-label col-md-1">部位</label>
+                                                                                <div class="col-md-2">
+                                                                                    <input type="text" name="myocardial_infarction_part" class="form-control" v-model="mr.discharge_diagnosis.myocardial_infarction_part">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label bold col-md-2">心绞痛</label>
+                                                                            <div class="col-md-2">
+                                                                                <div class="icheck-inline">
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_angina" value="0"> 否 </label>
+                                                                                    <label><input type="radio" name="discharge_diagnosis_is_angina" value="1"> 是 </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.discharge_diagnosis.is_angina=='1'">
+                                                                                <label class="control-label col-md-1">类型</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="angina_type" class="form-control input-inline" id="discharge_diagnosis_angina_type"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div v-show="mr.discharge_diagnosis.is_angina=='1'">
+                                                                                <label class="control-label col-md-1">CCS分级</label>
+                                                                                <div class="col-md-2">
+                                                                                    <select name="angina_ccs" class="form-control input-inline" id="discharge_diagnosis_angina_ccs"><option value=""></option></select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="form-group">
                                                                             <label class="control-label bold col-md-2">缺血性心肌病</label>
                                                                             <div class="col-md-2">
